@@ -1,0 +1,35 @@
+name: Publish to PyPI
+
+# Disabled until the v0.1 release is ready — see RELEASE.md. Flip the `if:
+# false` guard on the job below to enable trusted publishing on `v*` tags.
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    if: false # TODO: remove once ready to publish (see RELEASE.md)
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write # required for PyPI trusted publishing
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tooling
+        run: python -m pip install build
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-sinim"
+dynamic = ["version"]
+description = "Python client and MCP server for Chile's SINIM municipal data (datos.sinim.gov.cl)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Maykol Medrano", email = "mmedrano2@uc.cl" },
+]
+keywords = ["sinim", "chile", "municipios", "mcp", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "fastmcp",
+    "httpx",
+    "pandas",
+    "rapidfuzz",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "respx",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/MaykolMedrano/mcp_sinim"
+Repository = "https://github.com/MaykolMedrano/mcp_sinim"
+Issues = "https://github.com/MaykolMedrano/mcp_sinim/issues"
+
+[project.scripts]
+mcp-sinim = "mcp_sinim.server:main"
+
+[tool.setuptools.packages.find]
+include = ["mcp_sinim*"]
+
+[tool.setuptools_scm]
+write_to = "mcp_sinim/_version.py"
+fallback_version = "0.1.0.dev0"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+# recon/ holds untouched recon evidence scripts (see CLAUDE.md); not linted or packaged.
+extend-exclude = ["recon"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
