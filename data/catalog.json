@@ -1,0 +1,4322 @@
+[
+ {
+  "code": "457",
+  "name": "Consultas Médicas Anuales Efectuadas por la Población Mayor de 20 Años",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "461",
+  "name": "Mujeres Entre 25 y 64 Años con PAP Vigente",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "464",
+  "name": "Población Inscrita Validada en Servicios de Salud Municipal (FONASA)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Fondo Nacional de Salud (FONASA)"
+ },
+ {
+  "code": "466",
+  "name": "Población Beneficiaria Menor de 6 Años Validada por FONASA",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Fondo Nacional de Salud (FONASA)"
+ },
+ {
+  "code": "469",
+  "name": "Población Femenina entre 25 y 64 años Validada como Beneficiaria por FONASA para el mismo Año",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Fondo Nacional de Salud (FONASA)"
+ },
+ {
+  "code": "470",
+  "name": "Población Adulta entre 20 y 64 Años Validada como Beneficiaria por FONASA para el mismo Año",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Fondo Nacional de Salud (FONASA)"
+ },
+ {
+  "code": "471",
+  "name": "Población Mayor de 64 años Validada como Beneficiaria por FONASA",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Fondo Nacional de Salud (FONASA)"
+ },
+ {
+  "code": "480",
+  "name": "Personas Inscritas en la Municipalidad en Busca de Empleo",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "C. INTERMEDIACION LABORAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "481",
+  "name": "Personas Enviadas a un Empleo",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "C. INTERMEDIACION LABORAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "482",
+  "name": "Personas Inscritas en la Municipalidad para Capacitación",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "C. INTERMEDIACION LABORAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "486",
+  "name": "Subsidios Familiares (SUF) Otorgados en la comuna",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "491",
+  "name": "Número Total de Médicos Contratados al 31 de Diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "505",
+  "name": "Número de Construcciones con Recepción Definitiva durante el Año",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "C. INFRAESTRUCTURA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "508",
+  "name": "Rol de Predios (cantidad) Informado por el Servicio de Impuestos Internos (SII)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "509",
+  "name": "Viviendas con Conexión a Red de Agua Potable, según Ultimo Censo",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "B. SERVICIOS BASICOS A LA COMUNIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "510",
+  "name": "Viviendas de la Comuna, según el Ultimo Censo",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "B. SERVICIOS BASICOS A LA COMUNIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "512",
+  "name": "Superficie en M2 de Areas Verdes con Mantenimiento",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "B. SERVICIOS BASICOS A LA COMUNIDAD",
+  "unit": "MTS²",
+  "unit_name": "METROS CUADRADOS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "519",
+  "name": "Matrícula General de Alumnos de Enseñanza Básica Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "521",
+  "name": "Matrícula General de Alumnos de Enseñanza Media Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "523",
+  "name": "Matrícula Inicial de Alumnos de Enseñanza Básica Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "525",
+  "name": "Matrícula Inicial de Alumnos de Enseñanza Media Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "526",
+  "name": "Matrícula Inicial en Establecimientos Particulares Subvencionados",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "527",
+  "name": "Matrícula Inicial en Establecimientos Particulares Pagados",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "538",
+  "name": "Número de PAES igual o superior a 458 puntos (que rinde la prueba por primera vez) en colegios municipales",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "539",
+  "name": "Número de alumnos de 4º medio de colegios municipales que rindieron la PAES por primera vez",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "540",
+  "name": "Número de PAES igual o superior a 458 puntos (que rinde la prueba por primera vez) en colegios particulares subvencionados",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "541",
+  "name": "Número de alumnos de 4º medio de colegios particulares subvencionados que rindieron la PAES por primera vez",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "542",
+  "name": "Número de PAES igual o superior a 458 puntos (que rinde la prueba por primera vez) en colegios particulares pagados",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "543",
+  "name": "Número de alumnos de 4º medio de colegios particulares que rindieron la PAES por primera vez",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "548",
+  "name": "Personal Docente",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "552",
+  "name": "Población Comunal en Edad Escolar",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "553",
+  "name": "Matrícula Inicial en Establecimientos Municipales",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "557",
+  "name": "Becas Presidente de la República a Enseñanza Media Asignadas a la Comuna",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "E. BECAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "566",
+  "name": "Población Comunal de 18 Años y Más",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "571",
+  "name": "Población Comunal Estimada para el Año (por el INE)",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "573",
+  "name": "Población Rural",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "574",
+  "name": "Población Urbana",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "578",
+  "name": "Población Comunal de 6 Años y Más",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "579",
+  "name": "Población Comunal de 10 Años y Más",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "591",
+  "name": "Subsidios de Agua Potable (SAP) Otorgados por la comuna a Zonas Rurales",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "593",
+  "name": "Docentes de Aula Contratados (Fuente: MINEDUC)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "594",
+  "name": "Población Beneficiaria Menor de 2 años, Validada por FONASA",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Fondo Nacional de Salud (FONASA)"
+ },
+ {
+  "code": "600",
+  "name": "Población Masculina Estimada para el Año (por el INE)",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "612",
+  "name": "Personal Asistente de la Educación Municipal (No Docente)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "615",
+  "name": "Número de Consultorios General Urbanos (CGU)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "616",
+  "name": "Número de Consultorios General Rural (CGR)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "617",
+  "name": "Número de Postas de Salud Rural (PSR)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "619",
+  "name": "Número de SAPU en la comuna.",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "620",
+  "name": "Número de Laboratorios de Salud Comunal",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "621",
+  "name": "Número de COSAM en la Comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "622",
+  "name": "Número de Otros Establecimientos Municipales de Salud en la Comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "626",
+  "name": "Subsidios de Agua Potable (SAP) Otorgados por la comuna a Zonas Urbanas",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "627",
+  "name": "Personas que Efectivamente Egresan de Cursos de Capacitación Laboral",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "C. INTERMEDIACION LABORAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "631",
+  "name": "Población Femenina Estimada para el Año (por el INE)",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "636",
+  "name": "Número de Mujeres de Planta, pertenecientes al escalafón Directivo, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "637",
+  "name": "Número de Mujeres de Planta pertenecientes al escalafón Profesional, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "638",
+  "name": "Número de Mujeres a Contrata pertenecientes al escalafón Directivo, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "639",
+  "name": "Número de Mujeres a Contrata pertenecientes al escalafón Profesional, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "640",
+  "name": "Número de Hombres de Planta, pertenecientes al escalafón Directivo, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "641",
+  "name": "Número Hombres de Planta, pertenecientes al escalafón Profesional, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "642",
+  "name": "Número de Hombres a Contrata pertenecientes al escalafón Directivo, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "643",
+  "name": "Número de Hombres a Contrata pertenecientes al escalafón Profesional, Sector Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "657",
+  "name": "Nº de hombres a honorarios (Subtítulo 21.03.000)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "660",
+  "name": "Becas Indígenas Enseñanza Básica",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "E. BECAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "661",
+  "name": "Nº de Uniones Comunales",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "674",
+  "name": "N° de Clubes Deportivos",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "675",
+  "name": "Nº de Centros de Padres y Apoderados",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "684",
+  "name": "Número de Establecimientos de Educación Municipal en Áreas Rurales",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "G. ESTABLECIMIENTOS DE EDUCACION MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "685",
+  "name": "Número de Establecimientos de Educación Municipal en Áreas Urbanas",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "G. ESTABLECIMIENTOS DE EDUCACION MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "694",
+  "name": "Consultas de Morbilidad Realizadas a Adolescentes entre 10 - 19",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "696",
+  "name": "Consultas de Morbilidad Realizadas a Mayores de 65 Años",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "699",
+  "name": "Número Total de Enfermeras Contratadas al 31 de Diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "704",
+  "name": "Nº de mujeres a honorarios (Subtítulo 21.03.000)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "707",
+  "name": "Becas Indígenas Enseñanza Media",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "E. BECAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "708",
+  "name": "Nº de Juntas de Vecinos",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "719",
+  "name": "Nº de Centros u Organizaciones del Adulto Mayor",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "720",
+  "name": "Nº de Centros de Madres",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "721",
+  "name": "Nº de Otras Organizaciones Comunitarias Funcionales (otros)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "724",
+  "name": "Total de Otros Profesionales de Salud Contratados al 31 de Diciembre (Odontólogos, Matronas, Nutricionistas, Asistentes social, Kinesiólogos, Psicólogos, Tecnólogos Médicos)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "738",
+  "name": "Nivel de Profesionalización del Personal Municipal",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "739",
+  "name": "Participación Masculina de Funcionarios Municipales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "742",
+  "name": "Participación Femenina en Profesionales y Directivos Municipales Sobre el Total de Funcionarios Municipales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "743",
+  "name": "Cobertura en Educación Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "744",
+  "name": "Indice de Pobreza CASEN (Última Encuesta Vigente)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "A. INFORMACION ENCUESTA CASEN",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "745",
+  "name": "Superficie Total Comunal en Km2",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "A. CARACTERISTICAS TERRITORIALES",
+  "unit": "KMS²",
+  "unit_name": "KILÓMETROS CUADRADOS",
+  "source": ""
+ },
+ {
+  "code": "754",
+  "name": "Porcentaje Estimado de Construcciones con Recepción Definitiva sobre el Total de Roles de Predios, Informado por el SII",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "C. INFRAESTRUCTURA",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "759",
+  "name": "Metros Cuadrados (M2) de Areas Verdes con Mantenimiento por Habitante",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "B. SERVICIOS BASICOS A LA COMUNIDAD",
+  "unit": "MTS²",
+  "unit_name": "METROS CUADRADOS",
+  "source": ""
+ },
+ {
+  "code": "760",
+  "name": "Número de Seccionales Aprobados Posteriormente al Plan Regulador Vigente",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "G. PLAN REGULADOR COMUNAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "761",
+  "name": "Porcentaje de Asistencia Escolar Comunal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "762",
+  "name": "Porcentaje de Retiro de Alumnos de Establecimientos Municipales en Enseñanza Básica",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "763",
+  "name": "Porcentaje de Retiro de Alumnos de Establecimientos Municipales en Enseñanza Media",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "764",
+  "name": "Matrícula Promedio Mensual Establecimientos de Educación Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "B. ASISTENCIA Y MATRÍCULAS EN EDUCACION",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "778",
+  "name": "Porcentaje de Puntajes PAES Igual o Superior a 458 Puntos en Establecimientos Municipales de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "779",
+  "name": "Porcentaje de Puntajes PAES Igual o Superior a 458 Puntos en Establecimientos  Particulares Subvencionados de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "780",
+  "name": "Porcentaje de Puntajes PSU Igual o Superior a 450 Puntos en Establecimientos Particulares Pagados de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "781",
+  "name": "Número de Alumnos por Docente de Aula (Fuente: MINEDUC)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "783",
+  "name": "Porcentaje Personal Docente respecto al Personal del Área Educación (Fuente: Encuesta Municipal)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "786",
+  "name": "Número de Establecimientos  de Educación Municipal  (rurales y urbanos)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "G. ESTABLECIMIENTOS DE EDUCACION MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "787",
+  "name": "Población Inscrita Validada en Servicios de Salud Municipal (FONASA)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "788",
+  "name": "Cobertura de Salud Primaria Municipal",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "795",
+  "name": "Cobertura de Examen Preventivo del Adulto",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "807",
+  "name": "Tasa Logros de Egresos de Capacitación",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "C. INTERMEDIACION LABORAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "818",
+  "name": "Región a la que Pertenece la Comuna",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "A. GEOGRAFICO ADMINISTRATIVA",
+  "unit": "REG",
+  "unit_name": "REGION",
+  "source": ""
+ },
+ {
+  "code": "823",
+  "name": "Provincia a la que Pertenece la Comuna",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "A. GEOGRAFICO ADMINISTRATIVA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "824",
+  "name": "Distancia con Respecto a la Capital Regional",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "A. GEOGRAFICO ADMINISTRATIVA",
+  "unit": "KMS",
+  "unit_name": "KILÓMETROS",
+  "source": ""
+ },
+ {
+  "code": "826",
+  "name": "Población Comunal, Estimada por el INE",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "827",
+  "name": "Densidad de Población por Km2",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "TAS",
+  "unit_name": "TASA",
+  "source": ""
+ },
+ {
+  "code": "835",
+  "name": "Porcentaje de Población Rural",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "838",
+  "name": "Tasa de Natalidad",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "TAS",
+  "unit_name": "TASA",
+  "source": ""
+ },
+ {
+  "code": "839",
+  "name": "Tasa de Mortalidad Infantil",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "TAS",
+  "unit_name": "TASA",
+  "source": ""
+ },
+ {
+  "code": "847",
+  "name": "Participación Femenina de Funcionarios Municipales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "848",
+  "name": "Participación Masculina en Profesionales y Directivos Municipales sobre el Total de Funcionarios Municipales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "853",
+  "name": "Participación Femenina en Escalafones Profesionales y Directivos sobre el Total de Funcionarios Municipales  en estos Escalafones",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "854",
+  "name": "Participación Masculina en Escalafones Profesionales y Directivos sobre el Total de Funcionarios Municipales en estos Escalafones",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "857",
+  "name": "Porcentaje de Población Comunal Masculina",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "859",
+  "name": "Porcentaje de Población Comunal Femenina",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "879",
+  "name": "Ingresos Propios Permanentes (IPP)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "880",
+  "name": "Ingresos por Fondo Común Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "882",
+  "name": "Ingresos Propios (IPP y FCM)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "883",
+  "name": "Ingresos por Transferencias",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "887",
+  "name": "Ingresos Totales, descontados los Ingresos por Transferencias",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "890",
+  "name": "Ingresos Propios, según criterio de Contraloría General de la República",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "894",
+  "name": "Gastos Corrientes",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "910",
+  "name": "Monto Transferido al Fondo Común Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "930",
+  "name": "Ingresos Totales de Educación Municipal descontadas las Transferencias del Municipio a Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "931",
+  "name": "Aporte Municipal al Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "932",
+  "name": "Subvención de Escolaridad (del Mineduc)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "935",
+  "name": "Ingresos Educación  (Ingreso Total Percibido)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "936",
+  "name": "Gastos Educación (Gasto Total Devengado)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "937",
+  "name": "Gastos de Funcionamiento del Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "939",
+  "name": "Gasto en Personal del Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "945",
+  "name": "Inversión Real Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "947",
+  "name": "Ingresos Totales Area Salud Descontadas las Transferencias del Municipio al Sector",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "953",
+  "name": "Aporte Municipal al Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "954",
+  "name": "Ingresos por Aporte del MINSAL (Per Cápita)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "956",
+  "name": "Gasto en Personal del Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "957",
+  "name": "Gastos del Funcionamiento del Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "962",
+  "name": "Gasto en Capacitación Personal Area Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "964",
+  "name": "Inversión Real Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1061",
+  "name": "Aporte Municipal al Sector Educación respecto al Ingreso Total Percibido Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1062",
+  "name": "Aporte del MINEDUC (Subvención) respecto al Ingreso Total Percibido Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1065",
+  "name": "Porcentaje de Gastos en Personal del Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1066",
+  "name": "Porcentaje de Gastos en Funcionamiento del Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1067",
+  "name": "Porcentaje de Inversión sobre Gasto Total de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1070",
+  "name": "Porcentaje de Gastos en Personal del Area Educación respecto del Aporte de Subvención MINEDUC",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1086",
+  "name": "Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1087",
+  "name": "Participación del Fondo Común Municipal en el Ingreso Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1088",
+  "name": "Participación de Ingresos por Transferencias en el Ingreso Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1089",
+  "name": "Participación de Ingresos Propios Permanentes sobre el Ingreso Total (descontadas las transferencias)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1090",
+  "name": "Participación del FCM en el Ingreso Total (descontadas las transferencias)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1091",
+  "name": "Participación de Transferencias a Educación y Salud en el Ingreso Total (descontadas las transferencias)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1092",
+  "name": "Disponibilidad Presupuestaria Municipal por Habitante (M$)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "TAS",
+  "unit_name": "TASA",
+  "source": ""
+ },
+ {
+  "code": "1093",
+  "name": "Gastos Municipales (Gastos Total Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1094",
+  "name": "Participación de Gastos Corrientes en el Gasto Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1095",
+  "name": "Participación de la Inversión en el Gasto Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1096",
+  "name": "Participación de Inversión con Recursos Propios sobre Inversión Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1097",
+  "name": "Participación de Inversión con Recursos Externos sobre la Inversión Total",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1098",
+  "name": "Participación Gasto en Personal en Gastos Corrientes",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1103",
+  "name": "Inversión Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1104",
+  "name": "Participación de Gastos en Capacitación sobre Ingresos Totales (descontadas las transferencias)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1106",
+  "name": "Participación de Gastos en Capacitación sobre el Gasto Total en Personal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1109",
+  "name": "Relación entre Aportes y Recepción del Fondo Común Municipal (FCM)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1110",
+  "name": "Ingresos Municipales (Ingreso Total Percibido)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1124",
+  "name": "Ingresos Salud (Ingreso Total Percibido)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1126",
+  "name": "Aporte del MINSAL (per cápita) respecto del Ingreso Total del Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1128",
+  "name": "Gastos Salud (Gasto Total Devengado)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1129",
+  "name": "Porcentaje del Gasto en Personal de Salud Sobre el Gasto Total de Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1130",
+  "name": "Porcentaje de Gasto de Funcionamiento Sobre el Gasto Total de Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1134",
+  "name": "Gasto Anual del Area Salud por Habitante Inscrito Validado (Población Según Decreto Anual MINSAL)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1135",
+  "name": "Porcentaje de Gasto en Capacitación de Recursos Humanos del Area Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1136",
+  "name": "Porcentaje de Inversión Real sobre Gasto Total de Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1137",
+  "name": "Número de Consultorios (urbanos y rurales)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "1138",
+  "name": "Transferencias Municipales a Salud sobre Ingresos Propios Municipales",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1140",
+  "name": "Transferencias Municipales a Educación sobre Ingresos Propios Municipales",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1141",
+  "name": "Relación Personal Docente vs. Personal No Docente del Sector Educación (Fuente: Encuesta Municipal)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "1201",
+  "name": "Tipo de Administración Sistema de Educación Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE EDUCACION",
+  "unit": "TEXT",
+  "unit_name": "NOMINAL O TEXTO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1202",
+  "name": "¿Administra Servicio de Salud Primaria?",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE SALUD",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1203",
+  "name": "Tipo de Administración de Sistema de Salud Municipal",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE SALUD",
+  "unit": "TEXT",
+  "unit_name": "NOMINAL O TEXTO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1207",
+  "name": "¿Posee Enseñanza Media Municipal?",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE EDUCACION",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": ""
+ },
+ {
+  "code": "1226",
+  "name": "Ingresos por Impuestos",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1227",
+  "name": "Gastos en Personal Municipal (excluye Dieta, Consejo y Prestaciones de Servicios en Prog. Comunitarios)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1229",
+  "name": "Transferencias Corrientes",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1231",
+  "name": "Porcentaje de mujeres funcionarias municipales",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1232",
+  "name": "Porcentaje de mujeres profesionales sobre el total de funcionarias municipales Mujeres",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1246",
+  "name": "Nº de mujeres profesionales a contrata",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1247",
+  "name": "Nº de mujeres no profesionales a contrata (sin título profesional)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1248",
+  "name": "Nº de hombres profesionales a contrata",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1249",
+  "name": "Nº de hombres no profesionales a contrata (sin título profesional)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1250",
+  "name": "Nº de mujeres profesionales de planta",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1251",
+  "name": "Nº de hombres profesionales de planta",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1252",
+  "name": "Nº de mujeres no profesionales de planta (sin título profesional)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1253",
+  "name": "Nº de hombres no profesionales de planta (sin título profesional)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1255",
+  "name": "Viáticos Personal de Planta y Contrata",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1256",
+  "name": "Asignación Concejales (Art. 76, Ley 18.695)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1259",
+  "name": "Porcentaje de mujeres en escalafón directivo sobre total de funcionarias municipales mujeres.",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1260",
+  "name": "Aporte Municipal al Sector Educación respecto al Ingreso Total Percibido Municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1261",
+  "name": "Aporte Municipal al Sector Salud respecto al Ingreso Total Percibido Municipal",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1262",
+  "name": "Ingresos Propios Permanentes per Cápita (IPPP)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1272",
+  "name": "Dependencia del Fondo Común Municipal sobre los Ingresos Propios",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "B. INGRESOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1277",
+  "name": "Predios Agrícolas Exentos",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "1279",
+  "name": "Predios NO Agrícolas Exentos",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "1280",
+  "name": "Predios No Agrícolas Habitacionales",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "1281",
+  "name": "Predios No Agrícolas No Habitacionales",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "1282",
+  "name": "Propiedades de Dominio Municipal (Municipales y Corporaciones)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "1283",
+  "name": "Predios Agrícolas (indicador disponible a partir de 2006)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "1284",
+  "name": "Predios No Agrícolas (indicador disponible a partir de 2006)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "1301",
+  "name": "Transferencias a Salud (incluye Aporte MINSAL)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1302",
+  "name": "Transferencias a Educación",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1305",
+  "name": "Gasto Personal Planta (cuenta presupuestaria 215.21.01)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1306",
+  "name": "Gasto Personal a Contrata (cuenta presupuestaria 215.21.02)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1307",
+  "name": "Gasto Personal a Honorarios Suma Alzada y Asimilados a Grado (sólo 21.03.001 y 21.03.002)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1310",
+  "name": "Eficiencia Cobro Patentes Municipales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "1311",
+  "name": "Monto Patentes Municipales Pagadas",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1323",
+  "name": "Existencia de un Plan Regulador Comunal Vigente",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "G. PLAN REGULADOR COMUNAL",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1325",
+  "name": "Avalúo Fiscal de las Propiedades de Dominio Municipal (Municipales y Corporaciones)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "1327",
+  "name": "Grado del Alcalde",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1335",
+  "name": "¿Su municipio posee Plan de Desarrollo Comunal (PLADECO)?",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "F. PLAN DE DESARROLLO COMUNAL (PLADECO)",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1336",
+  "name": "¿Cuál es el año de formulación o actualización del último PLADECO?",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "F. PLAN DE DESARROLLO COMUNAL (PLADECO)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "1340",
+  "name": "Año de Aprobación Legal del Plan Regulador Comunal Vigente (Aprobado por MINVU)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "G. PLAN REGULADOR COMUNAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "3736",
+  "name": "N° Personal a Contrata Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "3737",
+  "name": "N° Personal a Honorarios Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "3738",
+  "name": "N° Personal de Planta Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "3742",
+  "name": "¿Su Municipio Posee PADEM?",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE EDUCACION",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "3743",
+  "name": "Población de 20 y más años bajo control en Programa de Hipertensión Arterial",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3744",
+  "name": "Consultas Médicas realizadas en APS",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3745",
+  "name": "Consultas de Morbilidad otorgadas a menores de 10 años",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3746",
+  "name": "Consultas de Morbilidad otorgadas a personas de 20 años y más",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3747",
+  "name": "Evaluaciones del Desarrollo Psico-motor, Otorgadas a Menores de 18 meses de Edad",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3748",
+  "name": "Exámenes de Salud Preventivos del Adulto (ESPA)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3749",
+  "name": "Población de 20 y más años bajo control en Programa de Riesgo Cardio-Vascular (incluye hipertensos, diabéticos y dislipidémicos)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3750",
+  "name": "Ingreso Total Per Capita recibido por Municipios",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3751",
+  "name": "Indice de Actividad de Atención Primaria de Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3752",
+  "name": "Casinos de Juegos Ley Nº19.995.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3753",
+  "name": "Patentes Acuícolas Ley Nº20.033 Art. 8.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3754",
+  "name": "Patentes Mineras Ley Nº19.143.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3770",
+  "name": "Gastos en Bienes y Servicios de Consumo (Subtítulo 22)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3771",
+  "name": "Participación de Gastos en Bienes y Servicios de Consumo sobre los Ingresos Propios (desde 2008)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "3783",
+  "name": "Transferencias Corrientes a Organizaciones Comunitarias",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3784",
+  "name": "Asistencia Social",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "F. TRANSFERENCIAS E INVERSION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3786",
+  "name": "Personal Sector Educación (Planta y Contrata) (desde 2008)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "3788",
+  "name": "Predios No Agrícolas Habitacionales Afectos",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "3789",
+  "name": "Porcentaje de Predios No Agrícolas Habitacionales Afectos (desde 2008)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "3880",
+  "name": "Ingreso Total Per Cápita recibido por Municipio durante el año (Fuente: MINSAL)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "B. COBERTURA EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Ministerio de Salud (MINSAL)"
+ },
+ {
+  "code": "3883",
+  "name": "Programa de Mejoramiento Urbano y Equipamiento Comunal (PMU) (egresos registrados) (datos desde año 2009)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3893",
+  "name": "Programa de Mejoramiento de Barrios (PMB) (egresos registrados) (dato desde año 2009)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "3894",
+  "name": "Sistema Financiero Municipal (SIFIM)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "3899",
+  "name": "Pensiones Básicas Solidarias de Vejez (PBSV) Pagadas a la comuna",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "3901",
+  "name": "Pensiones Básicas Solidarias de Invalidez (PBSI) Pagadas a la comuna",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "3910",
+  "name": "Consumo de Agua Dependencias Municipales.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3911",
+  "name": "Consumo de Agua en Servicios Comunitarios.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3912",
+  "name": "Consumo de Electricidad en Servicios Comunitarios.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3913",
+  "name": "Consumo de Electricidad Dependencias Municipales.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3914",
+  "name": "Servicios de Aseo y Recolección de Basura Dependencias Municipales.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3915",
+  "name": "Servicios de Aseo y Recolección de Basura a la Comunidad.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3916",
+  "name": "Servicios de Mantención de Jardines Dependencias Municipales.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3917",
+  "name": "Servicios de Mantención de Jardines de la Comunidad.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "3921",
+  "name": "Consumo de Electricidad",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3922",
+  "name": "Consumo de Agua",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3923",
+  "name": "Servicios de Aseo, Recolección de Basura y Vertederos",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3924",
+  "name": "Servicios de Mantención de Jardines (desde 2009)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "B. SERVICIOS BASICOS A LA COMUNIDAD",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3925",
+  "name": "Servicios de Mantención de Alumbrado Público",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3926",
+  "name": "Servicios de Mantención de Semáforos",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3927",
+  "name": "Servicios de Mantención de Señalización de Tránsito",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3954",
+  "name": "Derechos de Aseo",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3955",
+  "name": "Derechos de Aseo Cobro Directo y de Patentes Comerciales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3956",
+  "name": "Derechos de Aseo por Impuesto Territorial",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3964",
+  "name": "Gasto Personal por Prestaciones de Servicios en Programas Comunitarios (cuenta presupuestaria 215.21.04.004)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "3975",
+  "name": "Gastos en Personal Municipal (Subtítulo 21)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4010",
+  "name": "Porcentaje de Predios Exentos respecto al Total de Predios",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4032",
+  "name": "Propiedades de Municipalidades",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "4033",
+  "name": "Avalúo Fiscal de Propiedades de Municipalidades",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "4034",
+  "name": "Propiedades de Corporaciones Municipales",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "4035",
+  "name": "Avalúo Fiscal de Propiedades de Corporaciones Municipales",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "D. CATASTRO PREDIOS Y VALORACION CATASTRAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Servicio de Impuestos Internos (SII)"
+ },
+ {
+  "code": "4036",
+  "name": "Número de Plazas en la Comuna (a contar del 2010)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "E. AREAS VERDES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4037",
+  "name": "Superficie Total (m2) de Plazas Existentes en la Comuna (a contar del 2010)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "E. AREAS VERDES",
+  "unit": "MTS²",
+  "unit_name": "METROS CUADRADOS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4038",
+  "name": "Número de Parques Urbanos en la Comuna (a contar del 2010)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "E. AREAS VERDES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4039",
+  "name": "Superficie Total (m2) de Parques Urbanos Existentes en la Comuna (a contar del 2010)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "E. AREAS VERDES",
+  "unit": "MTS²",
+  "unit_name": "METROS CUADRADOS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4040",
+  "name": "Servicios de Mantención de Jardines Total Gastos devengados",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "G. SERVICIOS BASICOS Y GENERALES",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4045",
+  "name": "Asistentes Adscritos a Establecimientos de Educación Municipal (Fuente: MINEDUC desde 2011)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "4055",
+  "name": "Número Funcionarios de Planta Profesionales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4056",
+  "name": "Número Funcionarios de Planta No Profesionales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4057",
+  "name": "Número de hombres planta",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4058",
+  "name": "Número de mujeres planta",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4059",
+  "name": "Número Funcionarios de Planta",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4060",
+  "name": "Número Funcionarios de Planta pertenecientes al Escalafón Directivo",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4061",
+  "name": "Número Funcionarios de Planta pertenecientes al Escalafón Profesional",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "A. PERSONAL DE PLANTA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4062",
+  "name": "Número de Funcionarios a Contrata Profesional",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4063",
+  "name": "Número de Funcionarios a Contrata No Profesionales",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4064",
+  "name": "Número de hombres a contrata",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4065",
+  "name": "Número de mujeres a contrata",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4066",
+  "name": "Número de Funcionarios a Contrata",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4067",
+  "name": "Número de Funcionarios a Contrata pertenecientes al Escalafón Directivo",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4068",
+  "name": "Número de Funcionarios a Contrata pertenecientes al Escalafón Profesional",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "B. PERSONAL A CONTRATA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4069",
+  "name": "Número Total de Hombres y Mujeres a Honorarios (Subtitulo 21.03)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "C. HONORARIOS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4070",
+  "name": "Número Total de Hombres y Mujeres a Honorarios, destinados a Programas Comunitarios (Subtítulo 21.04.004)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "C. HONORARIOS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4071",
+  "name": "Número de Funcionarios Municipales (Planta y Contrata)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4072",
+  "name": "Mujeres pertenecientes a escalafón directivo y profesional (planta y contrata)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4073",
+  "name": "Número de Mujeres Municipales (Planta y Contrata)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4074",
+  "name": "Número de Hombres Municipales (Planta y Contrata)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "D. OTROS INDICADORES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4082",
+  "name": "Personal Honorarios en Prestaciones Serv. Programas Comunitarios Sector Educación (cta. pres. 21.04.004.000)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4133",
+  "name": "Número de CESFAM en la comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4134",
+  "name": "Número de CECOF en la comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4135",
+  "name": "Número de Clínicas Dental Móviles en la comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4136",
+  "name": "Número de Centros de Salud Urbanos en la comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4137",
+  "name": "Número de Centros de Salud Rurales en la comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4138",
+  "name": "Número de Vacunatorios en la comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4140",
+  "name": "Ingresos Cementerio (Ingreso Total Percibido)",
+  "area": "09. CEMENTERIO",
+  "subarea": "A. INGRESOS CEMENTERIO (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4141",
+  "name": "Gastos Cementerio (Gasto Total Devengado)",
+  "area": "09. CEMENTERIO",
+  "subarea": "B. GASTOS CEMENTERIO (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4143",
+  "name": "Compensación Predios Exentos del Pago de Impuesto Territorial (Monto Percibido)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4144",
+  "name": "Programa Recuperación de Ciudades (FRC)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4145",
+  "name": "Personal Adscrito a Establecimientos de Educación Municipal (Fuente: MINEDUC desde 2011)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Educación (MINEDUC)"
+ },
+ {
+  "code": "4146",
+  "name": "Pensiones Básicas Solidarias (PBS) Pagadas a la comuna",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "4147",
+  "name": "Monto Pagado por Pensión Básica Solidaria (PBS) en el año",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "4148",
+  "name": "Monto Pagado por Pensión de Invalidez (PBSI) en el año",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "4149",
+  "name": "Monto Pagado por Pensión Básica de Vejez (PBSV) en el año",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "4162",
+  "name": "Gastos Municipales Área de Gestión: Interna",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4163",
+  "name": "Gastos Municipales Área de Gestión: Servicios Comunitarios",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4164",
+  "name": "Gastos Municipales Área de Gestión: Actividades Municipales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4165",
+  "name": "Gastos Municipales Área de Gestión: Programas Sociales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4166",
+  "name": "Gastos Municipales Área de Gestión: Programas Recreacionales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4167",
+  "name": "Gastos Municipales Área de Gestión: Programas Culturales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4173",
+  "name": "Ingresos por Patentes Municipales de Beneficio Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4174",
+  "name": "Ingresos por Permisos de Circulación de Beneficio Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4176",
+  "name": "N° Personal Código del Trabajo Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4177",
+  "name": "N° Personal por Otro tipo de contrato (Honorarios a Programas y Otros) sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4178",
+  "name": "Número de Ambulancias",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4180",
+  "name": "N° de Compañías de Bomberos",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4181",
+  "name": "N° de Centros Culturales",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4182",
+  "name": "Número de Organizaciones Comunitarias (suma total)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "D. ORGANIZACIONES COMUNITARIAS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4187",
+  "name": "Nº de Permisos de Edificación Entregados",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "C. INFRAESTRUCTURA",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4203",
+  "name": "Fondo de Incentivo al Mejoramiento de la Gestión Municipal Transferido (FIGEM)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4205",
+  "name": "Personal de Planta Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4206",
+  "name": "Personal Código del Trabajo Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4207",
+  "name": "Personal a Contrata Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4208",
+  "name": "Personal a Honorarios Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": ""
+ },
+ {
+  "code": "4210",
+  "name": "Presupuesto Inicial Sector Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A.1. PRESUPUESTO INICIAL Y VIGENTE MUNICIPAL (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4211",
+  "name": "Presupuesto Inicial Gastos Municipales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A.1. PRESUPUESTO INICIAL Y VIGENTE MUNICIPAL (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4212",
+  "name": "Presupuesto Vigente Sector Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A.1. PRESUPUESTO INICIAL Y VIGENTE MUNICIPAL (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4213",
+  "name": "Presupuesto Vigente Gastos Municpiales",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A.1. PRESUPUESTO INICIAL Y VIGENTE MUNICIPAL (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4214",
+  "name": "Presupuesto Inicial Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Educacion"
+ },
+ {
+  "code": "4215",
+  "name": "Presupuesto Inicial Gastos Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Educacion"
+ },
+ {
+  "code": "4216",
+  "name": "Presupuesto Vigente Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Educacion"
+ },
+ {
+  "code": "4217",
+  "name": "Presupuesto Vigente Gastos Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "E. GASTOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4218",
+  "name": "Presupuesto Inicial Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Salud"
+ },
+ {
+  "code": "4219",
+  "name": "Presupuesto Inicial Gastos Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Salud"
+ },
+ {
+  "code": "4220",
+  "name": "Presupuesto Vigente Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Salud"
+ },
+ {
+  "code": "4221",
+  "name": "Presupuesto Vigente Gastos Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "D. GASTOS EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Salud"
+ },
+ {
+  "code": "4226",
+  "name": "Presupuesto Vigente Saldo Inicial de Caja Sector Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A.1. PRESUPUESTO INICIAL Y VIGENTE MUNICIPAL (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4227",
+  "name": "Presupuesto Vigente Saldo Inicial de Caja Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Educacion"
+ },
+ {
+  "code": "4228",
+  "name": "Presupuesto Vigente Saldo Inicial de Caja Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Salud"
+ },
+ {
+  "code": "4237",
+  "name": "Participación del Área de Gestión Interna en el Gasto Total (Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4238",
+  "name": "Participación del Área de Servicios Comunitarios en el Gasto Total (Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4239",
+  "name": "Participación del Área de Programas Sociales en el Gasto Total (Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4240",
+  "name": "Participación del Área de Actividades Municipales en el Gasto Total (Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4241",
+  "name": "Participación del Área de Programas Culturales en el Gasto Total (Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4242",
+  "name": "Participación del Área de Programas Recreacionales en el Gasto Total (Devengado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "D. GASTOS MUNICIPALES (%)",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4243",
+  "name": "Porcentaje de Ejecución Presupuestaria Devengada Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4245",
+  "name": "Ingresos Municipales (Ingreso Total Percibido) sin Saldo Inicial de Caja",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4246",
+  "name": "Ingresos Educación (Ingreso Total Percibido) sin Saldo Inicial de Caja",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "D. INGRESOS EN EDUCACION MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4247",
+  "name": "Ingresos Salud (Ingreso Total Percibido) sin Saldo Inicial de Caja",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "C. INGRESOS  EN SALUD MUNICIPAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4248",
+  "name": "Monto Percibido por Fondo Común Municipal (FCM) al 31 de Diciembre, transferido por TGR (corresponde al monto total percibido por Anticipos Pagados, Saldos Pagados y Aporte Fiscal Pagado).",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "J. FONDO COMÚN MUNICIPAL (FCM)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Tesorería General de la República"
+ },
+ {
+  "code": "4251",
+  "name": "Impuesto Territorial de Beneficio Municipal (Art. 37 DL 3063)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4256",
+  "name": "Su Municipalidad actualmente entrega Licencias de Conducir?",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4257",
+  "name": "La Municipalidad ha adecuado su sistema para entregar Licencias de Conducir de acuerdo a las nuevas Normas Establecidas por el Ministerio de Transportes?",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4322",
+  "name": "Número de Beneficiarios de Subsidio Eléctrico en la comuna durante el año",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4325",
+  "name": "Ingresos por Transferencias menos Casino Ley N° 19.995, Patentes Acuícolas y Patentes Mineras",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A. INGRESOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4327",
+  "name": "Se encuentra constituido el Consejo Comunal de Organizaciones de la Sociedad Civil (COSOC) en su municipio? (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "F. PARTICIPACIÓN CIUDADANA",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4328",
+  "name": "Existe alguna ordenanza de participación ciudadana? (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "F. PARTICIPACIÓN CIUDADANA",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4329",
+  "name": "Existe en el organigrama municipal una unidad específica a cargo del tema de discapacidad? (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "G. DISCAPACIDAD",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4330",
+  "name": "Existe información estadística de personas con discapacidad en su comuna? (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "G. DISCAPACIDAD",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4333",
+  "name": "Su Municipio tiene un área dedicada especialmente a la Seguridad Ciudadana? (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4334",
+  "name": "Número de recursos que componen el área de Seguridad de su Municipio, en este caso, Número de profesionales pagados por el municipio (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4336",
+  "name": "Número de guardias, inspectores o vigilantes municipales (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4337",
+  "name": "Número de cámaras de vigilancia en la comuna (desde año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4338",
+  "name": "Número de casetas de seguridad en la comuna (desde el año 2016)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4406",
+  "name": "¿La Municipalidad o Corporación administra Cementerio?",
+  "area": "09. CEMENTERIO",
+  "subarea": "1. INFORMACION GENERAL",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4407",
+  "name": "Si la Municipalidad o Corporación administra Cementerio, indique si tiene presupuesto propio. SI = presupuesto propio o independiente.",
+  "area": "09. CEMENTERIO",
+  "subarea": "1. INFORMACION GENERAL",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4408",
+  "name": "Programa Tenencia Responsable de Animales de Compañía (PTRAC) (datos desde 2017)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4409",
+  "name": "Programa Prevención y Mitigación de Riesgos (PREMIR)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4410",
+  "name": "Programa Revitalización de Barrios e Infraestructura Patrimonial y Emblemática (PRBIPE)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4411",
+  "name": "Gasto en Personal de Planta Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4413",
+  "name": "Gasto en Personal a Contrata Sector Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4414",
+  "name": "Gasto en Personal a Honorarios Suma Alzada y Asimilados a Grado del Sector Educación (sólo 21.03.001 y 21.03.002)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4415",
+  "name": "Gasto Total en Personal del Sector Educación (Subtítulo 21)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4416",
+  "name": "Gasto Total en Personal del Sector Salud (Subtitulo 21)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4417",
+  "name": "Gasto en Personal de Planta Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4419",
+  "name": "Gasto en Personal a Honorarios Suma Alzada y Asimilados a Grado Sector Salud (sólo 21.03.001 y 21.03.002)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4420",
+  "name": "Gasto en Personal a Contrata Sector Salud",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4421",
+  "name": "Gasto Personal a Honorarios (cuenta presupuestaria 215.21.03)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4422",
+  "name": "Gasto Personal Código del Trabajo (cuenta presupuestaria 21.03.004)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "E. GASTOS EN PERSONAL",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4423",
+  "name": "Gasto en Personal a Honorarios Sector Salud (Subtítulo 21.03)",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4424",
+  "name": "Gasto en Personal a Honorarios del Sector Educación (Subtítulo 21.03)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4441",
+  "name": "Presupuesto Inicial Saldo Inicial de Caja sector Municipal",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "A.1. PRESUPUESTO INICIAL Y VIGENTE MUNICIPAL (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "BEP Municipal"
+ },
+ {
+  "code": "4442",
+  "name": "Realizó Traspaso de la Educación Municipal al Servicio Local de Educación (desmunicipalización)",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "A. ANTECEDENTES GENERALES DE EDUCACION",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4472",
+  "name": "Gastos por Comisiones y Representaciones del Municipio",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "C. GASTOS MUNICIPALES (M$)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": ""
+ },
+ {
+  "code": "4474",
+  "name": "Número de Hombres a Honorarios destinados a Programas Comunitarios con Recursos Municipales (cta 21.04.004.000) (1)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "C. HONORARIOS",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4475",
+  "name": "Número de Hombres a Honorarios, destinados a Programas Comunitarios con Recursos Externos (21.04.004.000) (2)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "C. HONORARIOS",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4476",
+  "name": "Número de Mujeres a Honorarios destinados a Programas Comunitarios con Recursos Municipales (21.04.004.000) (1)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "C. HONORARIOS",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4477",
+  "name": "Número de Mujeres a Honorarios destinados a Programas Comunitarios con Recursos Externos (21.04.004.000) (2)",
+  "area": "02.  RECURSOS HUMANOS MUNICIPAL",
+  "subarea": "C. HONORARIOS",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4517",
+  "name": "Número de Establecimientos educacionales de propiedad municipal",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "G. ESTABLECIMIENTOS DE EDUCACION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4518",
+  "name": "Número de Establecimientos educacionales de propiedad de la corporación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "G. ESTABLECIMIENTOS DE EDUCACION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4519",
+  "name": "Número de Personal en educación traspasados al Servicio Local de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4520",
+  "name": "Número de Personal en educación antes del traspaso al Servicio Local de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4521",
+  "name": "Número de Personal en educación que quedó contratado en el municipio después del traspaso al Servicio Local de Educación",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SECTOR EDUCACION",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4522",
+  "name": "Número de Farmacias Municipales en la Comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4523",
+  "name": "Número de Ópticas Municipales en la Comuna",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "E. RED ASISTENCIAL SALUD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4524",
+  "name": "Número Total de Odontólogos Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4525",
+  "name": "Número Total de Matronas Contratadas al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4526",
+  "name": "Número Total de Nutricionistas Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4527",
+  "name": "Número Total de Técnicos en Enfermería  Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4528",
+  "name": "Número Total de Kinesiólogos Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4529",
+  "name": "Número Total de Tecnólogos Médicos Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4530",
+  "name": "Número Total de Fonoaudiólogos Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4531",
+  "name": "Número Total de Psicólogos Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4532",
+  "name": "Número Total de Psiquiatras Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4533",
+  "name": "Número Total de Geriatras Contratados al 31 de diciembre",
+  "area": "04.  SALUD MUNICIPAL",
+  "subarea": "F. RECURSOS HUMANOS EN SALUD",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4534",
+  "name": "N° Licencias de Conducir Clase A1 nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4535",
+  "name": "N° Licencias de Conducir Clase A2 nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4536",
+  "name": "N° Licencia de Conducir Clase A3 nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4537",
+  "name": "N° Licencias de Conducir Clase A4 nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4538",
+  "name": "N° Licencias de Conducir Clase A5 nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4539",
+  "name": "N° Licencias de Conducir Clase B nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4540",
+  "name": "N° Licencias de Conducir Clase C nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4541",
+  "name": "N° Licencias de Conducir Clase D nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4542",
+  "name": "N° Licencias de Conducir Clase E nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4543",
+  "name": "N° Licencias de Conducir Clase F nuevas y renovadas en el año.",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "K. GESTION MUNICIPAL",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4557",
+  "name": "Número Total de Hogares Encuestados en el Registro Social de Hogares (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "L. RSH - ANTECEDENTES GENERALES",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4558",
+  "name": "Número Total de Personas inscritas en el Registro Social de Hogares (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "L. RSH - ANTECEDENTES GENERALES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4559",
+  "name": "Número Total de Personas Menores de 18 años inscritas en el Registro Social de Hogares.",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "L. RSH - ANTECEDENTES GENERALES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4560",
+  "name": "Número Total de Personas de 60 años o más inscritas en el Registro Social de Hogares.",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "L. RSH - ANTECEDENTES GENERALES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4561",
+  "name": "Número Total de Personas con Discapacidad registradas en el Registro Social de Hogares.",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "L. RSH - ANTECEDENTES GENERALES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4562",
+  "name": "Número Total de Personas con Dependencia inscritas en el Registro Social de Hogares.",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "L. RSH - ANTECEDENTES GENERALES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4563",
+  "name": "Número de Hogares de 0-40% de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4565",
+  "name": "Número de Hogares de 41-50% de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4567",
+  "name": "Número de Hogares de 51-60 % de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4569",
+  "name": "Número de Hogares de 61-70% de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4571",
+  "name": "Número de Hogares de 71-80% de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4573",
+  "name": "Número de Hogares de 81-90% de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4575",
+  "name": "Número de Hogares de 91-100% de Ingresos (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4577",
+  "name": "Número Total de Beneficiarios según Plan de Salud ISAPRE (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "O.RSH - CARACTERISTICAS ENCUESTADOS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4578",
+  "name": "Número Total de Beneficiarios según Plan de Salud FONASA (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "O.RSH - CARACTERISTICAS ENCUESTADOS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4579",
+  "name": "Número de Matrículas de Educación Superior respecto de Jóvenes presentes en el RSH - Total de Jóvenes de 18 a 24 años (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "O.RSH - CARACTERISTICAS ENCUESTADOS",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Ministerio de Desarrollo Social"
+ },
+ {
+  "code": "4598",
+  "name": "Número de alumnos provenientes de colegios municipales de la comuna, que rindió la PAES de Invierno en  julio.",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "4599",
+  "name": "Número de  alumnos provenientes de colegios Particulares Subvencionados de la comuna, que rindió la PAES de Invierno en  julio.",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "4600",
+  "name": "Número de alumnos provenientes de colegios Particulares de la comuna, que rindió la PAES de Invierno en  julio.",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "4601",
+  "name": "Número de alumnos que obtienen un puntaje PAES de invierno  igual o superior a 458 puntos, rendida por primera vez en Julio y que estudiaron 4° de Enseñanza Media en Colegios Municipales d",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "4602",
+  "name": "Número de alumnos que obtienen un puntaje PAES de invierno igual o superior a 458 puntos, rendida por primera vez en Julio  y que estudiaron 4° de Enseñanza Media en Colegios Particulares S",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "4603",
+  "name": "Número de alumnos que obtienen un puntaje PAES de invierno igual o superior a 458 puntos, rendida por primera vez en Julio y que estudiaron 4° de Enseñanza Media en Colegios Particulares d",
+  "area": "03.  EDUCACION MUNICIPAL",
+  "subarea": "C. RESULTADOS PAES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Universidad de Chile - DEMRE"
+ },
+ {
+  "code": "4613",
+  "name": "Número Total de Viviendas en la Comuna",
+  "area": "07.  CARACTERIZACION COMUNAL",
+  "subarea": "B. POBLACION",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Instituto Nacional de Estadísticas (INE)"
+ },
+ {
+  "code": "4622",
+  "name": "Número total de hombres y mujeres a honorarios (Subtítulo 215.21.03",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "4623",
+  "name": "Número total de hombres y mujeres, destinado a programas comunitarios (Subtítulo 215.21.04.004)",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "4624",
+  "name": "Porcentaje de Hogares de 0-40% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4625",
+  "name": "Porcentaje de Hogares de 41-50% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4626",
+  "name": "Porcentaje de Hogares de 51-60% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4627",
+  "name": "Porcentaje de Hogares de 61-70% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4628",
+  "name": "Porcentaje de Hogares de 71-80% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4629",
+  "name": "Porcentaje de Hogares de 81-90% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4630",
+  "name": "Porcentaje de Hogares de 91-100% de Ingresos respecto del Total Regional (RSH)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "N.RSH - NIVEL INGRESOS - VULNERABILIDAD",
+  "unit": "%",
+  "unit_name": "PORCENTAJE",
+  "source": ""
+ },
+ {
+  "code": "4670",
+  "name": "Número de Drones para seguridad",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4671",
+  "name": "Números de automóviles de seguridad municipal o patrullaje.",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4672",
+  "name": "Números de camionetas de seguridad municipal o patrullaje",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4673",
+  "name": "Números de motos de seguridad municipal o patrullaje.",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4674",
+  "name": "Números de bicicletas de seguridad municipal o patrullaje",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "N°",
+  "unit_name": "NÚMERO ENTERO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4675",
+  "name": "¿Su Municipio cuenta con un Consejo Comunal de Seguridad Ley 20.965 (SI-NO)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4676",
+  "name": "El Municipio tiene un Plan Comunal para la Reducción del Riesgo de Desastres Ley 21.364. (SI-NO)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4713",
+  "name": "Tipo o de quien depende la administración Cultural en el Municipio.",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "H. CULTURA",
+  "unit": "TEXT",
+  "unit_name": "NOMINAL O TEXTO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4714",
+  "name": "Existe un Plan Cultural Municipal Vigente en la comuna (Si / No)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "H. CULTURA",
+  "unit": "TEXT",
+  "unit_name": "NOMINAL O TEXTO",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4715",
+  "name": "El Plan de Desarrollo Comunal (PLADECO) cuenta con un apartado dedicado a la Cultura  (Si / No)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "H. CULTURA",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4716",
+  "name": "N° de Personas Contratadas para labores de Gestión Cultural Municipal",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "H. CULTURA",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4717",
+  "name": "La página web municipal, tiene un calendario o publicidad en la que difundan las actividades culturales (Si / No)",
+  "area": "06.  DESARROLLO Y GESTION TERRITORIAL",
+  "subarea": "H. CULTURA",
+  "unit": "S-N",
+  "unit_name": "Si / No",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4718",
+  "name": "Nº de hombres a honorarios, destinados a programas comunitarios con recursos propios y externos Subtítulo 21.04.004",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "4719",
+  "name": "Nº de mujeres a honorarios, destinadas a programas comunitarios con recursos propios y externos Subtítulo 21.04.004",
+  "area": "08.  GENERO",
+  "subarea": "DOTACION MUNICIPAL HOMBRES Y MUJERES",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": ""
+ },
+ {
+  "code": "4720",
+  "name": "Fondo de Equidad Territorial (FET) Royalty a la Minería",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "J. FONDO COMÚN MUNICIPAL (FCM)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Tesorería General de la República"
+ },
+ {
+  "code": "4721",
+  "name": "Fondo Comunas Mineras - Royalty a la Minería",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "J. FONDO COMÚN MUNICIPAL (FCM)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Tesorería General de la República"
+ },
+ {
+  "code": "4737",
+  "name": "Monto Pagado por PGU durante el año (en miles de pesos)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "4738",
+  "name": "Número de Pensiones Garantizada Universal (PGU) pagadas, entre el 01 enero y  31 de diciembre",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "B. RED SOCIAL (SUBSIDIOS Y PENSIONES)",
+  "unit": "Nº",
+  "unit_name": "NÚMERO",
+  "source": "Instituto de Previsión Social (IPS)"
+ },
+ {
+  "code": "4739",
+  "name": "Número de guardias con cargo a la cuenta presupuestaria 215.21.00 (desde 2024)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4740",
+  "name": "Número de vigilantes con cargo a la cuenta presupuestaria 215.21.00 (desde 2024)",
+  "area": "05.  SOCIAL Y COMUNITARIA",
+  "subarea": "H. PREVENCIÓN DEL DELITO Y SEGURIDAD",
+  "unit": "PERS",
+  "unit_name": "NÚMERO DE PERSONAS",
+  "source": "Municipal (Encuestas y Formularios SINIM)"
+ },
+ {
+  "code": "4741",
+  "name": "Fondo de Incentivo al Mejoramiento de la Gestión Municipal Asignado (FIGEM)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ },
+ {
+  "code": "4742",
+  "name": "Compensación Predios Exentos del Pago de Impuesto Territorial (Monto Asignado)",
+  "area": "01.  ADMINISTRACION Y FINANZAS MUNICIPALES",
+  "subarea": "I. TRANSFERENCIAS Y COMPENSACIONES SUBDERE",
+  "unit": "M$",
+  "unit_name": "MILES DE PESOS",
+  "source": "SUBDERE"
+ }
+]

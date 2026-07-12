@@ -16,6 +16,7 @@ from mcp_sinim._http import BASE_URL, HttpClient, SINIMError, browser_headers
 from mcp_sinim.client import SINIMClient
 
 FIXTURES = Path(__file__).parent / "fixtures"
+RECON_CATALOG_RAW = Path(__file__).parent.parent / "recon" / "catalog_raw_2026-07-08.json"
 
 FORM_URL = f"{BASE_URL}.php"
 DATA_URL = f"{BASE_URL}/obtener_datos_municipales.php"
@@ -27,6 +28,16 @@ ERROR_PAGE = b"<html><body><h1><em>!Error inesperado....</em></h1></body></html>
 
 def _fx(name: str) -> bytes:
     return (FIXTURES / name).read_bytes()
+
+
+def _fx_bytes() -> bytes:
+    """Raw catalog payload used to mock a live `catalog(refresh=True)` call.
+
+    Reused from `recon/` (the same evidence `data/catalog.json` was built
+    from) instead of duplicating a ~480-variable fixture. Still offline:
+    respx serves these bytes locally, no network is touched.
+    """
+    return RECON_CATALOG_RAW.read_bytes()
 
 
 @pytest.fixture()
@@ -103,6 +114,46 @@ def test_get_unknown_year_raises_actionable_error(client: SINIMClient) -> None:
     respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
     with pytest.raises(SINIMError, match="1999"):
         client.get("4173", years=[1999])
+
+
+def test_catalog_returns_packaged_dataframe(client: SINIMClient) -> None:
+    # Uses the packaged catalog (no `refresh`), so no network call at all --
+    # no respx route is registered, and any HTTP call would fail loudly.
+    frame = client.catalog()
+    assert list(frame.columns) == ["code", "name", "area", "subarea", "unit", "source"]
+    assert len(frame) == 480
+    assert "4173" in set(frame["code"])
+
+
+def test_catalog_caches_variables_in_memory(client: SINIMClient) -> None:
+    assert client._catalog is None
+    client.catalog()
+    cached = client._catalog
+    assert cached is not None
+    client.catalog()  # second call must reuse the cache, not rebuild it
+    assert client._catalog is cached
+
+
+@respx.mock
+def test_catalog_refresh_fetches_live_catalog(client: SINIMClient) -> None:
+    respx.post(CATALOG_URL).mock(return_value=httpx.Response(200, content=_fx_bytes()))
+    frame = client.catalog(refresh=True)
+    assert len(frame) == 480
+    assert "4173" in set(frame["code"])
+
+
+def test_search_delegates_to_search_engine(client: SINIMClient) -> None:
+    results = client.search("ingresos propios", limit=5)
+    assert list(results.columns) == ["code", "name", "area", "subarea", "unit", "source", "score"]
+    assert 0 < len(results) <= 5
+    assert (results["score"].diff().dropna() <= 0).all()  # descending
+    assert any("FINANZAS" in area.upper() for area in results["area"])
+
+
+def test_search_garbage_query_returns_empty_frame(client: SINIMClient) -> None:
+    results = client.search("zzxxqq nonsense gibberish 12345")
+    assert results.empty
+    assert list(results.columns) == ["code", "name", "area", "subarea", "unit", "source", "score"]
 
 
 @respx.mock

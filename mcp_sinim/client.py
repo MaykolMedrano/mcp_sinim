@@ -20,7 +20,14 @@ from pathlib import Path
 import pandas as pd
 
 from mcp_sinim._http import BASE_URL, HttpClient, SINIMError, browser_headers, data_headers
+from mcp_sinim.catalog import CATALOG_FIELDS, Variable, build_catalog, packaged_catalog
 from mcp_sinim.parser import parse_spreadsheet_xml
+from mcp_sinim.search_engine import search_variables
+
+#: Columns of the DataFrame returned by :meth:`SINIMClient.catalog` (the
+#: catalog's own ``unit_name`` field is left out to match the public
+#: contract in ``CLAUDE.md``).
+_CATALOG_DF_COLUMNS = [c for c in CATALOG_FIELDS if c != "unit_name"]
 
 #: Endpoint URLs.
 _FORM_URL = f"{BASE_URL}.php"
@@ -66,6 +73,8 @@ class SINIMClient:
         # Cached form-derived lookups (discovered lazily from the form HTML).
         self._year_index: dict[int, int] | None = None
         self._regiones: dict[str, str] | None = None
+        # In-memory catalog cache (see `catalog()`/`_variables()`).
+        self._catalog: list[Variable] | None = None
 
     # -- lifecycle ---------------------------------------------------------
 
@@ -81,8 +90,18 @@ class SINIMClient:
 
     # -- catalog (Phase 2) -------------------------------------------------
 
-    def catalog(self) -> pd.DataFrame:
+    def catalog(self, refresh: bool = False) -> pd.DataFrame:
         """Return the full SINIM variable catalog.
+
+        Parameters
+        ----------
+        refresh:
+            If ``True``, re-fetch the catalog live from
+            ``obtener_datos_filtros.php`` (via :meth:`_fetch_catalog_raw`)
+            instead of using the packaged snapshot. The result — either the
+            packaged snapshot or a live refresh — is cached in memory for
+            subsequent calls (including :meth:`search`) until the client is
+            recreated or ``refresh=True`` is passed again.
 
         Returns
         -------
@@ -90,7 +109,7 @@ class SINIMClient:
             Columns: ``code``, ``name``, ``area``, ``subarea``, ``unit``,
             ``source`` — one row per variable (~480 rows).
         """
-        raise NotImplementedError
+        return self._catalog_frame(self._variables(refresh=refresh))
 
     def search(self, query: str, limit: int = 10) -> pd.DataFrame:
         """Fuzzy-search the variable catalog.
@@ -105,9 +124,31 @@ class SINIMClient:
         Returns
         -------
         pandas.DataFrame
-            Catalog rows matching ``query``, ranked by relevance.
+            Catalog rows matching ``query``, ranked by relevance
+            (descending), with an added ``score`` column (0-100). Empty if
+            nothing matches.
         """
-        raise NotImplementedError
+        matches = search_variables(query, self._variables(), limit=limit)
+        frame = self._catalog_frame([variable for variable, _score in matches])
+        frame["score"] = [score for _variable, score in matches]
+        return frame
+
+    def _variables(self, refresh: bool = False) -> list[Variable]:
+        """Return (and cache) the catalog as a list of :class:`Variable`."""
+        if refresh:
+            self._catalog = build_catalog(self._fetch_catalog_raw())
+        elif self._catalog is None:
+            self._catalog = packaged_catalog()
+        return self._catalog
+
+    @staticmethod
+    def _catalog_frame(variables: list[Variable]) -> pd.DataFrame:
+        """Convert a list of :class:`Variable` to the public catalog DataFrame."""
+        records = [
+            {field: getattr(variable, field) for field in _CATALOG_DF_COLUMNS}
+            for variable in variables
+        ]
+        return pd.DataFrame(records, columns=_CATALOG_DF_COLUMNS)
 
     def _fetch_catalog_raw(self) -> dict:
         """Fetch the raw variable-catalog JSON from ``obtener_datos_filtros.php``.
