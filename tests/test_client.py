@@ -1,0 +1,140 @@
+"""Offline tests for :class:`mcp_sinim.SINIMClient` (httpx mocked via respx).
+
+No test in this module touches the network: ``respx.mock`` intercepts every
+httpx request and fails loudly on any unmocked call.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import httpx
+import pytest
+import respx
+
+from mcp_sinim._http import BASE_URL, HttpClient, SINIMError, browser_headers
+from mcp_sinim.client import SINIMClient
+
+FIXTURES = Path(__file__).parent / "fixtures"
+
+FORM_URL = f"{BASE_URL}.php"
+DATA_URL = f"{BASE_URL}/obtener_datos_municipales.php"
+MUNICIPIOS_URL = f"{BASE_URL}/obtener_municipios.php"
+CATALOG_URL = f"{BASE_URL}/obtener_datos_filtros.php"
+
+ERROR_PAGE = b"<html><body><h1><em>!Error inesperado....</em></h1></body></html>"
+
+
+def _fx(name: str) -> bytes:
+    return (FIXTURES / name).read_bytes()
+
+
+@pytest.fixture()
+def client() -> SINIMClient:
+    c = SINIMClient()
+    # Tests never need courtesy delays.
+    c._http.min_interval = 0.0
+    c._http.backoff_factor = 0.0
+    yield c
+    c.close()
+
+
+@respx.mock
+def test_years_discovered_from_form(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    years = client.years()
+    assert years == sorted(years)
+    # Values recorded from the live form (2026-07): SINIM now reaches 2025,
+    # which is exactly why year discovery must be dynamic.
+    assert 2022 in years and 2025 in years
+    assert len(years) >= 24
+    # The year -> 1-based period index mapping must match the recorded form.
+    assert client._year_map()[2024] == 25
+    assert client._year_map()[2025] == 26
+
+
+@respx.mock
+def test_years_fallback_when_form_unparseable(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=b"<html></html>"))
+    years = client.years()
+    assert years[0] == 2000
+    assert len(years) >= 24  # computed range fallback
+
+
+@respx.mock
+def test_municipios_single_region(client: SINIMClient) -> None:
+    respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    frame = client.municipios(region="131")
+    assert list(frame.columns) == ["cod_municipio", "nombre_municipio"]
+    assert (frame["cod_municipio"].str.len() == 5).all()
+    assert "SANTIAGO" in set(frame["nombre_municipio"])
+    assert len(frame) >= 50  # Region Metropolitana has 52 municipalities
+
+
+@respx.mock
+def test_get_returns_tidy_panel(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    frame = client.get("4173", years=[2022, 2023, 2024])
+    assert list(frame.columns) == ["cod_municipio", "nombre_municipio", "anio", "code", "value"]
+    assert len(frame) == 1035
+    assert set(frame["code"]) == {"4173"}
+    santiago_2024 = frame.query("cod_municipio == '13101' and anio == 2024")["value"].iloc[0]
+    assert santiago_2024 == 24768668.0
+
+
+@respx.mock
+def test_get_wide_pivots_by_code(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    wide = client.get("4173", years=[2022], tidy=False)
+    assert "4173" in wide.columns
+    assert {"cod_municipio", "nombre_municipio", "anio"} <= set(wide.columns)
+
+
+@respx.mock
+def test_get_unknown_year_raises_actionable_error(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    with pytest.raises(SINIMError, match="1999"):
+        client.get("4173", years=[1999])
+
+
+@respx.mock
+def test_error_page_raises_sinim_error(client: SINIMClient) -> None:
+    respx.post(CATALOG_URL).mock(return_value=httpx.Response(200, content=ERROR_PAGE))
+    with pytest.raises(SINIMError, match="Error inesperado"):
+        client._fetch_catalog_raw()
+
+
+@respx.mock
+def test_http_retries_5xx_then_succeeds() -> None:
+    route = respx.get(FORM_URL)
+    route.side_effect = [
+        httpx.Response(500),
+        httpx.Response(500),
+        httpx.Response(200, content=b"ok"),
+    ]
+    http = HttpClient(min_interval=0.0, backoff_factor=0.0)
+    try:
+        response = http.get(FORM_URL, headers=browser_headers())
+        assert response.content == b"ok"
+        assert route.call_count == 3
+    finally:
+        http.close()
+
+
+@respx.mock
+def test_http_gives_up_after_max_retries() -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(500))
+    http = HttpClient(min_interval=0.0, backoff_factor=0.0, max_retries=3)
+    try:
+        with pytest.raises(httpx.HTTPStatusError):
+            http.get(FORM_URL, headers=browser_headers())
+    finally:
+        http.close()

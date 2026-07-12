@@ -57,11 +57,13 @@ header: X-Request-Source: r  (+ User-Agent de arriba)
 POST https://datos.sinim.gov.cl/datos_municipales/obtener_municipios.php
 body: region={id}   (mismos headers del catálogo)
 ```
-Regiones (del formulario): T=todas, 120 Antofagasta, 531 Arica y Parinacota,
-121 Atacama, 129 Aysén, 122 Coquimbo, 127 Araucanía, 126 Biobío,
-124 O'Higgins, 125 Maule, 128 Los Lagos, 530 Los Ríos, 130 Magallanes,
-123 Metropolitana, 119 Tarapacá, 532 Ñuble, 133 Valparaíso (verificar ids
-restantes desde el HTML del formulario).
+Los ids de región se descubren DINÁMICAMENTE del select del formulario
+(implementado en `client._region_ids()`); no hardcodear — la lista estática
+original de esta spec estaba desactualizada (ej.: Metropolitana es 131).
+El body real del POST municipios lleva además: municipio, limit, campo
+(id_legal), orden, pagina — ver `client._fetch_municipios()`.
+Nota verificada 2026-07: el formulario publica años 2001–2025 (índice
+1-based con base 2000), otra razón para el descubrimiento dinámico.
 
 ## Arquitectura
 
