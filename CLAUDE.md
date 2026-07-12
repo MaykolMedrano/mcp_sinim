@@ -93,15 +93,17 @@ client.get(codes, years=None, municipios=None, regiones=None, corrmon=None,
            tidy=True) -> pd.DataFrame
 # tidy long: cod_municipio, nombre_municipio, anio, variable(code), name, value, unit
 client.municipios(region=None) -> pd.DataFrame
+client.search_municipios(query, region=None, limit=10) -> pd.DataFrame
 client.years() -> list[int]                 # años disponibles, dinámico
 ```
 
 ## Tools del servidor MCP (FastMCP, nombre "sinim")
 
-- `search_variables(query, area?)` — fuzzy sobre catálogo
+- `search_variables(query, area?, limit?)` — fuzzy sobre catálogo
 - `get_variable_info(code)` — metadata completa
-- `get_data(codes, years?, municipios?, region?, corrmon?)` — tabla (JSON records o CSV)
-- `list_areas()` / `list_municipios(region?)`
+- `get_data(codes, years?, municipios?, region?, corrmon?)` — JSON records (NaN → null)
+- `list_areas()` / `list_municipios(region?)` / `list_years()`
+- Config por env: `MCP_SINIM_CACHE_DIR` (caché de metadata en disco)
 - Docstrings de tools EN INGLÉS (consistencia con mcp_bcrp), mensajes de
   error accionables.
 
