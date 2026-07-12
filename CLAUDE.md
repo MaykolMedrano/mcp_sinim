@@ -69,15 +69,15 @@ Nota verificada 2026-07: el formulario publica años 2001–2025 (índice
 
 ```
 mcp_sinim/                  # paquete (import mcp_sinim)
-├── __init__.py             # exporta SINIMClient, __version__
+├── __init__.py             # exporta SINIMClient, Variable, SINIMError, __version__
 ├── __main__.py             # python -m mcp_sinim → server
 ├── _version.py             # setuptools-scm
 ├── client.py               # SINIMClient (httpx): catálogo, datos, municipios
 ├── parser.py               # XML SpreadsheetML → registros tidy
 ├── catalog.py              # modelo del catálogo + build desde API + carga local
 ├── search_engine.py        # fuzzy search (rapidfuzz) variables/comunas
-└── server.py               # FastMCP tools
-data/catalog.json           # catálogo empaquetado (generado por catalog.py)
+├── server.py               # FastMCP tools
+└── data/catalog.json       # catálogo empaquetado (generado por catalog.py)
 tests/                      # pytest, fixtures OFFLINE en tests/fixtures/
 examples/                   # notebook Guía_Usuario_SINIM.ipynb + basic_usage.py
 recon/                      # evidencia del reconocimiento (no se empaqueta)

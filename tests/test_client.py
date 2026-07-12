@@ -9,6 +9,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import httpx
+import pandas as pd
 import pytest
 import respx
 
@@ -91,11 +92,33 @@ def test_get_returns_tidy_panel(client: SINIMClient) -> None:
         return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
     )
     frame = client.get("4173", years=[2022, 2023, 2024])
-    assert list(frame.columns) == ["cod_municipio", "nombre_municipio", "anio", "code", "value"]
+    assert list(frame.columns) == [
+        "cod_municipio",
+        "nombre_municipio",
+        "anio",
+        "code",
+        "name",
+        "value",
+        "unit",
+    ]
     assert len(frame) == 1035
     assert set(frame["code"]) == {"4173"}
-    santiago_2024 = frame.query("cod_municipio == '13101' and anio == 2024")["value"].iloc[0]
-    assert santiago_2024 == 24768668.0
+    santiago_2024 = frame.query("cod_municipio == '13101' and anio == 2024").iloc[0]
+    assert santiago_2024["value"] == 24768668.0
+    # name/unit come from the packaged catalog (variable 4173).
+    assert santiago_2024["name"] == "Ingresos por Patentes Municipales de Beneficio Municipal"
+    assert santiago_2024["unit"] == "M$"
+
+
+@respx.mock
+def test_get_unknown_code_gets_empty_metadata(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    frame = client.get("99999", years=[2022])
+    assert set(frame["name"]) == {""}
+    assert set(frame["unit"]) == {""}
 
 
 @respx.mock
@@ -154,6 +177,77 @@ def test_search_garbage_query_returns_empty_frame(client: SINIMClient) -> None:
     results = client.search("zzxxqq nonsense gibberish 12345")
     assert results.empty
     assert list(results.columns) == ["code", "name", "area", "subarea", "unit", "source", "score"]
+
+
+@respx.mock
+def test_catalog_refresh_persists_to_cache_dir(tmp_path: Path) -> None:
+    respx.post(CATALOG_URL).mock(return_value=httpx.Response(200, content=_fx_bytes()))
+    with SINIMClient(cache_dir=tmp_path) as c:
+        c._http.min_interval = 0.0
+        c.catalog(refresh=True)
+    assert (tmp_path / "catalog.json").is_file()
+    # A fresh client must read the disk cache without any network call
+    # (no other respx route is registered, so an HTTP request would fail).
+    with SINIMClient(cache_dir=tmp_path) as c2:
+        frame = c2.catalog()
+    assert len(frame) == 480
+    assert "4173" in set(frame["code"])
+
+
+def test_corrupt_catalog_cache_falls_back_to_packaged(tmp_path: Path) -> None:
+    (tmp_path / "catalog.json").write_text("{not valid json", encoding="utf-8")
+    with SINIMClient(cache_dir=tmp_path) as c:
+        frame = c.catalog()
+    assert len(frame) == 480  # packaged snapshot, not the corrupted file
+
+
+@respx.mock
+def test_municipios_cached_on_disk(tmp_path: Path) -> None:
+    route = respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    with SINIMClient(cache_dir=tmp_path) as c:
+        c._http.min_interval = 0.0
+        first = c.municipios(region="131")
+        assert route.call_count == 1
+        assert (tmp_path / "municipios_131.json").is_file()
+        second = c.municipios(region="131")
+        assert route.call_count == 1  # served from disk, no second request
+    pd.testing.assert_frame_equal(first, second)
+    # The cache file must be clean UTF-8 with readable accents.
+    text = (tmp_path / "municipios_131.json").read_text(encoding="utf-8")
+    assert "Ñ" in text
+
+
+@respx.mock
+def test_corrupt_municipios_cache_is_refetched(tmp_path: Path) -> None:
+    (tmp_path / "municipios_131.json").write_text("[broken", encoding="utf-8")
+    route = respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    with SINIMClient(cache_dir=tmp_path) as c:
+        c._http.min_interval = 0.0
+        frame = c.municipios(region="131")
+    assert route.call_count == 1
+    assert len(frame) >= 50
+
+
+@respx.mock
+def test_search_municipios_is_accent_insensitive(client: SINIMClient) -> None:
+    respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    results = client.search_municipios("nunoa", region="131", limit=5)
+    assert "score" in results.columns
+    assert any("ÑUÑOA" in name.upper() for name in results["nombre_municipio"])
+
+
+def test_public_exports() -> None:
+    import mcp_sinim
+
+    assert mcp_sinim.SINIMClient is SINIMClient
+    assert mcp_sinim.SINIMError is SINIMError
+    assert set(mcp_sinim.__all__) == {"SINIMClient", "SINIMError", "Variable", "__version__"}
 
 
 @respx.mock

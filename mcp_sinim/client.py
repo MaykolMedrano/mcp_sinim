@@ -6,8 +6,9 @@ top of :mod:`mcp_sinim._http` (courteous networking) and
 :class:`pandas.DataFrame` results. See ``CLAUDE.md`` for the endpoint
 contract (headers, encodings, quirks).
 
-``catalog()`` and ``search()`` build on the catalog model and fuzzy search
-landing in Phase 2; here they only expose their public shape.
+Metadata (catalog, municipios) can additionally be cached on disk via the
+``cache_dir`` constructor argument; data fetches (:meth:`SINIMClient.get`)
+always hit the network.
 """
 
 from __future__ import annotations
@@ -20,9 +21,16 @@ from pathlib import Path
 import pandas as pd
 
 from mcp_sinim._http import BASE_URL, HttpClient, SINIMError, browser_headers, data_headers
-from mcp_sinim.catalog import CATALOG_FIELDS, Variable, build_catalog, packaged_catalog
+from mcp_sinim.catalog import (
+    CATALOG_FIELDS,
+    Variable,
+    build_catalog,
+    load_catalog,
+    packaged_catalog,
+    save_catalog,
+)
 from mcp_sinim.parser import parse_spreadsheet_xml
-from mcp_sinim.search_engine import search_variables
+from mcp_sinim.search_engine import search_municipios, search_variables
 
 #: Columns of the DataFrame returned by :meth:`SINIMClient.catalog` (the
 #: catalog's own ``unit_name`` field is left out to match the public
@@ -54,8 +62,14 @@ class SINIMClient:
         Default monetary correction flag (``corrmon`` query param) applied
         to :meth:`get` calls that don't override it explicitly.
     cache_dir:
-        Optional directory used to cache catalog/municipios responses on
-        disk. ``None`` (default) disables caching.
+        Optional directory used to cache metadata (catalog and municipios)
+        responses on disk, so subsequent client instances can reuse them
+        without hitting the network. ``None`` (default) disables the disk
+        cache entirely (metadata still gets an in-memory cache for the
+        lifetime of this instance). Never used for :meth:`get` data — those
+        calls always hit the network. The directory is created lazily, on
+        the first cache write. A corrupted cache file is ignored (falls
+        back to the normal fetch path) rather than raising.
     timeout:
         Request timeout, in seconds, applied to all HTTP calls.
     """
@@ -88,7 +102,7 @@ class SINIMClient:
     def __exit__(self, *exc: object) -> None:
         self.close()
 
-    # -- catalog (Phase 2) -------------------------------------------------
+    # -- catalog -------------------------------------------------------------
 
     def catalog(self, refresh: bool = False) -> pd.DataFrame:
         """Return the full SINIM variable catalog.
@@ -102,6 +116,11 @@ class SINIMClient:
             packaged snapshot or a live refresh — is cached in memory for
             subsequent calls (including :meth:`search`) until the client is
             recreated or ``refresh=True`` is passed again.
+
+            With ``cache_dir`` set, a live refresh is also persisted to
+            ``cache_dir/catalog.json``, and later calls (from this or a new
+            client) prefer that file over the packaged snapshot. A missing
+            or unreadable cache file falls back to the packaged snapshot.
 
         Returns
         -------
@@ -133,13 +152,58 @@ class SINIMClient:
         frame["score"] = [score for _variable, score in matches]
         return frame
 
+    def search_municipios(
+        self, query: str, region: str | None = None, limit: int = 10
+    ) -> pd.DataFrame:
+        """Fuzzy-search municipalities by name.
+
+        Parameters
+        ----------
+        query:
+            Free-text search term. Matching is accent- and case-insensitive
+            (``"nunoa"`` finds ``ÑUÑOA``).
+        region:
+            Optional region id restricting the search (see
+            :meth:`municipios`). ``None`` searches every municipality.
+        limit:
+            Maximum number of results to return.
+
+        Returns
+        -------
+        pandas.DataFrame
+            Rows of :meth:`municipios` matching ``query``, ranked by
+            relevance (descending), with an added ``score`` column (0-100).
+            Empty if nothing matches.
+        """
+        return search_municipios(query, self.municipios(region=region), limit=limit)
+
     def _variables(self, refresh: bool = False) -> list[Variable]:
-        """Return (and cache) the catalog as a list of :class:`Variable`."""
+        """Return (and cache) the catalog as a list of :class:`Variable`.
+
+        Resolution order: live fetch when ``refresh`` (persisted to the
+        disk cache when ``cache_dir`` is set), else the in-memory cache,
+        else the disk cache (``cache_dir/catalog.json``), else the packaged
+        snapshot.
+        """
         if refresh:
             self._catalog = build_catalog(self._fetch_catalog_raw())
+            if self.cache_dir is not None:
+                save_catalog(self._catalog, self.cache_dir / "catalog.json")
         elif self._catalog is None:
-            self._catalog = packaged_catalog()
+            self._catalog = self._cached_catalog() or packaged_catalog()
         return self._catalog
+
+    def _cached_catalog(self) -> list[Variable] | None:
+        """Load the disk-cached catalog; ``None`` if absent or unreadable."""
+        if self.cache_dir is None:
+            return None
+        path = self.cache_dir / "catalog.json"
+        if not path.is_file():
+            return None
+        try:
+            return load_catalog(path)
+        except (json.JSONDecodeError, OSError, TypeError, KeyError):
+            return None
 
     @staticmethod
     def _catalog_frame(variables: list[Variable]) -> pd.DataFrame:
@@ -239,6 +303,11 @@ class SINIMClient:
             querying each discovered region — the endpoint rejects the
             ``"T"`` (all) shortcut for this call.
 
+            With ``cache_dir`` set, each region's response is cached on
+            disk (``cache_dir/municipios_{region}.json``) and reused on
+            later calls instead of hitting the network; a corrupted cache
+            file is ignored and refetched.
+
         Returns
         -------
         pandas.DataFrame
@@ -264,6 +333,42 @@ class SINIMClient:
         return frame
 
     def _fetch_municipios(self, region_id: str) -> list[dict[str, str]]:
+        """Return tidy municipio rows for one region (disk cache, then POST)."""
+        cached = self._cached_municipios(region_id)
+        if cached is not None:
+            return cached
+        rows = self._request_municipios(region_id)
+        self._write_municipios_cache(region_id, rows)
+        return rows
+
+    def _municipios_cache_path(self, region_id: str) -> Path | None:
+        """Disk-cache path for one region, or ``None`` when caching is off."""
+        if self.cache_dir is None:
+            return None
+        return self.cache_dir / f"municipios_{region_id}.json"
+
+    def _cached_municipios(self, region_id: str) -> list[dict[str, str]] | None:
+        """Load a region's cached rows; ``None`` if absent or unreadable."""
+        path = self._municipios_cache_path(region_id)
+        if path is None or not path.is_file():
+            return None
+        try:
+            rows = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            return None
+        return rows if isinstance(rows, list) else None
+
+    def _write_municipios_cache(self, region_id: str, rows: list[dict[str, str]]) -> None:
+        """Persist a region's rows to the disk cache (no-op when off)."""
+        path = self._municipios_cache_path(region_id)
+        if path is None:
+            return
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("w", encoding="utf-8", newline="") as fh:
+            json.dump(rows, fh, ensure_ascii=False, indent=1)
+            fh.write("\n")
+
+    def _request_municipios(self, region_id: str) -> list[dict[str, str]]:
         """POST ``obtener_municipios.php`` for one region; return tidy rows."""
         response = self._http.post(
             _MUNICIPIOS_URL,
@@ -317,13 +422,16 @@ class SINIMClient:
         tidy:
             If ``True`` (default), return long/tidy format with one row per
             (municipio, year, variable). If ``False``, pivot to wide with
-            one column per variable code.
+            one column per variable code (``name``/``unit`` are dropped by
+            the pivot).
 
         Returns
         -------
         pandas.DataFrame
             Tidy columns: ``cod_municipio``, ``nombre_municipio``, ``anio``,
-            ``code``, ``value``.
+            ``code``, ``name``, ``value``, ``unit``. ``name``/``unit`` are
+            looked up from the catalog (:meth:`catalog`); an unknown code
+            gets ``""`` for both rather than raising.
         """
         code_list = [str(codes)] if isinstance(codes, (str, int)) else [str(c) for c in codes]
         year_list = sorted(years) if years is not None else self.years()
@@ -331,6 +439,7 @@ class SINIMClient:
         use_corrmon = self.corrmon if corrmon is None else corrmon
 
         muni_filter = {str(m).zfill(5) for m in municipios} if municipios else None
+        variables_by_code = {variable.code: variable for variable in self._variables()}
 
         frames: list[pd.DataFrame] = []
         for code in code_list:
@@ -356,14 +465,25 @@ class SINIMClient:
                 records,
                 columns=["cod_municipio", "nombre_municipio", "anio", "value"],
             )
+            variable = variables_by_code.get(code)
             frame.insert(3, "code", code)
+            frame.insert(4, "name", variable.name if variable else "")
+            frame["unit"] = variable.unit if variable else ""
             frames.append(frame)
 
         if frames:
             data = pd.concat(frames, ignore_index=True)
         else:
             data = pd.DataFrame(
-                columns=["cod_municipio", "nombre_municipio", "anio", "code", "value"]
+                columns=[
+                    "cod_municipio",
+                    "nombre_municipio",
+                    "anio",
+                    "code",
+                    "name",
+                    "value",
+                    "unit",
+                ]
             )
 
         if muni_filter is not None and not data.empty:

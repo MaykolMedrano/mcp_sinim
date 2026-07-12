@@ -10,6 +10,8 @@ Public API (v0.1)::
     client.get(["codigo"], years=[2020, 2021])
 """
 
+from mcp_sinim._http import SINIMError
+from mcp_sinim.catalog import Variable
 from mcp_sinim.client import SINIMClient
 
 try:
@@ -17,4 +19,4 @@ try:
 except ImportError:  # pragma: no cover - fallback when setuptools-scm hasn't run yet
     __version__ = "0.0.0.dev0"
 
-__all__ = ["SINIMClient", "__version__"]
+__all__ = ["SINIMClient", "SINIMError", "Variable", "__version__"]
