@@ -1,8 +1,7 @@
 """Basic usage example for mcp_sinim (library mode, no MCP server needed).
 
-This is a scaffold: the calls below match the v0.1 public API contract but
-will raise NotImplementedError until Phase 1+ fills in client.py,
-catalog.py, parser.py and search_engine.py.
+Run with ``python examples/basic_usage.py``. The catalog steps work
+offline; the data steps hit datos.sinim.gov.cl (courteously rate-limited).
 """
 
 from __future__ import annotations
@@ -12,28 +11,30 @@ from mcp_sinim import SINIMClient
 
 def main() -> None:
     client = SINIMClient(corrmon=False)
-    print(f"mcp_sinim client ready: {client!r}")
 
-    # 1. Explore the catalog of ~480 variables.
-    # catalog = client.catalog()
-    # print(catalog.head())
+    # 1. Explore the catalog of 480 variables (offline: packaged snapshot).
+    catalog = client.catalog()
+    print(f"Catalog: {len(catalog)} variables\n{catalog.head()}\n")
 
-    # 2. Fuzzy-search for a variable by keyword.
-    # results = client.search("ingresos propios", limit=5)
-    # print(results)
+    # 2. Fuzzy-search a variable by keyword (accent/case-insensitive).
+    results = client.search("patentes municipales", limit=5)
+    print(f"Search 'patentes municipales':\n{results[['code', 'name', 'score']]}\n")
 
-    # 3. Fetch data for one or more variable codes.
-    # data = client.get(
-    #     codes=["<code>"],
-    #     years=[2020, 2021, 2022],
-    #     regiones=["123"],  # Región Metropolitana
-    #     tidy=True,
-    # )
-    # print(data)
+    # 3. Years available (discovered dynamically from the SINIM portal).
+    years = client.years()
+    print(f"Years: {years[0]}-{years[-1]}\n")
 
-    # 4. List municipalities in a region.
-    # municipios = client.municipios(region="123")
-    # print(municipios)
+    # 4. Fetch data: municipal business-license revenue, last 3 years.
+    data = client.get("4173", years=years[-3:])
+    santiago = data.query("cod_municipio == '13101'")
+    print(f"Variable 4173, SANTIAGO:\n{santiago}\n")
+
+    # 5. Municipalities of Región Metropolitana (region id 131).
+    municipios = client.municipios(region="131")
+    print(f"Región Metropolitana: {len(municipios)} municipalities")
+    print(client.search_municipios("nunoa", region="131").head(3))
+
+    client.close()
 
 
 if __name__ == "__main__":
