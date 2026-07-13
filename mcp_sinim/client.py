@@ -29,7 +29,7 @@ from mcp_sinim.catalog import (
     packaged_catalog,
     save_catalog,
 )
-from mcp_sinim.parser import parse_spreadsheet_xml
+from mcp_sinim.parser import SpreadsheetXMLParseError, parse_spreadsheet_xml
 from mcp_sinim.search_engine import search_municipios, search_variables
 
 #: Columns of the DataFrame returned by :meth:`SINIMClient.catalog` (the
@@ -49,8 +49,19 @@ _PERIODO_RE = re.compile(r'<option[^>]*value="(\d+)"[^>]*>\s*A[nñ]o\s*(\d{4})',
 _REGION_SELECT_RE = re.compile(r'<select[^>]*id="regiones".*?</select>', re.IGNORECASE | re.DOTALL)
 #: Matches ``<option value="ID">NAME</option>`` (numeric region ids only).
 _REGION_OPT_RE = re.compile(r'<option[^>]*value="(\d+)"[^>]*>\s*([^<]+?)\s*</option>')
-#: First calendar year SINIM publishes (index base for the fallback path).
-_FIRST_YEAR = 2000
+#: First calendar year SINIM publishes in the fallback range.
+_FIRST_YEAR = 2001
+#: Period index assigned to the first published year in SINIM.
+_FIRST_PERIOD_INDEX = 2
+
+
+def _decode_form_html_bytes(content: bytes) -> str:
+    """Decode SINIM form HTML as UTF-8, falling back to latin-1."""
+    body = content[3:] if content.startswith(b"\xef\xbb\xbf") else content
+    try:
+        return body.decode("utf-8")
+    except UnicodeDecodeError:
+        return body.decode("latin-1")
 
 
 class SINIMClient:
@@ -236,8 +247,10 @@ class SINIMClient:
         """Return the years with data available in SINIM.
 
         Discovered dynamically from the ``datos_municipales.php`` form (the
-        ``periodos`` ``<select>``) and cached in memory. Falls back to
-        ``range(2000, current_year)`` if the form cannot be parsed.
+        ``periodos`` ``<select>``) and cached in memory. If the HTML is
+        reachable but does not expose any period options, falls back to a
+        computed ``range(2001, current_year)``. Network and HTTP errors
+        propagate to the caller.
         """
         return sorted(self._year_map())
 
@@ -248,35 +261,40 @@ class SINIMClient:
         return self._year_index
 
     def _form_html(self) -> str:
-        """Fetch the ``datos_municipales.php`` form HTML (UTF-8 text)."""
+        """Fetch ``datos_municipales.php`` and decode UTF-8 or latin-1 HTML."""
         response = self._http.get(_FORM_URL, headers=browser_headers())
-        return response.content.decode("utf-8", errors="replace")
+        return _decode_form_html_bytes(response.content)
 
     def _discover_year_map(self) -> dict[int, int]:
-        """Parse the form's periodos select; fall back to a computed range."""
-        try:
-            mapping = {
-                int(year): int(index) for index, year in _PERIODO_RE.findall(self._form_html())
-            }
-        except Exception:  # noqa: BLE001 - fall back to computed range on any failure
-            mapping = {}
+        """Parse the form periods; fallback only when the HTML has no matches."""
+        mapping = {int(year): int(index) for index, year in _PERIODO_RE.findall(self._form_html())}
         if mapping:
             return mapping
-        # Fallback: SINIM period index is (year - 1999); no reliable top year.
         current = _dt.date.today().year
-        return {year: year - (_FIRST_YEAR - 1) for year in range(_FIRST_YEAR, current)}
+        return {
+            year: year - _FIRST_YEAR + _FIRST_PERIOD_INDEX for year in range(_FIRST_YEAR, current)
+        }
 
     def _region_ids(self) -> dict[str, str]:
-        """Return (and cache) the ``region id -> name`` mapping from the form.
+        """Return and cache the ``region id -> name`` mapping from the form.
 
         The ids are discovered dynamically because CLAUDE.md's hardcoded
-        list is outdated (e.g. Metropolitana is ``131``, not ``123``).
+        list is outdated (for example, Metropolitana is ``"131"``).
         """
         if self._regiones is None:
             block = _REGION_SELECT_RE.search(self._form_html())
-            self._regiones = (
-                {rid: name for rid, name in _REGION_OPT_RE.findall(block.group(0))} if block else {}
-            )
+            if block is None:
+                raise SINIMError(
+                    "Could not discover SINIM region ids from the form HTML. "
+                    "Retry later or pass an explicit `region=` value."
+                )
+            regiones = {rid: name.strip() for rid, name in _REGION_OPT_RE.findall(block.group(0))}
+            if not regiones:
+                raise SINIMError(
+                    "Could not parse any SINIM region ids from the form HTML. "
+                    "Retry later or inspect the SINIM form response."
+                )
+            self._regiones = regiones
         return self._regiones
 
     def _period_index(self, year: int) -> int:
@@ -369,7 +387,7 @@ class SINIMClient:
             fh.write("\n")
 
     def _request_municipios(self, region_id: str) -> list[dict[str, str]]:
-        """POST ``obtener_municipios.php`` for one region; return tidy rows."""
+        """POST ``obtener_municipios.php`` for one region and validate the payload."""
         response = self._http.post(
             _MUNICIPIOS_URL,
             headers=browser_headers(),
@@ -382,14 +400,65 @@ class SINIMClient:
                 "pagina": "1",
             },
         )
-        payload = json.loads(response.content.decode("utf-8"))
-        return [
-            {
-                "cod_municipio": str(row.get("idLegal", "")).zfill(5),
-                "nombre_municipio": row.get("municipio", ""),
-            }
-            for row in payload.get("textos", [])
-        ]
+        try:
+            payload = json.loads(response.content.decode("utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            raise SINIMError(
+                f"SINIM returned invalid municipios JSON for region {region_id}. "
+                "Retry later or inspect the raw response body."
+            ) from exc
+        if not isinstance(payload, dict):
+            raise SINIMError(
+                f"SINIM municipios response for region {region_id} was not a JSON object."
+            )
+        raw_rows = payload.get("textos")
+        if not isinstance(raw_rows, list):
+            raise SINIMError(
+                f"SINIM municipios response for region {region_id} did not contain "
+                "a valid `textos` list."
+            )
+
+        rows: list[dict[str, str]] = []
+        for index, raw_row in enumerate(raw_rows):
+            if not isinstance(raw_row, dict):
+                raise SINIMError(
+                    f"SINIM municipios response for region {region_id} contained "
+                    f"a non-object row at index {index}."
+                )
+            raw_code = raw_row.get("idLegal")
+            code = str(raw_code).strip() if raw_code is not None else ""
+            if not code or not code.isdigit():
+                raise SINIMError(
+                    f"SINIM municipios response for region {region_id} contained "
+                    f"an invalid `idLegal` at row {index}."
+                )
+            raw_name = raw_row.get("municipio")
+            name = str(raw_name).strip() if raw_name is not None else ""
+            if not name:
+                raise SINIMError(
+                    f"SINIM municipios response for region {region_id} contained "
+                    f"an empty `municipio` at row {index}."
+                )
+            rows.append({"cod_municipio": code.zfill(5), "nombre_municipio": name})
+        return rows
+
+    @staticmethod
+    def _normalize_requested_years(years: list[int] | None) -> list[int] | None:
+        """Validate the optional years argument before any network call."""
+        if years is None:
+            return None
+        if not years:
+            raise ValueError("`years` must contain at least one year when provided.")
+        return sorted(years)
+
+    @staticmethod
+    def _normalize_selection(name: str, values: list[str] | None) -> list[str] | None:
+        """Validate optional region and municipality filters before any network call."""
+        if values is None:
+            return None
+        if not values:
+            raise ValueError(f"`{name}` must contain at least one value when provided.")
+        return [str(value) for value in values]
 
     # -- data --------------------------------------------------------------
 
@@ -410,18 +479,20 @@ class SINIMClient:
             One or more SINIM variable codes (``id_dato``).
         years:
             Years to fetch. Defaults to every year returned by
-            :meth:`years`.
+            :meth:`years`. Passing an empty list is invalid.
         municipios:
             Municipality (legal INE) codes to keep. Applied server-side and
-            re-checked client-side. Defaults to all.
+            re-checked client-side. Defaults to all. Passing an empty list is
+            invalid.
         regiones:
             Region ids to filter by (sent to the endpoint). Defaults to all.
+            Passing an empty list is invalid.
         corrmon:
             Overrides the client's default monetary correction flag for
             this call only.
         tidy:
             If ``True`` (default), return long/tidy format with one row per
-            (municipio, year, variable). If ``False``, pivot to wide with
+            ``(municipio, year, variable)``. If ``False``, pivot to wide with
             one column per variable code (``name``/``unit`` are dropped by
             the pivot).
 
@@ -432,13 +503,30 @@ class SINIMClient:
             ``code``, ``name``, ``value``, ``unit``. ``name``/``unit`` are
             looked up from the catalog (:meth:`catalog`); an unknown code
             gets ``""`` for both rather than raising.
+
+        Raises
+        ------
+        ValueError
+            If ``years``, ``municipios`` or ``regiones`` is provided as an
+            empty list.
+        SINIMError
+            If SINIM returns invalid SpreadsheetML instead of the expected
+            data workbook.
         """
         code_list = [str(codes)] if isinstance(codes, (str, int)) else [str(c) for c in codes]
-        year_list = sorted(years) if years is not None else self.years()
-        periods = ",".join(str(self._period_index(y)) for y in year_list)
+        year_list = self._normalize_requested_years(years)
+        region_list = self._normalize_selection("regiones", regiones)
+        municipio_list = self._normalize_selection("municipios", municipios)
+        if year_list is None:
+            year_list = self.years()
+        periods = ",".join(str(self._period_index(year)) for year in year_list)
         use_corrmon = self.corrmon if corrmon is None else corrmon
 
-        muni_filter = {str(m).zfill(5) for m in municipios} if municipios else None
+        muni_filter = (
+            {municipio.zfill(5) for municipio in municipio_list}
+            if municipio_list is not None
+            else None
+        )
         variables_by_code = {variable.code: variable for variable in self._variables()}
 
         frames: list[pd.DataFrame] = []
@@ -450,17 +538,24 @@ class SINIMClient:
                 ("periodos[]", periods),
                 ("corrmon", "1" if use_corrmon else "0"),
             ]
-            if regiones:
-                params += [("regiones[]", str(r)) for r in regiones]
+            if region_list is not None:
+                params += [("regiones[]", region) for region in region_list]
             else:
                 params.append(("regiones[]", "T"))
-            if municipios:
-                params += [("municipios[]", str(m)) for m in municipios]
+            if municipio_list is not None:
+                params += [("municipios[]", municipio) for municipio in municipio_list]
             else:
                 params.append(("municipios[]", "T"))
 
             response = self._http.get(_DATA_URL, headers=data_headers(), params=params)
-            records = parse_spreadsheet_xml(response.content)
+            try:
+                records = parse_spreadsheet_xml(response.content)
+            except SpreadsheetXMLParseError as exc:
+                raise SINIMError(
+                    f"SINIM returned invalid SpreadsheetML for variable {code}. "
+                    "Retry the request and verify the selected years and filters. "
+                    f"URL: {response.request.url}"
+                ) from exc
             frame = pd.DataFrame(
                 records,
                 columns=["cod_municipio", "nombre_municipio", "anio", "value"],
