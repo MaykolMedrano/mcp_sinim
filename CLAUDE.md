@@ -65,6 +65,17 @@ El body real del POST municipios lleva además: municipio, limit, campo
 Nota verificada 2026-07: el formulario publica años 2001–2025 (índice
 1-based con base 2000), otra razón para el descubrimiento dinámico.
 
+### Hallazgos validados en vivo (2026-07-12)
+
+- **idLegal == CUT oficial**: las 345 comunas del SINIM calzan 1:1 con la
+  lista SUBDERE (cruce vía chilemapas/codigos_territoriales). Única
+  ausencia: Antártica (12202), que no tiene municipalidad. Merges por
+  código con Censo/CASEN/INE son seguros. Diferencias de nombre solo
+  ortográficas (Coyhaique/Coihaique, Aysén/Aisen, Trehuaco/Treguaco).
+- **corrmon=1** aplica un factor uniforme por año (idéntico en las 345
+  comunas): re-expresa a pesos del último año publicado, estilo IPC.
+  Medido: 2015 ×1.552, 2020 ×1.359, 2024 ×1.035.
+
 ## Arquitectura
 
 ```

@@ -1,0 +1,44 @@
+name: Refresh catalog
+
+# Keeps the packaged variable catalog (mcp_sinim/data/catalog.json) in sync
+# with the live SINIM portal: monthly run, opens a PR only when it changed.
+
+on:
+  schedule:
+    - cron: "17 6 1 * *" # 06:17 UTC on the 1st of each month
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package
+        run: python -m pip install -e .
+
+      - name: Regenerate catalog from the live SINIM API
+        run: python scripts/refresh_catalog.py
+
+      - name: Open PR if the catalog changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: refresh packaged SINIM variable catalog"
+          title: "chore: refresh packaged SINIM variable catalog"
+          body: >
+            Automated monthly refresh of `mcp_sinim/data/catalog.json` from
+            the live SINIM API (`scripts/refresh_catalog.py`). Review the
+            diff for added/removed/renamed variables before merging.
+          branch: chore/refresh-catalog
+          delete-branch: true

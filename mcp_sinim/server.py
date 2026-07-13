@@ -23,6 +23,15 @@ from mcp_sinim.search_engine import search_variables as _search_variables
 
 mcp = FastMCP("sinim")
 
+#: Cap on the (estimated) number of records ``get_data`` may return.
+#: Protects MCP clients — LLM context windows — from accidental
+#: full-country, full-history dumps.
+MAX_RECORDS = 5000
+
+#: Comuna-count upper bounds used for the pre-flight estimate.
+_ALL_MUNICIPIOS = 345
+_MAX_REGION_MUNICIPIOS = 60  # largest region (Metropolitana) has 52
+
 #: Shared client instance, created lazily by :func:`_get_client`.
 _client_instance: SINIMClient | None = None
 
@@ -131,8 +140,25 @@ def get_data(
     Returns:
         Tidy records with cod_municipio, nombre_municipio, anio, code,
         name, value and unit. A missing observation has value None.
+        Queries estimated to exceed 5000 records are rejected up front —
+        narrow them with explicit years, municipios or a region.
     """
     client = _get_client()
+    year_count = len(years) if years else len(client.years())
+    if municipios:
+        muni_count = len(municipios)
+    elif region:
+        muni_count = _MAX_REGION_MUNICIPIOS
+    else:
+        muni_count = _ALL_MUNICIPIOS
+    estimate = len(codes) * year_count * muni_count
+    if estimate > MAX_RECORDS:
+        raise ValueError(
+            f"This query could return roughly {estimate} records, above the "
+            f"{MAX_RECORDS}-record limit for MCP responses. Narrow it down: "
+            "pass an explicit `years` list, a `municipios` list, a `region`, "
+            "or fewer codes per call."
+        )
     frame = client.get(
         codes,
         years=years,

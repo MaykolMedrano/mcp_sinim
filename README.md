@@ -119,12 +119,23 @@ metadata disk cache.
 
 ## Notes
 
+- **`cod_municipio` is the official CUT** (Código Único Territorial):
+  validated 1:1 against the SUBDERE list for all 345 municipalities, so
+  merging with Censo, CASEN or any CUT-keyed dataset is safe. (Antártica,
+  CUT 12202, has no municipality and is correctly absent from SINIM.)
+- **`corrmon=True` re-expresses values in pesos of the most recent
+  published year** using a uniform per-year CPI-style factor (validated
+  live: 2015 ≈ ×1.55, 2020 ≈ ×1.36, 2024 ≈ ×1.04 as of 2026-07).
+  Default is nominal pesos of each year.
 - Data comes from the public SINIM portal of SUBDERE (Gobierno de Chile);
-  this project is not affiliated with SUBDERE.
+  this project is not affiliated with SUBDERE. Values are self-reported
+  by municipalities — quality varies across comunas and years.
 - The client is polite to the server: ≥0.5 s between requests, retries
-  with exponential backoff, explicit timeouts.
+  with exponential backoff, explicit timeouts. Invalid upstream responses
+  raise actionable `SINIMError`s instead of silently returning empty data.
 - Available years and region ids are discovered dynamically from the
-  portal, so newly published years appear without a package update.
+  portal, so newly published years appear without a package update. The
+  packaged catalog is refreshed monthly by CI.
 - `examples/` has a runnable script and a user-guide notebook.
 
 ## Development

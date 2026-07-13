@@ -372,6 +372,22 @@ def test_http_retries_5xx_then_succeeds() -> None:
 
 
 @respx.mock
+def test_http_retries_timeout_then_succeeds() -> None:
+    route = respx.get(FORM_URL)
+    route.side_effect = [
+        httpx.ConnectTimeout("connection timed out"),
+        httpx.Response(200, content=b"ok"),
+    ]
+    http = HttpClient(min_interval=0.0, backoff_factor=0.0)
+    try:
+        response = http.get(FORM_URL, headers=browser_headers())
+        assert response.content == b"ok"
+        assert route.call_count == 2
+    finally:
+        http.close()
+
+
+@respx.mock
 def test_http_gives_up_after_max_retries() -> None:
     respx.get(FORM_URL).mock(return_value=httpx.Response(500))
     http = HttpClient(min_interval=0.0, backoff_factor=0.0, max_retries=3)

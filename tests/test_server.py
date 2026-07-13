@@ -112,6 +112,26 @@ def test_get_data_returns_json_safe_records(fresh_client: SINIMClient) -> None:
     assert not any(isinstance(r["value"], float) and math.isnan(r["value"]) for r in records)
 
 
+@respx.mock
+def test_get_data_rejects_oversized_queries(fresh_client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    # One code, all years (25), all 345 comunas -> ~8625 records: too big.
+    # Rejected before any data request (only the form is ever fetched).
+    with pytest.raises(ValueError, match="Narrow it down"):
+        server.get_data(["4173"])
+
+
+@respx.mock
+def test_get_data_region_scope_passes_size_guard(fresh_client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    # One region bounds the estimate (60 x 25 x 1 = 1500), so this runs.
+    records = server.get_data(["4173"], region="131")
+    assert records
+
+
 def test_list_areas_returns_sorted_distinct(fresh_client: SINIMClient) -> None:
     areas = server.list_areas()
     assert areas == sorted(areas)
