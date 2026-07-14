@@ -1,7 +1,7 @@
 """Smoke tests for the Phase 0 scaffold.
 
 These only check that the package imports cleanly and that the public API
-signatures from SPEC.md ("Contratos de la librería") exist — they must
+signatures exist — they must
 pass against the unimplemented skeletons. Behavioral tests land alongside
 each module's implementation in later phases.
 """

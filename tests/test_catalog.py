@@ -106,9 +106,9 @@ def test_build_catalog_real_recon_snapshot_has_no_duplicate_codes() -> None:
     total_raw_entries = sum(len(entries) for entries in raw.values())
     variables = build_catalog(raw)
 
-    # Documented in SPEC.md: 480 variables. The raw snapshot happens to
-    # have zero id_dato collisions across subareas, so dedup is a no-op
-    # here -- but build_catalog must still dedup correctly if it isn't.
+    # The captured snapshot has 480 variables. It happens to have zero
+    # id_dato collisions across subareas, so dedup is a no-op here -- but
+    # build_catalog must still dedup correctly if it isn't.
     assert total_raw_entries == 480
     assert len(variables) == 480
     assert len({v.code for v in variables}) == len(variables)
@@ -147,4 +147,4 @@ def test_packaged_catalog_loads_480_unique_variables() -> None:
     assert "4173" in codes  # Ingresos por Patentes Municipales de Beneficio Municipal
 
     areas = {v.area.strip() for v in variables}
-    assert len(areas) == 9  # SPEC.md: 9 areas
+    assert len(areas) == 9  # current SINIM catalog coverage

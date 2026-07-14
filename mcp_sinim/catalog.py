@@ -1,8 +1,8 @@
 """SINIM variable catalog: data model, API builder, and local cache I/O.
 
-The catalog is built from ``obtener_datos_filtros.php`` (see ``SPEC.md``)
-and packaged as ``mcp_sinim/data/catalog.json`` so the library can work
-offline for metadata lookups (:meth:`mcp_sinim.client.SINIMClient.catalog`,
+The catalog is built from ``obtener_datos_filtros.php`` and packaged as
+``mcp_sinim/data/catalog.json`` so the library can work offline for metadata
+lookups (:meth:`mcp_sinim.client.SINIMClient.catalog`,
 :meth:`mcp_sinim.client.SINIMClient.search`).
 """
 
@@ -143,12 +143,12 @@ def load_catalog(path: str | Path | None = None) -> list[Variable]:
 def packaged_catalog() -> list[Variable]:
     """Load the catalog packaged with ``mcp_sinim`` (``mcp_sinim/data/catalog.json``).
 
-    ``data/`` lives inside the ``mcp_sinim`` package (see the layout in
-    ``SPEC.md``), so this anchors on the installed ``mcp_sinim`` package
-    via :mod:`importlib.resources` and resolves its ``data/catalog.json``
-    resource — this works correctly for editable installs and for wheel
-    installs, since ``package-data`` ships it as part of the package (see
-    the ``[tool.setuptools.package-data]`` entry in ``pyproject.toml``).
+    ``data/`` lives inside the ``mcp_sinim`` package, so this anchors on the
+    installed ``mcp_sinim`` package via :mod:`importlib.resources` and
+    resolves its ``data/catalog.json`` resource — this works correctly for
+    editable installs and for wheel installs, since ``package-data`` ships it
+    as part of the package (see the ``[tool.setuptools.package-data]`` entry
+    in ``pyproject.toml``).
     Falls back to a path relative to this module when that lookup fails
     (e.g. a zipped/namespace install).
 

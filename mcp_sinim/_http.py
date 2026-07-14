@@ -1,10 +1,9 @@
 """Private networking layer for the SINIM API.
 
-Wraps :class:`httpx.Client` with the courtesy the SINIM server expects
-(see ``SPEC.md``): two documented header profiles, a minimum interval
-between requests, retries with exponential backoff, explicit timeouts, and
-detection of the server's HTML "Error inesperado" page (surfaced as
-:class:`SINIMError`).
+Wraps :class:`httpx.Client` with the courtesy the SINIM server expects:
+two documented header profiles, a minimum interval between requests,
+retries with exponential backoff, explicit timeouts, and detection of the
+server's HTML "Error inesperado" page (surfaced as :class:`SINIMError`).
 
 Header profiles
 ---------------
@@ -25,7 +24,7 @@ from typing import Any
 
 import httpx
 
-#: Browser User-Agent the SINIM endpoints require (see ``SPEC.md``).
+#: Browser User-Agent the SINIM endpoints require.
 BROWSER_UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/605.1.15 (KHTML, like Gecko) "

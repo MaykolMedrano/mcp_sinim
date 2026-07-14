@@ -142,8 +142,7 @@ pip install -e ".[dev]"
 ruff check . && ruff format --check . && pytest  # all offline, no network
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [PROJECT_STATUS.md](PROJECT_STATUS.md),
-and [RELEASE.md](RELEASE.md).
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
