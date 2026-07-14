@@ -3,7 +3,7 @@
 Wraps the documented endpoints (form/years, data, municipios, catalog) on
 top of :mod:`mcp_sinim._http` (courteous networking) and
 :mod:`mcp_sinim.parser` (XML SpreadsheetML -> tidy records), exposing tidy
-:class:`pandas.DataFrame` results. See ``CLAUDE.md`` for the endpoint
+:class:`pandas.DataFrame` results. See ``SPEC.md`` for the endpoint
 contract (headers, encodings, quirks).
 
 Metadata (catalog, municipios) can additionally be cached on disk via the
@@ -34,7 +34,7 @@ from mcp_sinim.search_engine import search_municipios, search_variables
 
 #: Columns of the DataFrame returned by :meth:`SINIMClient.catalog` (the
 #: catalog's own ``unit_name`` field is left out to match the public
-#: contract in ``CLAUDE.md``).
+#: contract in ``SPEC.md``).
 _CATALOG_DF_COLUMNS = [c for c in CATALOG_FIELDS if c != "unit_name"]
 
 #: Endpoint URLs.
@@ -278,7 +278,7 @@ class SINIMClient:
     def _region_ids(self) -> dict[str, str]:
         """Return and cache the ``region id -> name`` mapping from the form.
 
-        The ids are discovered dynamically because CLAUDE.md's hardcoded
+        The ids are discovered dynamically because SPEC.md's hardcoded
         list is outdated (for example, Metropolitana is ``"131"``).
         """
         if self._regiones is None:

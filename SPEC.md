@@ -141,9 +141,9 @@ client.years() -> list[int]                 # años disponibles, dinámico
    PyPI en tags `v*` (trusted publishing) en archivo aparte, deshabilitado
    hasta el release.
 7. **Docs**: README.md con badges, quickstart de librería Y de MCP
-   (config para claude_desktop_config.json y claude mcp add), tabla de
-   tools, sección de áreas/variables. CONTRIBUTING.md y RELEASE.md breves
-   (copiar espíritu de mcp_bcrp). LICENSE MIT.
+   (config genérica del servidor MCP), tabla de tools, sección de
+   áreas/variables. CONTRIBUTING.md y RELEASE.md breves (copiar espíritu
+   de mcp_bcrp). LICENSE MIT.
 8. **Commits**: convencionales (`feat:`, `fix:`, `docs:`, `test:`, `chore:`),
    en inglés, uno por unidad de trabajo.
 9. **Nada de rutas absolutas ni credenciales** en el código.

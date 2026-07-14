@@ -13,8 +13,7 @@ One package, two entry doors:
 
 - **Library** — `from mcp_sinim import SINIMClient`, tidy
   `pandas.DataFrame` results.
-- **MCP server** — `mcp-sinim`, six tools any MCP client (Claude Desktop,
-  Claude Code, …) can call.
+- **MCP server** — `mcp-sinim`, six tools any MCP client can call.
 
 Part of the `mcp_*` family by Maykol Medrano (`mcp_bcrp`, `mcp_imf`,
 `mcp_wbgapi360`).
@@ -71,13 +70,8 @@ work offline; `catalog(refresh=True)` re-fetches it live and, with
 
 ## Quickstart — MCP server
 
-With the Claude CLI:
-
-```bash
-claude mcp add sinim -- mcp-sinim
-```
-
-Or add to `claude_desktop_config.json`:
+Register the server in your MCP client with command `mcp-sinim`. A typical
+JSON configuration looks like:
 
 ```json
 {
@@ -148,7 +142,8 @@ pip install -e ".[dev]"
 ruff check . && ruff format --check . && pytest  # all offline, no network
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [RELEASE.md](RELEASE.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [PROJECT_STATUS.md](PROJECT_STATUS.md),
+and [RELEASE.md](RELEASE.md).
 
 ## License
 

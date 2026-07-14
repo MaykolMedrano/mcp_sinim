@@ -31,4 +31,4 @@ All three must pass. CI runs the same checks on Python 3.10–3.13.
 - Commits follow Conventional Commits (`feat:`, `fix:`, `docs:`, `test:`,
   `chore:`), in English.
 
-See `CLAUDE.md` for the complete specification.
+See `SPEC.md` for the complete specification.

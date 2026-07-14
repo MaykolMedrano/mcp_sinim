@@ -41,6 +41,6 @@ First public release.
 
 - Invalid upstream responses (broken XML, malformed municipios JSON,
   missing form selects) raise actionable `SINIMError`s instead of
-  silently returning empty data (independent Codex review).
+  silently returning empty data (independent code review).
 - Empty `years`/`municipios`/`regiones` lists are rejected up front.
 - XML parser honors the encoding declared in the document prolog.

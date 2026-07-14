@@ -1,6 +1,6 @@
 """SINIM variable catalog: data model, API builder, and local cache I/O.
 
-The catalog is built from ``obtener_datos_filtros.php`` (see ``CLAUDE.md``)
+The catalog is built from ``obtener_datos_filtros.php`` (see ``SPEC.md``)
 and packaged as ``mcp_sinim/data/catalog.json`` so the library can work
 offline for metadata lookups (:meth:`mcp_sinim.client.SINIMClient.catalog`,
 :meth:`mcp_sinim.client.SINIMClient.search`).
@@ -144,7 +144,7 @@ def packaged_catalog() -> list[Variable]:
     """Load the catalog packaged with ``mcp_sinim`` (``mcp_sinim/data/catalog.json``).
 
     ``data/`` lives inside the ``mcp_sinim`` package (see the layout in
-    ``CLAUDE.md``), so this anchors on the installed ``mcp_sinim`` package
+    ``SPEC.md``), so this anchors on the installed ``mcp_sinim`` package
     via :mod:`importlib.resources` and resolves its ``data/catalog.json``
     resource — this works correctly for editable installs and for wheel
     installs, since ``package-data`` ships it as part of the package (see
