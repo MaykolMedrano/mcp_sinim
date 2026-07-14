@@ -10,6 +10,7 @@ Variables descargadas:
 OUTPUT: 01_data/02_intermediate/SINIM/sinim_patentes_2000_2024.parquet
 """
 
+import os
 import re, time, sys
 import requests
 import pandas as pd
@@ -17,7 +18,9 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(r"c:/Users/horio/OneDrive - Universidad Católica de Chile/Proyecto_MAE")
+# Keep recon output portable: callers can set SINIM_PROJECT_ROOT, otherwise
+# the script writes relative to the current working directory.
+ROOT = Path(os.environ.get("SINIM_PROJECT_ROOT", Path.cwd()))
 OUT  = ROOT / "01_data/02_intermediate/SINIM/sinim_patentes_2000_2024.parquet"
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
