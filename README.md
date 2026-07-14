@@ -1,14 +1,21 @@
-# mcp-sinim **Python client and MCP server for Chile's SINIM municipal data portal. Search ~480 variables, fetch municipal panels, and use the same package from Python or any MCP-compatible client.** [![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/) [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square)](https://www.python.org/downloads/) [![CI](https://img.shields.io/github/actions/workflow/status/MaykolMedrano/mcp_sinim/ci.yml?branch=main&style=flat-square)](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+# mcp-sinim
+
+**Pull Chilean municipal data from SINIM without memorizing variable codes or wrestling with raw exports. Search the catalog, build tidy municipal panels, and use the same package from Python or any MCP-compatible client.**
+
+[![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![CI](https://img.shields.io/github/actions/workflow/status/MaykolMedrano/mcp_sinim/ci.yml?branch=main&style=flat-square)](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 ---
 
-## What You Get
+## What You Can Do
 
-- Fuzzy variable discovery over the SINIM catalog, with accent- and case-insensitive search.
-- High-level municipal data retrieval through `SINIMClient.get(...)`.
-- Dynamic year and municipality discovery from the live SINIM portal.
-- Packaged offline catalog, optional metadata cache, retries, and explicit timeouts.
-- MCP tools for search, metadata lookup, municipal listings, and data extraction.
+- Search roughly 480 SINIM variables by natural language instead of memorizing `id_dato` codes.
+- Pull one or many municipal indicators as tidy `pandas` panels in one call.
+- Discover available years and municipality codes directly from the live portal.
+- Use the same package in notebooks, scripts, or MCP clients.
+- Work with an offline catalog snapshot plus optional metadata caching.
 
 ## Installation
 
@@ -16,46 +23,49 @@
 pip install mcp-sinim
 ```
 
-## Python API
+## Python Example
 
 ```python
 from mcp_sinim import SINIMClient
 
 client = SINIMClient(corrmon=True)
 
-# Search the catalog
+# 1) Find the right variable code
 hits = client.search("patentes municipales")
-print(hits[["code", "name"]].head(3))
+print(hits[["code", "name"]].head(3).to_string(index=False))
 
-# Fetch a tidy municipal panel
-df = client.get("4173", years=[2022, 2023, 2024])
-print(df.query("cod_municipio == '13101'").tail(1))
+# 2) Pull a tidy municipal panel
+df = client.get(
+    ["4173", "1311"],
+    years=[2024],
+    municipios=["13101", "13114", "13119"],  # Santiago, Las Condes, Providencia
+)
+print(df.head().to_string(index=False))
 
-# Browse metadata
+# 3) Explore metadata when needed
 print(client.years()[-5:])
-print(client.municipios(region="131").head())
+print(client.search_municipios("providencia"))
 ```
 
-Main methods:
+Main things you will use:
 
-- `catalog()`
-- `search(query, limit=10)`
-- `get(codes, years=None, municipios=None, region=None, corrmon=None, tidy=True)`
-- `municipios(region=None)`
-- `search_municipios(query, region=None, limit=10)`
-- `years()`
+- `search(...)` to find variable codes
+- `get(...)` to pull municipal data
+- `municipios(...)` and `search_municipios(...)` to work with legal municipality codes
+- `years()` to see what is currently available
 
 ## MCP Server
 
-### Run the server
+Use `mcp-sinim` when you want an MCP client to search SINIM variables, inspect
+their metadata, and fetch municipal data without writing a custom wrapper.
 
-After installation:
+Run the server after installation:
 
 ```bash
 mcp-sinim
 ```
 
-Typical MCP config:
+Typical MCP configuration:
 
 ```json
 {
@@ -69,7 +79,7 @@ Typical MCP config:
 
 Optional environment variable:
 
-- `MCP_SINIM_CACHE_DIR`: directory for the metadata disk cache
+- `MCP_SINIM_CACHE_DIR` for the metadata disk cache
 
 ### MCP tools
 
@@ -82,22 +92,11 @@ Optional environment variable:
 | `list_municipios` | List municipalities, optionally filtered by region. |
 | `list_years` | List currently available SINIM years. |
 
-## Project Notes
+## Important Notes
 
-### Official municipal codes
-
-`cod_municipio` matches the official SUBDERE CUT codes for the 345 municipalities
-present in SINIM, so merges with other CUT-keyed datasets are safe.
-
-### Monetary correction
-
-`corrmon=True` requests SINIM's real-value series, re-expressed in pesos of the
-most recent published year.
-
-### Unofficial client
-
-This is an independent open-source client for the public SINIM portal. It is
-not affiliated with SUBDERE or the Gobierno de Chile.
+- `cod_municipio` matches the official SUBDERE CUT codes for the 345 municipalities present in SINIM.
+- `corrmon=True` requests SINIM's real-value series, expressed in pesos of the most recent published year.
+- This is an independent open-source client for the public SINIM portal. It is not affiliated with SUBDERE or the Gobierno de Chile.
 
 ## Development
 
