@@ -1,77 +1,61 @@
-# mcp-sinim
+# mcp-sinim **Python client and MCP server for Chile's SINIM municipal data portal. Search ~480 variables, fetch municipal panels, and use the same package from Python or any MCP-compatible client.** [![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/) [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square)](https://www.python.org/downloads/) [![CI](https://img.shields.io/github/actions/workflow/status/MaykolMedrano/mcp_sinim/ci.yml?branch=main&style=flat-square)](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-[![CI](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml/badge.svg)](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/mcp-sinim/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+---
 
-Python client and MCP server for Chile's **SINIM** (Sistema Nacional de
-Información Municipal, [datos.sinim.gov.cl](https://datos.sinim.gov.cl)):
-~345 municipalities, 2001–2025, 480 variables across 9 areas (finance, HR,
-education, health, social, territorial, gender, and more).
+## What You Get
 
-One package, two entry doors:
+- Fuzzy variable discovery over the SINIM catalog, with accent- and case-insensitive search.
+- High-level municipal data retrieval through `SINIMClient.get(...)`.
+- Dynamic year and municipality discovery from the live SINIM portal.
+- Packaged offline catalog, optional metadata cache, retries, and explicit timeouts.
+- MCP tools for search, metadata lookup, municipal listings, and data extraction.
 
-- **Library** — `from mcp_sinim import SINIMClient`, tidy
-  `pandas.DataFrame` results.
-- **MCP server** — `mcp-sinim`, six tools any MCP client can call.
-
-Part of the `mcp_*` family by Maykol Medrano (`mcp_bcrp`, `mcp_imf`,
-`mcp_wbgapi360`).
-
-## Install
+## Installation
 
 ```bash
 pip install mcp-sinim
 ```
 
-## Quickstart — library
+## Python API
 
 ```python
 from mcp_sinim import SINIMClient
 
-client = SINIMClient()
+client = SINIMClient(corrmon=True)
 
-# Fuzzy search over the 480-variable catalog (accent/case-insensitive).
-client.search("patentes municipales")
-#    code                                               name  ...  score
-# 0  1310              Eficiencia Cobro Patentes Municipales  ...   90.0
-# 1  1311                 Monto Patentes Municipales Pagadas  ...   90.0
-# 2  4173  Ingresos por Patentes Municipales de Beneficio...  ...   90.0
+# Search the catalog
+hits = client.search("patentes municipales")
+print(hits[["code", "name"]].head(3))
 
-# Fetch data: tidy long panel with variable metadata attached.
+# Fetch a tidy municipal panel
 df = client.get("4173", years=[2022, 2023, 2024])
-df.query("cod_municipio == '13101'")  # SANTIAGO
-#   cod_municipio nombre_municipio  anio  code            name       value unit
-#          13101         SANTIAGO  2024  4173  Ingresos por…  24768668.0   M$
+print(df.query("cod_municipio == '13101'").tail(1))
 
-# Wide format (one column per variable), several variables at once:
-client.get(["4173", "1310"], years=[2024], tidy=False)
-
-# Everything else:
-client.catalog()                  # full catalog as a DataFrame
-client.years()                    # available years, discovered dynamically
-client.municipios(region="131")   # municipalities (131 = Metropolitana)
-client.search_municipios("nunoa") # fuzzy, finds ÑUÑOA
+# Browse metadata
+print(client.years()[-5:])
+print(client.municipios(region="131").head())
 ```
 
-Useful constructor options:
+Main methods:
 
-```python
-SINIMClient(
-    corrmon=True,          # monetary correction (real pesos) by default
-    cache_dir="~/.sinim",  # disk cache for metadata (catalog, municipios)
-    timeout=30,
-)
+- `catalog()`
+- `search(query, limit=10)`
+- `get(codes, years=None, municipios=None, region=None, corrmon=None, tidy=True)`
+- `municipios(region=None)`
+- `search_municipios(query, region=None, limit=10)`
+- `years()`
+
+## MCP Server
+
+### Run the server
+
+After installation:
+
+```bash
+mcp-sinim
 ```
 
-The variable catalog ships with the package, so `catalog()` and `search()`
-work offline; `catalog(refresh=True)` re-fetches it live and, with
-`cache_dir` set, persists it for later sessions.
-
-## Quickstart — MCP server
-
-Register the server in your MCP client with command `mcp-sinim`. A typical
-JSON configuration looks like:
+Typical MCP config:
 
 ```json
 {
@@ -83,67 +67,51 @@ JSON configuration looks like:
 }
 ```
 
-Optional environment variable: `MCP_SINIM_CACHE_DIR` — directory for the
-metadata disk cache.
+Optional environment variable:
 
-### Tools
+- `MCP_SINIM_CACHE_DIR`: directory for the metadata disk cache
+
+### MCP tools
 
 | Tool | Description |
-| --- | --- |
-| `search_variables(query, area?, limit?)` | Fuzzy search over the variable catalog (accent-insensitive), ranked by relevance |
-| `get_variable_info(code)` | Full metadata for one variable code |
-| `get_data(codes, years?, municipios?, region?, corrmon?)` | Tidy municipal data records (JSON-safe, missing = `null`) |
-| `list_areas()` | The 9 subject areas in the catalog |
-| `list_municipios(region?)` | Municipalities with legal codes, optionally by region |
-| `list_years()` | Years with published data, discovered dynamically |
+| :--- | :--- |
+| `search_variables` | Search the SINIM variable catalog by keyword. |
+| `get_variable_info` | Return metadata for one SINIM variable code. |
+| `get_data` | Retrieve tidy municipal records for one or many variables. |
+| `list_areas` | List the 9 catalog subject areas. |
+| `list_municipios` | List municipalities, optionally filtered by region. |
+| `list_years` | List currently available SINIM years. |
 
-### Areas
+## Project Notes
 
-| # | Area |
-| --- | --- |
-| 01 | Administración y finanzas municipales |
-| 02 | Recursos humanos municipal |
-| 03 | Educación municipal |
-| 04 | Salud municipal |
-| 05 | Social y comunitaria |
-| 06 | Desarrollo y gestión territorial |
-| 07 | Caracterización comunal |
-| 08 | Género |
-| 09 | Cementerio |
+### Official municipal codes
 
-## Notes
+`cod_municipio` matches the official SUBDERE CUT codes for the 345 municipalities
+present in SINIM, so merges with other CUT-keyed datasets are safe.
 
-- **`cod_municipio` is the official CUT** (Código Único Territorial):
-  validated 1:1 against the SUBDERE list for all 345 municipalities, so
-  merging with Censo, CASEN or any CUT-keyed dataset is safe. (Antártica,
-  CUT 12202, has no municipality and is correctly absent from SINIM.)
-- **`corrmon=True` re-expresses values in pesos of the most recent
-  published year** using a uniform per-year CPI-style factor (validated
-  live: 2015 ≈ ×1.55, 2020 ≈ ×1.36, 2024 ≈ ×1.04 as of 2026-07).
-  Default is nominal pesos of each year.
-- Data comes from the public SINIM portal of SUBDERE (Gobierno de Chile);
-  this project is not affiliated with SUBDERE. Values are self-reported
-  by municipalities — quality varies across comunas and years.
-- The client is polite to the server: ≥0.5 s between requests, retries
-  with exponential backoff, explicit timeouts. Invalid upstream responses
-  raise actionable `SINIMError`s instead of silently returning empty data.
-- Available years and region ids are discovered dynamically from the
-  portal, so newly published years appear without a package update. The
-  packaged catalog is refreshed monthly by CI.
-- `examples/` has a runnable script and a user-guide notebook.
+### Monetary correction
+
+`corrmon=True` requests SINIM's real-value series, re-expressed in pesos of the
+most recent published year.
+
+### Unofficial client
+
+This is an independent open-source client for the public SINIM portal. It is
+not affiliated with SUBDERE or the Gobierno de Chile.
 
 ## Development
 
 ```bash
 git clone https://github.com/MaykolMedrano/mcp_sinim
 cd mcp_sinim
-python -m venv .venv && .venv/Scripts/activate   # or source .venv/bin/activate
+python -m venv .venv
+.venv/Scripts/activate
 pip install -e ".[dev]"
-ruff check . && ruff format --check . && pytest  # all offline, no network
+python -m ruff check .
+python -m ruff format --check .
+python -m pytest
 ```
-
-See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
-[MIT](LICENSE)
+MIT. See [LICENSE](LICENSE).
