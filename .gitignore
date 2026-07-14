@@ -46,6 +46,3 @@ Thumbs.db
 # Env files
 .env
 .env.*
-
-# Note: recon/ is intentionally NOT ignored — it holds recon evidence
-# that must stay tracked.

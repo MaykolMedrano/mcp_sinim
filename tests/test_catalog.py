@@ -6,8 +6,8 @@ Two data sources are used:
   edge cases: a trailing-space unit symbol, a null ``fuente_nombre``, and a
   variable code (``id_dato``) duplicated across two different subarea
   groups.
-* The real recon snapshot (``recon/catalog_raw_2026-07-08.json``) to check
-  the actual packaged catalog end to end.
+* The captured raw snapshot (``tests/fixtures/catalog_raw_2026-07-08.json``)
+  to check the actual packaged catalog end to end.
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ from mcp_sinim.catalog import (
     save_catalog,
 )
 
-RECON_RAW = Path(__file__).parent.parent / "recon" / "catalog_raw_2026-07-08.json"
+RECON_RAW = Path(__file__).parent / "fixtures" / "catalog_raw_2026-07-08.json"
 
 
 def _sample_raw() -> dict:
@@ -101,7 +101,7 @@ def test_build_catalog_normalizes_and_dedups_by_code() -> None:
     assert second.source == ""  # null fuente_nombre -> ""
 
 
-def test_build_catalog_real_recon_snapshot_has_no_duplicate_codes() -> None:
+def test_build_catalog_captured_snapshot_has_no_duplicate_codes() -> None:
     raw = json.loads(RECON_RAW.read_text(encoding="utf-8"))
     total_raw_entries = sum(len(entries) for entries in raw.values())
     variables = build_catalog(raw)

@@ -15,7 +15,7 @@ from mcp_sinim._http import BASE_URL, HttpClient, SINIMError, browser_headers
 from mcp_sinim.client import SINIMClient
 
 FIXTURES = Path(__file__).parent / "fixtures"
-RECON_CATALOG_RAW = Path(__file__).parent.parent / "recon" / "catalog_raw_2026-07-08.json"
+RECON_CATALOG_RAW = FIXTURES / "catalog_raw_2026-07-08.json"
 
 FORM_URL = f"{BASE_URL}.php"
 DATA_URL = f"{BASE_URL}/obtener_datos_municipales.php"
