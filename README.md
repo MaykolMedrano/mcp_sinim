@@ -36,6 +36,10 @@ client = SINIMClient(corrmon=True)
 hits = client.search("patentes municipales")
 print(hits[["code", "name"]].head(3).to_string(index=False))
 
+# 4173 = Ingresos por Patentes Municipales de Beneficio Municipal
+# 1311 = Monto Patentes Municipales Pagadas
+# 13101 = Santiago, 13114 = Las Condes, 13119 = Providencia
+
 # 2) Pull a tidy panel for several years and municipalities
 df = client.get(
     ["4173", "1311"],
