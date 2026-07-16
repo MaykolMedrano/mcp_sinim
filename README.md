@@ -36,13 +36,13 @@ client = SINIMClient(corrmon=True)
 hits = client.search("patentes municipales")
 print(hits[["code", "name"]].head(3).to_string(index=False))
 
-# 2) Pull a tidy municipal panel
+# 2) Pull a tidy panel for several years and municipalities
 df = client.get(
     ["4173", "1311"],
-    years=[2024],
+    years=[2022, 2023, 2024],
     municipios=["13101", "13114", "13119"],  # Santiago, Las Condes, Providencia
 )
-print(df.head().to_string(index=False))
+print(df.head(12).to_string(index=False))
 
 # 3) Explore metadata when needed
 print(client.years()[-5:])
