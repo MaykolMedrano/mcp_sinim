@@ -2,7 +2,7 @@
 
 **Pull Chilean municipal data from SINIM with a searchable catalog, tidy municipal panels, and the same package from Python or any MCP-compatible client.**
 
-Built by Maykol Medrano.
+An open-source project by Maykol Medrano.
 
 [![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square)](https://www.python.org/downloads/)
