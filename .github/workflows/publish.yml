@@ -1,7 +1,5 @@
 name: Publish to PyPI
 
-# Disabled until the v0.1 release is ready — see RELEASE.md. Flip the `if:
-# false` guard on the job below to enable trusted publishing on `v*` tags.
 on:
   push:
     tags:
@@ -9,7 +7,6 @@ on:
 
 jobs:
   publish:
-    if: false # TODO: remove once ready to publish (see RELEASE.md)
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
