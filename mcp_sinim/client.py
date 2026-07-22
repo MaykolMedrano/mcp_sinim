@@ -53,6 +53,28 @@ _FIRST_YEAR = 2001
 #: Period index assigned to the first published year in SINIM.
 _FIRST_PERIOD_INDEX = 2
 
+# SINIM's region selector uses historical internal ids rather than the
+# official one/two-digit administrative region codes.  Accept both at the
+# public boundary; the values are stable portal identifiers.
+_REGION_CODE_TO_SINIM_ID = {
+    "1": "119",
+    "2": "120",
+    "3": "121",
+    "4": "122",
+    "5": "123",
+    "6": "124",
+    "7": "125",
+    "8": "126",
+    "9": "127",
+    "10": "128",
+    "11": "129",
+    "12": "130",
+    "13": "131",
+    "14": "530",
+    "15": "531",
+    "16": "707",
+}
+
 
 def _decode_form_html_bytes(content: bytes) -> str:
     """Decode SINIM form HTML as UTF-8, falling back to latin-1."""
@@ -334,7 +356,7 @@ class SINIMClient:
         if region is None:
             region_ids = list(self._region_ids())
         else:
-            region_ids = [str(region)]
+            region_ids = [self._normalize_region(region)]
 
         rows: list[dict[str, str]] = []
         for region_id in region_ids:
@@ -373,7 +395,13 @@ class SINIMClient:
             rows = json.loads(path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
             return None
-        return rows if isinstance(rows, list) else None
+        if not isinstance(rows, list):
+            return None
+        # Caches written before internal municipality ids were retained cannot
+        # be used to translate legal codes for get(); refresh them once.
+        if any(not isinstance(row, dict) or not row.get("id_municipio") for row in rows):
+            return None
+        return rows
 
     def _write_municipios_cache(self, region_id: str, rows: list[dict[str, str]]) -> None:
         """Persist a region's rows to the disk cache (no-op when off)."""
@@ -438,8 +466,52 @@ class SINIMClient:
                     f"SINIM municipios response for region {region_id} contained "
                     f"an empty `municipio` at row {index}."
                 )
-            rows.append({"cod_municipio": code.zfill(5), "nombre_municipio": name})
+            raw_internal_id = raw_row.get("id_municipio")
+            internal_id = str(raw_internal_id).strip() if raw_internal_id is not None else ""
+            if not internal_id or not internal_id.isdigit():
+                raise SINIMError(
+                    f"SINIM municipios response for region {region_id} contained "
+                    f"an invalid `id_municipio` at row {index}."
+                )
+            rows.append(
+                {
+                    "cod_municipio": code.zfill(5),
+                    "nombre_municipio": name,
+                    "id_municipio": internal_id,
+                }
+            )
         return rows
+
+    def _normalize_region(self, region: str) -> str:
+        """Translate an official region code to SINIM's internal region id."""
+        value = str(region).strip()
+        known_internal_ids = set(_REGION_CODE_TO_SINIM_ID.values())
+        if value in known_internal_ids:
+            return value
+        official = value.lstrip("0") or "0"
+        internal = _REGION_CODE_TO_SINIM_ID.get(official)
+        if internal is not None:
+            return internal
+        available = self._region_ids()
+        if value in available:
+            return value
+        raise ValueError(
+            f"Unknown region {region!r}. Use an official region code (1-16) "
+            "or a SINIM region id returned by the portal."
+        )
+
+    def _municipality_internal_ids(self, legal_codes: list[str]) -> list[str]:
+        """Resolve public legal municipality codes to ids expected by SINIM."""
+        normalized = [code.zfill(5) for code in legal_codes]
+        region_codes = sorted({code[:2].lstrip("0") for code in normalized})
+        rows: list[dict[str, str]] = []
+        for region_code in region_codes:
+            rows.extend(self._fetch_municipios(self._normalize_region(region_code)))
+        mapping = {row["cod_municipio"]: row["id_municipio"] for row in rows}
+        unknown = [code for code in normalized if code not in mapping]
+        if unknown:
+            raise ValueError(f"Unknown municipality legal code(s): {', '.join(unknown)}")
+        return [mapping[code] for code in normalized]
 
     @staticmethod
     def _normalize_requested_years(years: list[int] | None) -> list[int] | None:
@@ -521,6 +593,12 @@ class SINIMClient:
         periods = ",".join(str(self._period_index(year)) for year in year_list)
         use_corrmon = self.corrmon if corrmon is None else corrmon
 
+        if region_list is not None:
+            region_list = [self._normalize_region(region) for region in region_list]
+        municipio_ids = (
+            self._municipality_internal_ids(municipio_list) if municipio_list is not None else None
+        )
+
         muni_filter = (
             {municipio.zfill(5) for municipio in municipio_list}
             if municipio_list is not None
@@ -538,11 +616,13 @@ class SINIMClient:
                 ("corrmon", "1" if use_corrmon else "0"),
             ]
             if region_list is not None:
-                params += [("regiones[]", region) for region in region_list]
+                params.append(("regiones[]", ",".join(region_list)))
             else:
                 params.append(("regiones[]", "T"))
-            if municipio_list is not None:
-                params += [("municipios[]", municipio) for municipio in municipio_list]
+            if municipio_ids is not None:
+                # Despite the [] suffix, SINIM reads only the first repeated
+                # query argument; multiple selections must be comma-delimited.
+                params.append(("municipios[]", ",".join(municipio_ids)))
             else:
                 params.append(("municipios[]", "T"))
 

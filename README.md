@@ -38,19 +38,20 @@ print(hits[["code", "name"]].head(3).to_string(index=False))
 
 # 4173 = Ingresos por Patentes Municipales de Beneficio Municipal
 # 1311 = Monto Patentes Municipales Pagadas
-# 13101 = Santiago, 13114 = Las Condes, 13119 = Providencia
+# 13101 = Santiago, 13114 = Las Condes, 13123 = Providencia
 
 # 2) Pull a tidy panel for several years and municipalities
 df = client.get(
     ["4173", "1311"],
     years=[2022, 2023, 2024],
-    municipios=["13101", "13114", "13119"],  # Santiago, Las Condes, Providencia
+    municipios=["13101", "13114", "13123"],  # Santiago, Las Condes, Providencia
 )
 print(df.head(12).to_string(index=False))
 
 # 3) Explore metadata when needed
 print(client.years()[-5:])
 print(client.search_municipios("providencia"))
+print(client.municipios(region="13"))  # official region code: Metropolitana
 ```
 
 Main things you will use:
@@ -101,6 +102,8 @@ Optional environment variable:
 ## Important Notes
 
 - `cod_municipio` matches the official SUBDERE CUT codes for the 345 municipalities present in SINIM.
+- Pass those legal CUT codes to `municipios=`. The client translates them to SINIM's internal identifiers automatically.
+- Region filters accept official Chilean region codes (`"1"` through `"16"`), as well as SINIM's portal identifiers for compatibility.
 - `corrmon=True` requests SINIM's real-value series, expressed in pesos of the most recent published year.
 - This is an independent open-source client for the public SINIM portal. It is not affiliated with SUBDERE or the Gobierno de Chile.
 

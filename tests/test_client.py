@@ -121,6 +121,17 @@ def test_municipios_single_region(client: SINIMClient) -> None:
 
 
 @respx.mock
+def test_municipios_accepts_official_region_code(client: SINIMClient) -> None:
+    route = respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    frame = client.municipios(region="13")
+    assert len(frame) >= 50
+    assert route.calls[0].request.content is not None
+    assert b"region=131" in route.calls[0].request.content
+
+
+@respx.mock
 def test_municipios_without_region_select_raises_actionable_error(client: SINIMClient) -> None:
     respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=b"<html></html>"))
     with pytest.raises(SINIMError, match="region ids"):
@@ -170,6 +181,33 @@ def test_get_returns_tidy_panel(client: SINIMClient) -> None:
     assert santiago_2024["value"] == 24768668.0
     assert santiago_2024["name"] == "Ingresos por Patentes Municipales de Beneficio Municipal"
     assert santiago_2024["unit"] == "M$"
+
+
+@respx.mock
+def test_get_translates_legal_municipality_codes_to_internal_ids(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    data_route = respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+
+    frame = client.get("4173", years=[2023], municipios=["13101", "13114", "13123"])
+
+    assert set(frame["cod_municipio"]) == {"13101", "13114", "13123"}
+    query = data_route.calls[0].request.url.params.get_list("municipios[]")
+    assert query == ["477,490,499"]
+
+
+@respx.mock
+def test_get_accepts_official_region_code(client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    data_route = respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    client.get("4173", years=[2023], regiones=["13"])
+    assert data_route.calls[0].request.url.params.get_list("regiones[]") == ["131"]
 
 
 @respx.mock

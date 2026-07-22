@@ -6,6 +6,13 @@ project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Municipality filters now translate public legal CUT codes to SINIM's
+  internal municipality ids and encode multiple selections correctly.
+- Region filters accept official Chilean region codes in addition to SINIM's
+  internal portal ids.
+
 ## [0.1.0] - not yet tagged
 
 First public release.
