@@ -13,6 +13,8 @@ Configuration (environment variables):
 from __future__ import annotations
 
 import os
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from typing import Any
 
 import pandas as pd
@@ -21,7 +23,31 @@ from fastmcp import FastMCP
 from mcp_sinim.client import SINIMClient
 from mcp_sinim.search_engine import search_variables as _search_variables
 
-mcp = FastMCP("sinim")
+SERVER_INSTRUCTIONS = """This server exposes Chilean SINIM municipal indicators.
+Use search_variables and search_municipalities to discover valid codes before
+calling get_data. Pass explicit years to get_data; results are limited by the
+tool's own row cap.
+"""
+
+#: Shared client instance, populated for the duration of the server lifespan.
+_client_instance: SINIMClient | None = None
+
+
+@asynccontextmanager
+async def server_lifespan(_server: FastMCP) -> AsyncIterator[dict[str, SINIMClient]]:
+    """Create the shared client at startup and close it at shutdown."""
+    global _client_instance
+    cache_dir = os.environ.get("MCP_SINIM_CACHE_DIR") or None
+    client = SINIMClient(cache_dir=cache_dir)
+    _client_instance = client
+    try:
+        yield {"client": client}
+    finally:
+        client.close()
+        _client_instance = None
+
+
+mcp = FastMCP("sinim", instructions=SERVER_INSTRUCTIONS, lifespan=server_lifespan)
 
 #: Cap on the (estimated) number of records ``get_data`` may return.
 #: Protects MCP clients — LLM context windows — from accidental
@@ -32,16 +58,11 @@ MAX_RECORDS = 5000
 _ALL_MUNICIPIOS = 345
 _MAX_REGION_MUNICIPIOS = 60  # largest region (Metropolitana) has 52
 
-#: Shared client instance, created lazily by :func:`_get_client`.
-_client_instance: SINIMClient | None = None
-
 
 def _get_client() -> SINIMClient:
     """Return the shared :class:`SINIMClient` instance used by the tools."""
-    global _client_instance
     if _client_instance is None:
-        cache_dir = os.environ.get("MCP_SINIM_CACHE_DIR") or None
-        _client_instance = SINIMClient(cache_dir=cache_dir)
+        raise RuntimeError("SINIM server client is unavailable outside the server lifespan")
     return _client_instance
 
 
@@ -71,7 +92,7 @@ def search_variables(query: str, area: str | None = None, limit: int = 10) -> li
         matches.
     """
     client = _get_client()
-    matches = _search_variables(query, client._variables(), limit=limit, area=area)
+    matches = _search_variables(query, client.variables(), limit=limit, area=area)
     return [
         {
             "code": variable.code,
@@ -98,7 +119,7 @@ def get_variable_info(code: str) -> dict[str, Any]:
         unit_name and source.
     """
     client = _get_client()
-    for variable in client._variables():
+    for variable in client.variables():
         if variable.code == str(code):
             return {
                 "code": variable.code,
@@ -177,7 +198,7 @@ def list_areas() -> list[str]:
         The distinct area names present in the catalog, sorted.
     """
     client = _get_client()
-    return sorted({variable.area for variable in client._variables() if variable.area})
+    return sorted({variable.area for variable in client.variables() if variable.area})
 
 
 @mcp.tool
@@ -194,6 +215,27 @@ def list_municipios(region: str | None = None) -> list[dict[str, Any]]:
     """
     client = _get_client()
     return _records(client.municipios(region=region))
+
+
+@mcp.tool
+def search_municipalities(
+    query: str, region: str | None = None, limit: int = 10
+) -> list[dict[str, Any]]:
+    """Fuzzy-search Chilean municipalities by name, optionally filtered by region.
+
+    Matching is accent- and case-insensitive ("nunoa" also finds "ÑUÑOA").
+
+    Args:
+        query: Free-text municipality name (e.g. "santiago", "nunoa").
+        region: Optional region id restricting the search (e.g. "131").
+        limit: Maximum number of results (default 10).
+
+    Returns:
+        Matching municipalities ranked by relevance. Empty list if nothing
+        matches.
+    """
+    client = _get_client()
+    return _records(client.search_municipios(query, region=region, limit=limit))
 
 
 @mcp.tool

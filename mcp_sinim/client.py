@@ -209,6 +209,10 @@ class SINIMClient:
         """
         return search_municipios(query, self.municipios(region=region), limit=limit)
 
+    def variables(self, refresh: bool = False) -> list[Variable]:
+        """Return the variable catalog as public :class:`Variable` objects."""
+        return self._variables(refresh=refresh)
+
     def _variables(self, refresh: bool = False) -> list[Variable]:
         """Return (and cache) the catalog as a list of :class:`Variable`.
 
