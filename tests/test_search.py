@@ -42,6 +42,25 @@ def test_ingresos_propios_returns_finanzas_results() -> None:
     assert any("FINANZAS" in variable.area.upper() for variable, _score in results)
 
 
+def test_exact_code_match_ranks_first_with_perfect_score() -> None:
+    results = search_variables("4173", VARIABLES)
+    assert results[0][0].code == "4173"
+    assert results[0][1] == 100
+
+
+def test_exact_name_match_is_normalized_and_ranks_first() -> None:
+    results = search_variables(
+        "MATRICULA GENERAL DE ALUMNOS DE ENSENANZA BASICA MUNICIPAL", VARIABLES
+    )
+    assert results[0][0].code == "519"
+    assert results[0][1] == 100
+
+
+def test_fcm_alias_finds_variable_without_acronym_in_canonical_text() -> None:
+    results = search_variables("fcm", VARIABLES, limit=5)
+    assert any(variable.code == "880" for variable, _score in results)
+
+
 def test_accented_and_unaccented_queries_match_identically() -> None:
     with_accent = search_variables("educación", VARIABLES, limit=10)
     without_accent = search_variables("educacion", VARIABLES, limit=10)
@@ -83,6 +102,12 @@ def test_limit_is_respected() -> None:
     assert len(results) <= 3
 
 
+@pytest.mark.parametrize("limit", [0, 101])
+def test_search_variables_rejects_out_of_bounds_limit(limit: int) -> None:
+    with pytest.raises(ValueError, match="between 1 and 100"):
+        search_variables("municipal", VARIABLES, limit=limit)
+
+
 # -- search_municipios --------------------------------------------------------
 
 
@@ -122,3 +147,11 @@ def test_search_municipios_empty_frame_returns_empty() -> None:
 def test_search_municipios_garbage_query_returns_empty(municipios_df: pd.DataFrame) -> None:
     result = search_municipios("zzxxqq nonsense gibberish", municipios_df)
     assert result.empty
+
+
+@pytest.mark.parametrize("limit", [0, 101])
+def test_search_municipios_rejects_out_of_bounds_limit(
+    municipios_df: pd.DataFrame, limit: int
+) -> None:
+    with pytest.raises(ValueError, match="between 1 and 100"):
+        search_municipios("santiago", municipios_df, limit=limit)

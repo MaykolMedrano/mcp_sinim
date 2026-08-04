@@ -20,6 +20,15 @@ from mcp_sinim.catalog import Variable
 #: tolerating typos and partial terms.
 MIN_SCORE = 55.0
 
+# Small, hand-curated starting point for common SINIM terminology. Keeping
+# this mapping explicit makes alias behavior transparent and easy to test.
+ALIASES: dict[str, list[str]] = {
+    "ingresos propios": ["ipp", "ingresos propios permanentes"],
+    "fondo comun municipal": ["fcm", "fondo comun municipal"],
+    "matricula": ["alumnos", "estudiantes", "matricula"],
+    "permisos de circulacion": ["permiso vehicular", "permisos circulacion"],
+}
+
 
 def _normalize(text: str) -> str:
     """Fold ``text`` to a case/accent-insensitive form for matching.
@@ -32,9 +41,33 @@ def _normalize(text: str) -> str:
     return without_accents.casefold().strip()
 
 
+def _variable_aliases(variable: Variable) -> list[str]:
+    """Return aliases activated by phrases in the canonical search text."""
+    canonical_text = _normalize(f"{variable.name} {variable.subarea}")
+    return [
+        alias for phrase, terms in ALIASES.items() if phrase in canonical_text for alias in terms
+    ]
+
+
 def _variable_haystack(variable: Variable) -> str:
-    """Text a query is matched against: variable name + subarea."""
-    return _normalize(f"{variable.name} {variable.subarea}")
+    """Build the broad, lower-weight search document for a variable."""
+    aliases = _variable_aliases(variable)
+    fields = (
+        variable.name,
+        variable.area,
+        variable.subarea,
+        variable.unit,
+        variable.unit_name,
+        variable.source,
+        *aliases,
+    )
+    return _normalize(" ".join(fields))
+
+
+def _validate_limit(limit: int) -> None:
+    """Require a bounded, positive result limit."""
+    if limit < 1 or limit > 100:
+        raise ValueError("limit must be between 1 and 100")
 
 
 def search_variables(
@@ -66,6 +99,8 @@ def search_variables(
         by score descending. Empty if the query is blank, no variable
         clears :data:`MIN_SCORE`, or the area filter matches nothing.
     """
+    _validate_limit(limit)
+
     candidates = variables
     if area:
         normalized_area = _normalize(area)
@@ -75,15 +110,39 @@ def search_variables(
     if not normalized_query or not candidates:
         return []
 
-    haystacks = [_variable_haystack(v) for v in candidates]
-    matches = process.extract(
-        normalized_query,
-        haystacks,
-        scorer=fuzz.WRatio,
-        limit=limit,
-        score_cutoff=MIN_SCORE,
+    exact_matches: list[tuple[Variable, float]] = []
+    fuzzy_candidates: list[Variable] = []
+    for variable in candidates:
+        if normalized_query in {_normalize(variable.code), _normalize(variable.name)}:
+            exact_matches.append((variable, 100.0))
+        else:
+            fuzzy_candidates.append(variable)
+
+    if len(exact_matches) >= limit:
+        return exact_matches[:limit]
+
+    names = [_normalize(variable.name) for variable in fuzzy_candidates]
+    broad_haystacks = [_variable_haystack(variable) for variable in fuzzy_candidates]
+    name_matches = process.extract(normalized_query, names, scorer=fuzz.WRatio, limit=None)
+    broad_matches = process.extract(
+        normalized_query, broad_haystacks, scorer=fuzz.WRatio, limit=None
     )
-    return [(candidates[index], score) for _choice, score, index in matches]
+    name_scores = {index: score for _choice, score, index in name_matches}
+    broad_scores = {index: score for _choice, score, index in broad_matches}
+    for index, variable in enumerate(fuzzy_candidates):
+        alias_score = max(
+            (fuzz.WRatio(normalized_query, alias) for alias in _variable_aliases(variable)),
+            default=0.0,
+        )
+        broad_scores[index] = max(broad_scores[index], alias_score)
+    fuzzy_matches = [
+        (variable, 0.7 * name_scores[index] + 0.3 * broad_scores[index])
+        for index, variable in enumerate(fuzzy_candidates)
+        if 0.7 * name_scores[index] + 0.3 * broad_scores[index] >= MIN_SCORE
+    ]
+    fuzzy_matches.sort(key=lambda match: match[1], reverse=True)
+    remaining = limit - len(exact_matches)
+    return exact_matches + fuzzy_matches[:remaining]
 
 
 def search_municipios(query: str, municipios_df: pd.DataFrame, limit: int = 10) -> pd.DataFrame:
@@ -111,6 +170,8 @@ def search_municipios(query: str, municipios_df: pd.DataFrame, limit: int = 10) 
         column. Empty (same columns, plus ``score``) if the query is blank,
         the input is empty, or nothing clears the score cutoff.
     """
+    _validate_limit(limit)
+
     empty = municipios_df.iloc[0:0].copy()
     empty["score"] = pd.Series(dtype=float)
 
