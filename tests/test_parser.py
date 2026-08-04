@@ -7,7 +7,11 @@ from pathlib import Path
 
 import pytest
 
-from mcp_sinim.parser import SpreadsheetXMLParseError, parse_spreadsheet_xml
+from mcp_sinim.parser import (
+    SpreadsheetSchemaError,
+    SpreadsheetXMLParseError,
+    parse_spreadsheet_xml,
+)
 
 FIXTURES = Path(__file__).parent / "fixtures"
 _SPREADSHEET_NS = "urn:schemas-microsoft-com:office:spreadsheet"
@@ -77,12 +81,31 @@ class TestEdgeCases:
         with pytest.raises(SpreadsheetXMLParseError):
             parse_spreadsheet_xml(b"")
 
-    def test_xml_without_header_returns_empty(self) -> None:
+    def test_xml_with_rows_without_codigo_header_raises_schema_error(self) -> None:
         xml = (
             b'<?xml version="1.0"?>'
             b'<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet">'
             b"<Worksheet><Table><Row><Cell><Data>hola</Data></Cell></Row>"
             b"</Table></Worksheet></Workbook>"
+        )
+        with pytest.raises(SpreadsheetSchemaError, match="CODIGO header or year columns"):
+            parse_spreadsheet_xml(xml)
+
+    def test_codigo_header_without_year_columns_raises_schema_error(self) -> None:
+        xml = (
+            b'<?xml version="1.0"?>'
+            b'<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet">'
+            b"<Worksheet><Table><Row><Cell><Data>CODIGO</Data></Cell>"
+            b"<Cell><Data>MUNICIPIO</Data></Cell></Row></Table></Worksheet></Workbook>"
+        )
+        with pytest.raises(SpreadsheetSchemaError, match="CODIGO header or year columns"):
+            parse_spreadsheet_xml(xml)
+
+    def test_xml_without_rows_returns_empty(self) -> None:
+        xml = (
+            b'<?xml version="1.0"?>'
+            b'<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet">'
+            b"<Worksheet><Table /></Worksheet></Workbook>"
         )
         assert parse_spreadsheet_xml(xml) == []
 

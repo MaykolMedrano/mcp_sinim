@@ -45,6 +45,10 @@ class SpreadsheetXMLParseError(ValueError):
     """Raised when SINIM returns bytes that are not valid SpreadsheetML XML."""
 
 
+class SpreadsheetSchemaError(ValueError):
+    """Raised when valid SINIM SpreadsheetML has an unexpected table schema."""
+
+
 def _declared_encoding(xml_bytes: bytes) -> str | None:
     """Return the XML prolog encoding, if one is declared."""
     match = _DECLARED_ENCODING_RE.match(xml_bytes)
@@ -142,13 +146,15 @@ def parse_spreadsheet_xml(xml_bytes: bytes) -> list[dict[str, Any]]:
         One dict per ``(municipality, year)`` with keys ``cod_municipio``
         (5-char, zero-padded), ``nombre_municipio``, ``anio`` (int) and
         ``value`` (float; ``NaN`` for missing/blank cells). Returns ``[]``
-        when the document is valid XML but has no recognizable header/data
-        rows.
+        when the document contains no rows.
 
     Raises
     ------
     SpreadsheetXMLParseError
         If ``xml_bytes`` is not well-formed SpreadsheetML XML.
+    SpreadsheetSchemaError
+        If the document has rows but lacks the expected ``CODIGO`` header or
+        recognizable year columns.
 
     Notes
     -----
@@ -180,8 +186,13 @@ def parse_spreadsheet_xml(xml_bytes: bytes) -> list[dict[str, Any]]:
                     year_cols[col] = int(match.group(1))
             break
 
-    if header_idx is None or not year_cols:
+    if not parsed:
         return []
+    if header_idx is None or not year_cols:
+        raise SpreadsheetSchemaError(
+            "SINIM SpreadsheetML did not contain the expected CODIGO header "
+            "or year columns - the portal's export format may have changed."
+        )
 
     records: list[dict[str, Any]] = []
     for cells in parsed[header_idx + 1 :]:
