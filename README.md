@@ -95,6 +95,8 @@ Optional environment variable:
 | `search_variables` | Search the SINIM variable catalog by keyword. |
 | `get_variable_info` | Return metadata for one SINIM variable code. |
 | `get_data` | Retrieve tidy municipal records for one or many variables. |
+| `preview_data` | Preview up to 100 records to check a query before exporting. |
+| `export_data` | Write a full municipal panel to Parquet or CSV on disk. |
 | `list_areas` | List the 9 catalog subject areas. |
 | `list_municipios` | List municipalities, optionally filtered by region. |
 | `search_municipalities` | Search municipalities by name, optionally filtered by region. |
