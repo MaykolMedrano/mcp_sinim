@@ -49,6 +49,7 @@ async def test_all_tools_are_registered() -> None:
         "get_data",
         "list_areas",
         "list_municipios",
+        "search_municipalities",
         "list_years",
     } <= {tool.name for tool in tools}
 
@@ -72,6 +73,10 @@ def test_search_variables_area_filter(fresh_client: SINIMClient) -> None:
 
 def test_search_variables_garbage_returns_empty(fresh_client: SINIMClient) -> None:
     assert server.search_variables("zzxxqq gibberish 98765") == []
+
+
+def test_variables_public_api_matches_internal_behavior(fresh_client: SINIMClient) -> None:
+    assert fresh_client.variables() == fresh_client._variables()
 
 
 def test_get_variable_info_known_code(fresh_client: SINIMClient) -> None:
@@ -152,6 +157,26 @@ def test_list_municipios_single_region(fresh_client: SINIMClient) -> None:
     assert len(rows) >= 50
     assert {"cod_municipio", "nombre_municipio"} == set(rows[0])
     assert "SANTIAGO" in {r["nombre_municipio"] for r in rows}
+
+
+@respx.mock
+def test_search_municipalities_finds_santiago(fresh_client: SINIMClient) -> None:
+    respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
+    rows = server.search_municipalities("santiago", region="131", limit=5)
+    assert 0 < len(rows) <= 5
+    assert "SANTIAGO" in {row["nombre_municipio"] for row in rows}
+    assert all(set(row) == {"cod_municipio", "nombre_municipio", "score"} for row in rows)
+
+
+async def test_server_lifespan_closes_http_client() -> None:
+    async with server.server_lifespan(server.mcp) as state:
+        client = state["client"]
+        assert not client._http._client.is_closed
+        assert server._client_instance is client
+    assert client._http._client.is_closed
+    assert server._client_instance is None
 
 
 @respx.mock
