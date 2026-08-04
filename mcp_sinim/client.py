@@ -16,6 +16,7 @@ from __future__ import annotations
 import datetime as _dt
 import json
 import re
+from collections.abc import Sequence
 from pathlib import Path
 
 import pandas as pd
@@ -531,11 +532,28 @@ class SINIMClient:
             raise ValueError(f"`{name}` must contain at least one value when provided.")
         return [str(value) for value in values]
 
+    def _normalize_codes(self, codes: str | int | Sequence[str | int]) -> list[str]:
+        """Normalize and validate variable codes before any data request."""
+        raw_codes = [codes] if isinstance(codes, (str, int)) else codes
+        normalized = (str(code).strip() for code in raw_codes)
+        code_list = list(dict.fromkeys(code for code in normalized if code))
+        if not code_list:
+            raise ValueError("`codes` must contain at least one variable code.")
+
+        known_codes = {variable.code for variable in self._variables()}
+        unknown = [code for code in code_list if code not in known_codes]
+        if unknown:
+            raise ValueError(
+                f"Unknown SINIM variable code(s): {unknown}. "
+                "Use search_variables()/search() to find valid codes."
+            )
+        return code_list
+
     # -- data --------------------------------------------------------------
 
     def get(
         self,
-        codes: str | list[str],
+        codes: str | int | Sequence[str | int],
         years: list[int] | None = None,
         municipios: list[str] | None = None,
         regiones: list[str] | None = None,
@@ -547,7 +565,9 @@ class SINIMClient:
         Parameters
         ----------
         codes:
-            One or more SINIM variable codes (``id_dato``).
+            One or more SINIM variable codes (``id_dato``). Whitespace is
+            stripped and duplicates are ignored. Empty or unknown codes are
+            invalid.
         years:
             Years to fetch. Defaults to every year returned by
             :meth:`years`. Passing an empty list is invalid.
@@ -572,19 +592,19 @@ class SINIMClient:
         pandas.DataFrame
             Tidy columns: ``cod_municipio``, ``nombre_municipio``, ``anio``,
             ``code``, ``name``, ``value``, ``unit``. ``name``/``unit`` are
-            looked up from the catalog (:meth:`catalog`); an unknown code
-            gets ``""`` for both rather than raising.
+            looked up from the catalog (:meth:`catalog`).
 
         Raises
         ------
         ValueError
-            If ``years``, ``municipios`` or ``regiones`` is provided as an
-            empty list.
+            If ``codes`` is empty or contains an unknown code, or if
+            ``years``, ``municipios`` or ``regiones`` is provided as an empty
+            list.
         SINIMError
             If SINIM returns invalid SpreadsheetML instead of the expected
             data workbook.
         """
-        code_list = [str(codes)] if isinstance(codes, (str, int)) else [str(c) for c in codes]
+        code_list = self._normalize_codes(codes)
         year_list = self._normalize_requested_years(years)
         region_list = self._normalize_selection("regiones", regiones)
         municipio_list = self._normalize_selection("municipios", municipios)
