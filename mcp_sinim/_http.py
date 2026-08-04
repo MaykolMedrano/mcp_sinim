@@ -19,6 +19,7 @@ endpoints reject the neutral project UA, so it is not used here.
 
 from __future__ import annotations
 
+import random
 import time
 from typing import Any
 
@@ -85,6 +86,14 @@ class HttpClient:
         max_retries: int = 3,
         backoff_factor: float = 0.5,
     ) -> None:
+        if timeout <= 0:
+            raise ValueError("timeout must be greater than zero")
+        if min_interval < 0:
+            raise ValueError("min_interval must be non-negative")
+        if max_retries < 1:
+            raise ValueError("max_retries must be at least 1")
+        if backoff_factor < 0:
+            raise ValueError("backoff_factor must be non-negative")
         self.timeout = timeout
         self.min_interval = min_interval
         self.max_retries = max_retries
@@ -136,12 +145,14 @@ class HttpClient:
     ) -> httpx.Response:
         """Perform a rate-limited request with retry/backoff and error checks.
 
-        Retries transport errors, timeouts and 5xx responses up to
-        :attr:`max_retries`; :class:`SINIMError` (error page) and 4xx are not
-        retried. Raises the last error if every attempt fails.
+        Retries transport errors, timeouts, 429 and 5xx responses up to
+        :attr:`max_retries`; :class:`SINIMError` (error page) and other 4xx
+        responses are not retried. Raises the last error if every attempt
+        fails.
         """
         last_exc: Exception | None = None
         for attempt in range(self.max_retries):
+            retry_after = 0
             self._throttle()
             try:
                 response = self._client.request(
@@ -151,17 +162,29 @@ class HttpClient:
                 last_exc = exc
             else:
                 self._last_request = time.monotonic()
-                if response.status_code >= 500:
+                if response.status_code == 429 or response.status_code >= 500:
+                    message = (
+                        f"rate limited with status {response.status_code}"
+                        if response.status_code == 429
+                        else f"server error {response.status_code}"
+                    )
                     last_exc = httpx.HTTPStatusError(
-                        f"server error {response.status_code}",
+                        message,
                         request=response.request,
                         response=response,
                     )
+                    if response.status_code == 429:
+                        retry_after_header = response.headers.get("Retry-After", "")
+                        if retry_after_header.isdigit():
+                            retry_after = int(retry_after_header)
                 else:
                     return self._check(response)
             self._last_request = time.monotonic()
             if attempt < self.max_retries - 1:
-                time.sleep(self.backoff_factor * (2**attempt))
+                backoff = self.backoff_factor * (2**attempt) + random.uniform(
+                    0, self.backoff_factor
+                )
+                time.sleep(max(backoff, retry_after))
         assert last_exc is not None
         raise last_exc
 

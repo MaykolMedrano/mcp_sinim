@@ -251,6 +251,21 @@ def test_get_invalid_spreadsheet_raises_actionable_error(client: SINIMClient) ->
 
 
 @respx.mock
+def test_get_unexpected_spreadsheet_schema_raises_actionable_error(
+    client: SINIMClient,
+) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    unexpected = (
+        f'<Workbook xmlns="{_SPREADSHEET_NS}"><Worksheet><Table>'
+        "<Row><Cell><Data>unexpected</Data></Cell></Row>"
+        "</Table></Worksheet></Workbook>"
+    ).encode()
+    respx.get(DATA_URL).mock(return_value=httpx.Response(200, content=unexpected))
+    with pytest.raises(SINIMError, match="portal schema may have changed"):
+        client.get("4173", years=[2022])
+
+
+@respx.mock
 def test_get_valid_empty_spreadsheet_returns_empty_frame(client: SINIMClient) -> None:
     respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
     respx.get(DATA_URL).mock(return_value=httpx.Response(200, content=_workbook_xml([2022], [])))
@@ -433,6 +448,41 @@ def test_http_retries_timeout_then_succeeds() -> None:
         assert route.call_count == 2
     finally:
         http.close()
+
+
+@respx.mock
+def test_http_retries_429_then_succeeds() -> None:
+    route = respx.get(FORM_URL)
+    route.side_effect = [httpx.Response(429), httpx.Response(200, content=b"ok")]
+    http = HttpClient(min_interval=0.0, backoff_factor=0.0)
+    try:
+        response = http.get(FORM_URL, headers=browser_headers())
+        assert response.content == b"ok"
+        assert route.call_count == 2
+    finally:
+        http.close()
+
+
+@respx.mock
+def test_http_honors_retry_after_seconds(monkeypatch: pytest.MonkeyPatch) -> None:
+    route = respx.get(FORM_URL)
+    route.side_effect = [
+        httpx.Response(429, headers={"Retry-After": "7"}),
+        httpx.Response(200, content=b"ok"),
+    ]
+    sleeps: list[float] = []
+    monkeypatch.setattr("mcp_sinim._http.time.sleep", sleeps.append)
+    http = HttpClient(min_interval=0.0, backoff_factor=0.5)
+    try:
+        assert http.get(FORM_URL, headers=browser_headers()).content == b"ok"
+        assert sleeps == [7]
+    finally:
+        http.close()
+
+
+def test_http_rejects_zero_max_retries() -> None:
+    with pytest.raises(ValueError, match="max_retries"):
+        HttpClient(max_retries=0)
 
 
 @respx.mock

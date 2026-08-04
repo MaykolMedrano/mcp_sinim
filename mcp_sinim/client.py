@@ -30,7 +30,11 @@ from mcp_sinim.catalog import (
     packaged_catalog,
     save_catalog,
 )
-from mcp_sinim.parser import SpreadsheetXMLParseError, parse_spreadsheet_xml
+from mcp_sinim.parser import (
+    SpreadsheetSchemaError,
+    SpreadsheetXMLParseError,
+    parse_spreadsheet_xml,
+)
 from mcp_sinim.search_engine import search_municipios, search_variables
 
 #: Columns of the DataFrame returned by :meth:`SINIMClient.catalog` (the
@@ -653,6 +657,12 @@ class SINIMClient:
                 raise SINIMError(
                     f"SINIM returned invalid SpreadsheetML for variable {code}. "
                     "Retry the request and verify the selected years and filters. "
+                    f"URL: {response.request.url}"
+                ) from exc
+            except SpreadsheetSchemaError as exc:
+                raise SINIMError(
+                    "SINIM's response no longer matches the expected format "
+                    "(portal schema may have changed). "
                     f"URL: {response.request.url}"
                 ) from exc
             frame = pd.DataFrame(
