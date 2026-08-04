@@ -210,15 +210,25 @@ def test_get_accepts_official_region_code(client: SINIMClient) -> None:
     assert data_route.calls[0].request.url.params.get_list("regiones[]") == ["131"]
 
 
+def test_get_rejects_empty_codes(client: SINIMClient) -> None:
+    with pytest.raises(ValueError, match="`codes`"):
+        client.get([])
+
+
+def test_get_rejects_unknown_code(client: SINIMClient) -> None:
+    with pytest.raises(ValueError, match="999999"):
+        client.get(["999999"], years=[2022])
+
+
 @respx.mock
-def test_get_unknown_code_gets_empty_metadata(client: SINIMClient) -> None:
+def test_get_deduplicates_codes(client: SINIMClient) -> None:
     respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
-    respx.get(DATA_URL).mock(
+    data_route = respx.get(DATA_URL).mock(
         return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
     )
-    frame = client.get("99999", years=[2022])
-    assert set(frame["name"]) == {""}
-    assert set(frame["unit"]) == {""}
+    frame = client.get(["4173", "4173"], years=[2022])
+    assert data_route.call_count == 1
+    assert set(frame["code"]) == {"4173"}
 
 
 @respx.mock

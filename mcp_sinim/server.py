@@ -26,7 +26,7 @@ mcp = FastMCP("sinim")
 #: Cap on the (estimated) number of records ``get_data`` may return.
 #: Protects MCP clients — LLM context windows — from accidental
 #: full-country, full-history dumps.
-MAX_RECORDS = 5000
+MAX_RECORDS = 1000
 
 #: Comuna-count upper bounds used for the pre-flight estimate.
 _ALL_MUNICIPIOS = 345
@@ -117,7 +117,7 @@ def get_variable_info(code: str) -> dict[str, Any]:
 @mcp.tool
 def get_data(
     codes: list[str],
-    years: list[int] | None = None,
+    years: list[int],
     municipios: list[str] | None = None,
     region: str | None = None,
     corrmon: bool | None = None,
@@ -127,9 +127,7 @@ def get_data(
     Args:
         codes: SINIM variable codes to fetch (find them with
             search_variables).
-        years: Years to include (e.g. [2022, 2023]). Defaults to ALL
-            available years — prefer passing an explicit list to keep the
-            response small.
+        years: Required years to include (e.g. [2022, 2023]).
         municipios: Municipality legal codes to keep (e.g. ["13101"]).
             Defaults to all ~345 municipalities.
         region: Region id to filter by (see list_municipios). Defaults to
@@ -140,11 +138,11 @@ def get_data(
     Returns:
         Tidy records with cod_municipio, nombre_municipio, anio, code,
         name, value and unit. A missing observation has value None.
-        Queries estimated to exceed 5000 records are rejected up front —
+        Queries estimated to exceed 1000 records are rejected up front —
         narrow them with explicit years, municipios or a region.
     """
     client = _get_client()
-    year_count = len(years) if years else len(client.years())
+    year_count = len(years)
     if municipios:
         muni_count = len(municipios)
     elif region:

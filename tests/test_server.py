@@ -92,7 +92,7 @@ def test_get_data_returns_json_safe_records(fresh_client: SINIMClient) -> None:
     respx.get(DATA_URL).mock(
         return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
     )
-    records = server.get_data(["4173"], years=[2022, 2023, 2024])
+    records = server.get_data(["4173"], years=[2024])
     assert len(records) == 1035
     assert set(records[0]) == {
         "cod_municipio",
@@ -106,18 +106,22 @@ def test_get_data_returns_json_safe_records(fresh_client: SINIMClient) -> None:
     santiago = next(r for r in records if r["cod_municipio"] == "13101" and r["anio"] == 2024)
     assert santiago["value"] == 24768668.0
     assert santiago["unit"] == "M$"
-    # The 4 recorded blanks must be JSON-safe None, never NaN.
+    # Recorded blanks must be JSON-safe None, never NaN.
     missing = [r for r in records if r["value"] is None]
-    assert len(missing) == 4
+    assert missing
     assert not any(isinstance(r["value"], float) and math.isnan(r["value"]) for r in records)
 
 
 @respx.mock
 def test_get_data_rejects_oversized_queries(fresh_client: SINIMClient) -> None:
-    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
-    # One code, all years (25), all 345 comunas -> ~8625 records: too big.
-    # Rejected before any data request (only the form is ever fetched).
+    # One code, three years, all 345 comunas -> ~1035 records: too big.
+    # Rejected before any network request.
     with pytest.raises(ValueError, match="Narrow it down"):
+        server.get_data(["4173"], years=[2022, 2023, 2024])
+
+
+def test_get_data_requires_years(fresh_client: SINIMClient) -> None:
+    with pytest.raises(TypeError, match="years"):
         server.get_data(["4173"])
 
 
@@ -127,8 +131,8 @@ def test_get_data_region_scope_passes_size_guard(fresh_client: SINIMClient) -> N
     respx.get(DATA_URL).mock(
         return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
     )
-    # One region bounds the estimate (60 x 25 x 1 = 1500), so this runs.
-    records = server.get_data(["4173"], region="131")
+    # One region and one year bounds the estimate (60 x 1 x 1), so this runs.
+    records = server.get_data(["4173"], years=[2024], region="131")
     assert records
 
 
