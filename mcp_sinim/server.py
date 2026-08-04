@@ -8,6 +8,8 @@ Configuration (environment variables):
 
 * ``MCP_SINIM_CACHE_DIR`` — optional directory for the client's metadata
   disk cache (catalog and municipios). Unset disables the disk cache.
+* ``MCP_SINIM_EXPORT_DIR`` - directory for files created by ``export_data``.
+  Defaults to ``sinim_exports/`` under the current working directory.
 """
 
 from __future__ import annotations
@@ -15,7 +17,9 @@ from __future__ import annotations
 import os
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from typing import Any
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Literal
 
 import pandas as pd
 from fastmcp import FastMCP
@@ -25,8 +29,8 @@ from mcp_sinim.search_engine import search_variables as _search_variables
 
 SERVER_INSTRUCTIONS = """This server exposes Chilean SINIM municipal indicators.
 Use search_variables and search_municipalities to discover valid codes before
-calling get_data. Pass explicit years to get_data; results are limited by the
-tool's own row cap.
+calling preview_data to sanity-check a query. Pass explicit years, then use
+get_data for small in-context pulls or export_data for large panels on disk.
 """
 
 #: Shared client instance, populated for the duration of the server lifespan.
@@ -54,6 +58,11 @@ mcp = FastMCP("sinim", instructions=SERVER_INSTRUCTIONS, lifespan=server_lifespa
 #: full-country, full-history dumps.
 MAX_RECORDS = 1000
 
+#: Sanity ceiling for disk exports. Unlike ``MAX_RECORDS``, this is not a
+#: context-window limit; it protects against pathological or extremely
+#: long-running export queries.
+MAX_EXPORT_RECORDS = 200_000
+
 #: Comuna count used for the pre-flight estimate when no municipios/region
 #: filter is given. Chile's comuna count changes only via rare legislation,
 #: so this is kept static rather than fetched (which would cost 16 requests
@@ -72,6 +81,21 @@ def _records(frame: pd.DataFrame) -> list[dict[str, Any]]:
     """Convert a DataFrame to JSON-safe records (NaN becomes ``None``)."""
     safe = frame.astype(object).where(frame.notna(), None)
     return safe.to_dict(orient="records")
+
+
+def _normalize_query(
+    codes: list[str],
+    years: list[int],
+    municipios: list[str] | None,
+    region: str | None,
+) -> tuple[list[str], list[int], list[str] | None]:
+    """Deduplicate query values and enforce region/municipios exclusivity."""
+    if municipios and region:
+        raise ValueError("`municipios` and `region` are mutually exclusive -- pass one or neither.")
+    unique_codes = list(dict.fromkeys(codes))
+    unique_years = list(dict.fromkeys(years))
+    unique_municipios = list(dict.fromkeys(municipios)) if municipios else None
+    return unique_codes, unique_years, unique_municipios
 
 
 @mcp.tool
@@ -167,13 +191,12 @@ def get_data(
         actual response is re-checked against the same limit as a
         safety net.
     """
-    if municipios and region:
-        raise ValueError("`municipios` and `region` are mutually exclusive — pass one or neither.")
+    unique_codes, unique_years, unique_municipios = _normalize_query(
+        codes, years, municipios, region
+    )
     client = _get_client()
-    unique_codes = list(dict.fromkeys(codes))
-    unique_years = list(dict.fromkeys(years))
-    if municipios:
-        muni_count = len(dict.fromkeys(municipios))
+    if unique_municipios:
+        muni_count = len(unique_municipios)
     elif region:
         # A real per-region count (one request) avoids the false rejections
         # a flat upper bound causes for regions much smaller than Metropolitana.
@@ -193,7 +216,7 @@ def get_data(
     frame = client.get(
         unique_codes,
         years=unique_years,
-        municipios=municipios,
+        municipios=unique_municipios,
         regiones=[region] if region else None,
         corrmon=corrmon,
     )
@@ -203,6 +226,89 @@ def get_data(
             "MCP response limit. Use fewer years, municipalities, or variable codes."
         )
     return _records(frame)
+
+
+@mcp.tool
+def preview_data(
+    codes: list[str],
+    years: list[int],
+    municipios: list[str] | None = None,
+    region: str | None = None,
+    corrmon: bool | None = None,
+    limit: int = 100,
+) -> list[dict[str, Any]]:
+    """Inspect a query's shape and coverage before exporting its full result.
+
+    Use this bounded preview to check columns, coverage, and sample values,
+    then call ``export_data`` to write the complete panel to disk.
+    """
+    if limit < 1 or limit > 100:
+        raise ValueError("limit must be between 1 and 100")
+    unique_codes, unique_years, unique_municipios = _normalize_query(
+        codes, years, municipios, region
+    )
+    frame = _get_client().get(
+        unique_codes,
+        years=unique_years,
+        municipios=unique_municipios,
+        regiones=[region] if region else None,
+        corrmon=corrmon,
+    )
+    return _records(frame.head(limit))
+
+
+@mcp.tool
+def export_data(
+    codes: list[str],
+    years: list[int],
+    municipios: list[str] | None = None,
+    region: str | None = None,
+    corrmon: bool | None = None,
+    format: Literal["parquet", "csv"] = "parquet",
+) -> dict[str, Any]:
+    """Write a full SINIM panel to disk instead of the model's context.
+
+    Call ``preview_data`` first to sanity-check the query shape and coverage.
+    The export has a generous safety ceiling for pathological or extremely
+    long-running queries, independent of the in-context response limit.
+    """
+    if format not in {"parquet", "csv"}:
+        raise ValueError("format must be either 'parquet' or 'csv'")
+    unique_codes, unique_years, unique_municipios = _normalize_query(
+        codes, years, municipios, region
+    )
+    frame = _get_client().get(
+        unique_codes,
+        years=unique_years,
+        municipios=unique_municipios,
+        regiones=[region] if region else None,
+        corrmon=corrmon,
+    )
+    if len(frame) > MAX_EXPORT_RECORDS:
+        raise ValueError(
+            f"SINIM returned {len(frame)} records, above the {MAX_EXPORT_RECORDS}-record "
+            "export safety ceiling. Use fewer years, municipalities, or variable codes."
+        )
+
+    export_dir = Path(os.environ.get("MCP_SINIM_EXPORT_DIR") or Path.cwd() / "sinim_exports")
+    export_dir.mkdir(parents=True, exist_ok=True)
+    codes_part = "-".join(unique_codes[:3]) or "no-codes"
+    if len(unique_codes) > 3:
+        codes_part += f"+{len(unique_codes) - 3}"
+    years_part = f"{min(unique_years)}-{max(unique_years)}" if unique_years else "no-years"
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    path = export_dir / f"sinim_{codes_part}_{years_part}_{timestamp}.{format}"
+    if format == "parquet":
+        frame.to_parquet(path, index=False)
+    else:
+        frame.to_csv(path, index=False)
+    return {
+        "status": "success",
+        "rows": len(frame),
+        "format": format,
+        "file": path.name,
+        "path": str(path),
+    }
 
 
 @mcp.tool

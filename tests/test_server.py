@@ -54,6 +54,8 @@ async def test_all_tools_are_registered() -> None:
         "search_variables",
         "get_variable_info",
         "get_data",
+        "preview_data",
+        "export_data",
         "list_areas",
         "list_municipios",
         "search_municipalities",
@@ -156,6 +158,98 @@ def test_get_data_region_scope_passes_size_guard(fresh_client: SINIMClient) -> N
 def test_get_data_rejects_both_municipios_and_region(fresh_client: SINIMClient) -> None:
     with pytest.raises(ValueError, match="mutually exclusive"):
         server.get_data(["4173"], years=[2024], municipios=["13101"], region="131")
+
+
+@respx.mock
+def test_preview_data_caps_records(fresh_client: SINIMClient) -> None:
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    records = server.preview_data(["4173"], years=[2022, 2023, 2024], limit=100)
+    assert len(records) == 100
+    assert all(
+        set(record)
+        == {"cod_municipio", "nombre_municipio", "anio", "code", "name", "value", "unit"}
+        for record in records
+    )
+
+
+@pytest.mark.parametrize("limit", [0, 101])
+def test_preview_data_rejects_invalid_limit(fresh_client: SINIMClient, limit: int) -> None:
+    with pytest.raises(ValueError, match="between 1 and 100"):
+        server.preview_data(["4173"], years=[2024], limit=limit)
+
+
+@pytest.mark.parametrize("tool", [server.get_data, server.preview_data, server.export_data])
+def test_data_tools_reject_both_municipios_and_region(
+    fresh_client: SINIMClient, tool: object
+) -> None:
+    with pytest.raises(ValueError, match="mutually exclusive"):
+        tool(["4173"], years=[2024], municipios=["13101"], region="131")  # type: ignore[operator]
+
+
+@respx.mock
+def test_export_data_csv(
+    fresh_client: SINIMClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("MCP_SINIM_EXPORT_DIR", str(tmp_path))
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    result = server.export_data(["4173"], years=[2024], format="csv")
+    path = Path(result["path"])
+    assert result == {
+        "status": "success",
+        "rows": 345,
+        "format": "csv",
+        "file": path.name,
+        "path": str(path),
+    }
+    assert path.exists()
+    assert len(pd.read_csv(path)) == result["rows"]
+
+
+@respx.mock
+def test_export_data_parquet_round_trip(
+    fresh_client: SINIMClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("MCP_SINIM_EXPORT_DIR", str(tmp_path))
+    respx.get(FORM_URL).mock(return_value=httpx.Response(200, content=_fx("form_periodos.html")))
+    respx.get(DATA_URL).mock(
+        return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
+    )
+    result = server.export_data(["4173"], years=[2024], format="parquet")
+    exported = pd.read_parquet(result["path"])
+    assert result["status"] == "success"
+    assert result["format"] == "parquet"
+    assert len(exported) == result["rows"] == 345
+    assert list(exported.columns) == [
+        "cod_municipio",
+        "nombre_municipio",
+        "anio",
+        "code",
+        "name",
+        "value",
+        "unit",
+    ]
+
+
+def test_export_data_rejects_invalid_format(fresh_client: SINIMClient) -> None:
+    with pytest.raises(ValueError, match="parquet.*csv"):
+        server.export_data(["4173"], years=[2024], format="xml")  # type: ignore[arg-type]
+
+
+def test_repeated_exports_have_unique_filenames(
+    fresh_client: SINIMClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("MCP_SINIM_EXPORT_DIR", str(tmp_path))
+    frame = pd.DataFrame({"anio": [2024], "code": ["4173"], "value": [1.0]})
+    monkeypatch.setattr(fresh_client, "get", lambda *args, **kwargs: frame)
+    first = server.export_data(["4173"], years=[2024], format="csv")
+    second = server.export_data(["4173"], years=[2024], format="csv")
+    assert first["file"] != second["file"]
 
 
 def test_get_data_rejects_when_actual_response_exceeds_cap(
