@@ -41,9 +41,7 @@ jobs:
         run: pytest --cov=mcp_sinim --cov-report=term-missing --cov-fail-under=90
 
       - name: Build wheel and sdist
-        run: |
-          python -m pip install build
-          python -m build
+        run: python -m build
 
       - name: Install wheel and smoke test entry points
         run: |
@@ -53,6 +51,4 @@ jobs:
 
       - name: Audit dependencies
         continue-on-error: true
-        run: |
-          python -m pip install pip-audit
-          python -m pip_audit
+        run: python -m pip_audit

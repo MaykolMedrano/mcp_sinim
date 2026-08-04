@@ -23,8 +23,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install package and release tooling
-        run: python -m pip install -e ".[dev]" build twine
+      - name: Install package with dev dependencies
+        run: python -m pip install -e ".[dev]"
 
       - name: Lint
         run: |

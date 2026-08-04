@@ -54,9 +54,11 @@ mcp = FastMCP("sinim", instructions=SERVER_INSTRUCTIONS, lifespan=server_lifespa
 #: full-country, full-history dumps.
 MAX_RECORDS = 1000
 
-#: Comuna-count upper bounds used for the pre-flight estimate.
+#: Comuna count used for the pre-flight estimate when no municipios/region
+#: filter is given. Chile's comuna count changes only via rare legislation,
+#: so this is kept static rather than fetched (which would cost 16 requests
+#: to enumerate every region).
 _ALL_MUNICIPIOS = 345
-_MAX_REGION_MUNICIPIOS = 60  # largest region (Metropolitana) has 52
 
 
 def _get_client() -> SINIMClient:
@@ -150,9 +152,10 @@ def get_data(
             search_variables).
         years: Required years to include (e.g. [2022, 2023]).
         municipios: Municipality legal codes to keep (e.g. ["13101"]).
-            Defaults to all ~345 municipalities.
+            Defaults to all ~345 municipalities. Mutually exclusive with
+            `region`.
         region: Region id to filter by (see list_municipios). Defaults to
-            all regions.
+            all regions. Mutually exclusive with `municipios`.
         corrmon: Whether to apply monetary correction (real pesos).
             Defaults to the server's client default (nominal).
 
@@ -160,17 +163,26 @@ def get_data(
         Tidy records with cod_municipio, nombre_municipio, anio, code,
         name, value and unit. A missing observation has value None.
         Queries estimated to exceed 1000 records are rejected up front —
-        narrow them with explicit years, municipios or a region.
+        narrow them with explicit years, municipios or a region — and the
+        actual response is re-checked against the same limit as a
+        safety net.
     """
+    if municipios and region:
+        raise ValueError("`municipios` and `region` are mutually exclusive — pass one or neither.")
     client = _get_client()
-    year_count = len(years)
+    unique_codes = list(dict.fromkeys(codes))
+    unique_years = list(dict.fromkeys(years))
     if municipios:
-        muni_count = len(municipios)
+        muni_count = len(dict.fromkeys(municipios))
     elif region:
-        muni_count = _MAX_REGION_MUNICIPIOS
+        # A real per-region count (one request) avoids the false rejections
+        # a flat upper bound causes for regions much smaller than Metropolitana.
+        muni_count = len(client.municipios(region=region))
     else:
+        # Not fetched live: enumerating every region just to count would cost
+        # 16 requests for a number that only changes via rare legislation.
         muni_count = _ALL_MUNICIPIOS
-    estimate = len(codes) * year_count * muni_count
+    estimate = len(unique_codes) * len(unique_years) * muni_count
     if estimate > MAX_RECORDS:
         raise ValueError(
             f"This query could return roughly {estimate} records, above the "
@@ -179,12 +191,17 @@ def get_data(
             "or fewer codes per call."
         )
     frame = client.get(
-        codes,
-        years=years,
+        unique_codes,
+        years=unique_years,
         municipios=municipios,
         regiones=[region] if region else None,
         corrmon=corrmon,
     )
+    if len(frame) > MAX_RECORDS:
+        raise ValueError(
+            f"SINIM returned {len(frame)} records, above the {MAX_RECORDS}-record "
+            "MCP response limit. Use fewer years, municipalities, or variable codes."
+        )
     return _records(frame)
 
 
@@ -204,8 +221,9 @@ def list_municipios(region: str | None = None) -> list[dict[str, Any]]:
     """List municipalities, optionally filtered by region.
 
     Args:
-        region: Region id to filter by (e.g. "131" = Región
-            Metropolitana). Defaults to all regions (~345 municipalities).
+        region: Official region code (e.g. "13" = Región Metropolitana; a
+            SINIM-internal id like "131" is also accepted). Defaults to all
+            regions (~345 municipalities).
 
     Returns:
         Municipalities, each with cod_municipio (legal code) and
@@ -225,7 +243,7 @@ def search_municipalities(
 
     Args:
         query: Free-text municipality name (e.g. "santiago", "nunoa").
-        region: Optional region id restricting the search (e.g. "131").
+        region: Optional official region code restricting the search (e.g. "13").
         limit: Maximum number of results (default 10).
 
     Returns:

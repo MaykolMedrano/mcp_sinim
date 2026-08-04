@@ -12,6 +12,7 @@ import math
 from pathlib import Path
 
 import httpx
+import pandas as pd
 import pytest
 import respx
 
@@ -24,6 +25,12 @@ FIXTURES = Path(__file__).parent / "fixtures"
 FORM_URL = f"{BASE_URL}.php"
 DATA_URL = f"{BASE_URL}/obtener_datos_municipales.php"
 MUNICIPIOS_URL = f"{BASE_URL}/obtener_municipios.php"
+
+
+def _mock_municipios_131() -> None:
+    respx.post(MUNICIPIOS_URL).mock(
+        return_value=httpx.Response(200, content=_fx("municipios_131.json"))
+    )
 
 
 def _fx(name: str) -> bytes:
@@ -97,8 +104,11 @@ def test_get_data_returns_json_safe_records(fresh_client: SINIMClient) -> None:
     respx.get(DATA_URL).mock(
         return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
     )
+    # The fixture carries three years (2022-2024); only 2024 was requested,
+    # so the client must filter the other two out before returning.
     records = server.get_data(["4173"], years=[2024])
-    assert len(records) == 1035
+    assert len(records) == 345
+    assert {r["anio"] for r in records} == {2024}
     assert set(records[0]) == {
         "cod_municipio",
         "nombre_municipio",
@@ -136,9 +146,38 @@ def test_get_data_region_scope_passes_size_guard(fresh_client: SINIMClient) -> N
     respx.get(DATA_URL).mock(
         return_value=httpx.Response(200, content=_fx("data_4173_2022_2024.xml"))
     )
-    # One region and one year bounds the estimate (60 x 1 x 1), so this runs.
+    _mock_municipios_131()
+    # One region (52 real comunas) and one year bounds the estimate, so this runs.
     records = server.get_data(["4173"], years=[2024], region="131")
     assert records
+    assert {r["anio"] for r in records} == {2024}
+
+
+def test_get_data_rejects_both_municipios_and_region(fresh_client: SINIMClient) -> None:
+    with pytest.raises(ValueError, match="mutually exclusive"):
+        server.get_data(["4173"], years=[2024], municipios=["13101"], region="131")
+
+
+def test_get_data_rejects_when_actual_response_exceeds_cap(
+    fresh_client: SINIMClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The post-fetch size check catches responses the pre-flight estimate missed."""
+    oversized_rows = server.MAX_RECORDS + 1
+    oversized = pd.DataFrame(
+        {
+            "cod_municipio": [str(i).zfill(5) for i in range(oversized_rows)],
+            "nombre_municipio": ["X"] * oversized_rows,
+            "anio": [2024] * oversized_rows,
+            "code": ["4173"] * oversized_rows,
+            "name": [""] * oversized_rows,
+            "value": [1.0] * oversized_rows,
+            "unit": [""] * oversized_rows,
+        }
+    )
+    monkeypatch.setattr(fresh_client, "get", lambda *args, **kwargs: oversized)
+    # One code, one year, one municipio: the pre-flight estimate is tiny and passes.
+    with pytest.raises(ValueError, match=f"above the {server.MAX_RECORDS}-record"):
+        server.get_data(["4173"], years=[2024], municipios=["13101"])
 
 
 def test_list_areas_returns_sorted_distinct(fresh_client: SINIMClient) -> None:

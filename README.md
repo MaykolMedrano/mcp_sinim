@@ -97,6 +97,7 @@ Optional environment variable:
 | `get_data` | Retrieve tidy municipal records for one or many variables. |
 | `list_areas` | List the 9 catalog subject areas. |
 | `list_municipios` | List municipalities, optionally filtered by region. |
+| `search_municipalities` | Search municipalities by name, optionally filtered by region. |
 | `list_years` | List currently available SINIM years. |
 
 ## Important Notes

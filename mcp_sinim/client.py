@@ -529,7 +529,7 @@ class SINIMClient:
             return None
         if not years:
             raise ValueError("`years` must contain at least one year when provided.")
-        return sorted(years)
+        return sorted(dict.fromkeys(years))
 
     @staticmethod
     def _normalize_selection(name: str, values: list[str] | None) -> list[str] | None:
@@ -613,11 +613,10 @@ class SINIMClient:
             data workbook.
         """
         code_list = self._normalize_codes(codes)
-        year_list = self._normalize_requested_years(years)
+        requested_years = self._normalize_requested_years(years)
         region_list = self._normalize_selection("regiones", regiones)
         municipio_list = self._normalize_selection("municipios", municipios)
-        if year_list is None:
-            year_list = self.years()
+        year_list = requested_years if requested_years is not None else self.years()
         periods = ",".join(str(self._period_index(year)) for year in year_list)
         use_corrmon = self.corrmon if corrmon is None else corrmon
 
@@ -632,6 +631,7 @@ class SINIMClient:
             if municipio_list is not None
             else None
         )
+        year_filter = set(requested_years) if requested_years is not None else None
         variables_by_code = {variable.code: variable for variable in self._variables()}
 
         frames: list[pd.DataFrame] = []
@@ -694,8 +694,14 @@ class SINIMClient:
                 ]
             )
 
-        if muni_filter is not None and not data.empty:
-            data = data[data["cod_municipio"].isin(muni_filter)].reset_index(drop=True)
+        if not data.empty:
+            mask = pd.Series(True, index=data.index)
+            if muni_filter is not None:
+                mask &= data["cod_municipio"].isin(muni_filter)
+            if year_filter is not None:
+                mask &= data["anio"].isin(year_filter)
+            if not mask.all():
+                data = data[mask].reset_index(drop=True)
 
         if tidy:
             return data
