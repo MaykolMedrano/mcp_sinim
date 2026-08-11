@@ -1,17 +1,31 @@
+<div align="center">
+
 # mcp-sinim
 
 **Pull Chilean municipal data from SINIM with a searchable catalog, tidy municipal panels, and the same package from Python or any MCP-compatible client.**
 
-An open-source project by Maykol Medrano.
-
 [![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![CI](https://img.shields.io/github/actions/workflow/status/MaykolMedrano/mcp_sinim/ci.yml?branch=main&style=flat-square)](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Downloads](https://img.shields.io/pypi/dm/mcp-sinim?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ---
 
-## What You Can Do
+## Overview
+
+`mcp-sinim` provides two interfaces to Chile's public Sistema Nacional de
+Información Municipal (SINIM):
+
+- a synchronous Python client for analysts working in notebooks and scripts;
+- an MCP server for AI agents and other MCP-compatible applications.
+
+Both interfaces use the same searchable variable catalog and return tidy
+municipal data suitable for analysis with `pandas`.
+
+## What You Get
 
 - Search roughly 480 SINIM variables by natural language instead of memorizing `id_dato` codes.
 - Pull one or many municipal indicators as tidy `pandas` panels in one call.
@@ -25,7 +39,7 @@ An open-source project by Maykol Medrano.
 pip install mcp-sinim
 ```
 
-## Python Example
+## Python API (Analysts)
 
 ```python
 from mcp_sinim import SINIMClient
@@ -61,7 +75,7 @@ Main things you will use:
 - `municipios(...)` and `search_municipios(...)` to work with legal municipality codes
 - `years()` to see what is currently available
 
-## MCP Server
+## MCP Server (AI Agents)
 
 Use `mcp-sinim` when you want an MCP client to search SINIM variables, inspect
 their metadata, and fetch municipal data without writing a custom wrapper.
@@ -102,6 +116,19 @@ Optional environment variable:
 | `search_municipalities` | Search municipalities by name, optionally filtered by region. |
 | `list_years` | List currently available SINIM years. |
 
+## Repository Structure
+
+```text
+mcp_sinim/
+├── mcp_sinim/          Python client, catalog, parsers and MCP server
+│   └── data/            Packaged offline variable catalog
+├── examples/           Python example and user-guide notebook
+├── tests/              Automated tests and deterministic fixtures
+├── scripts/            Catalog, release and verification utilities
+├── pyproject.toml      Package and tool configuration
+└── README.md           Project documentation
+```
+
 ## Important Notes
 
 - `cod_municipio` matches the official SUBDERE CUT codes for the 345 municipalities present in SINIM.
@@ -123,6 +150,15 @@ python -m ruff format --check .
 python -m pytest
 ```
 
-## License
+## Author
 
-MIT. See [LICENSE](LICENSE).
+**Maykol Medrano**<br>
+Pontificia Universidad Católica de Chile<br>
+Email: [mmedrano2@uc.cl](mailto:mmedrano2@uc.cl)<br>
+GitHub: [MaykolMedrano](https://github.com/MaykolMedrano)
+
+## License and Disclaimer
+
+This project is released under the [MIT License](LICENSE). It is an independent
+open-source client and is not affiliated with SUBDERE or the Gobierno de Chile.
+Data availability and accuracy depend on the public SINIM service.
