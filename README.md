@@ -2,7 +2,7 @@
 
 # mcp-sinim
 
-**Descarga datos municipales de Chile desde SINIM mediante un catálogo buscable, paneles ordenados y una misma herramienta para Python o cualquier cliente MCP.**
+**Busca, descarga y analiza datos municipales de Chile desde SINIM, usando Python o cualquier cliente MCP.**
 
 [![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
