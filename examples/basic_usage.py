@@ -29,10 +29,10 @@ def main() -> None:
     santiago = data.query("cod_municipio == '13101'")
     print(f"Variable 4173, SANTIAGO:\n{santiago}\n")
 
-    # 5. Municipalities of Región Metropolitana (region id 131).
-    municipios = client.municipios(region="131")
+    # 5. Municipalities of Región Metropolitana (official region code 13).
+    municipios = client.municipios(region="13")
     print(f"Región Metropolitana: {len(municipios)} municipalities")
-    print(client.search_municipios("nunoa", region="131").head(3))
+    print(client.search_municipios("nunoa", region="13").head(3))
 
     client.close()
 
