@@ -74,7 +74,7 @@ Las columnas principales del resultado son:
 | :--- | :--- |
 | `cod_municipio` | Código CUT oficial del municipio. |
 | `nombre_municipio` | Nombre del municipio. |
-| `year` | Año de la observación. |
+| `anio` | Año de la observación. |
 | `code` | Código de la variable SINIM. |
 | `name` | Nombre de la variable. |
 | `value` | Valor publicado por SINIM. |
