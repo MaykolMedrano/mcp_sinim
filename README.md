@@ -87,8 +87,10 @@ Métodos principales:
 - `municipios(...)` y `search_municipios(...)`: consulta códigos CUT;
 - `years()`: muestra los años disponibles.
 
-Consulta también el [ejemplo básico](examples/basic_usage.py) y la
-[guía de usuario en Jupyter](examples/Guia_Usuario_SINIM.ipynb).
+Consulta también el [notebook de inicio rápido con mapa interactivo en
+Kepler.gl](examples/basic_usage.ipynb) (Python 3.10–3.12), el [ejemplo básico en
+Python](examples/basic_usage.py) y la [guía de usuario en
+Jupyter](examples/Guia_Usuario_SINIM.ipynb).
 
 ## Servidor MCP para agentes de IA
 
@@ -158,7 +160,7 @@ Ejemplos de solicitudes para un agente conectado al servidor:
 mcp_sinim/
 ├── mcp_sinim/          Cliente, catálogo, parsers y servidor MCP
 │   └── data/            Copia local del catálogo de variables
-├── examples/           Ejemplo de Python y guía en Jupyter
+├── examples/           Ejemplos, mapa Kepler.gl y guía en Jupyter
 ├── tests/              Pruebas automatizadas y datos de prueba
 ├── scripts/            Utilidades de catálogo, publicación y verificación
 ├── pyproject.toml      Configuración del paquete
