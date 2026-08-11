@@ -2,7 +2,7 @@
 
 # mcp-sinim
 
-**Busca, descarga y analiza datos municipales de Chile desde SINIM, usando Python o cualquier cliente MCP.**
+**Busca, descarga y analiza datos municipales de Chile desde el [Sistema Nacional de Información Municipal (SINIM)](https://datos.sinim.gov.cl/), usando Python o cualquier cliente MCP.**
 
 [![PyPI](https://img.shields.io/pypi/v/mcp-sinim.svg?style=flat-square&color=blue)](https://pypi.org/project/mcp-sinim/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
@@ -16,8 +16,8 @@
 
 ## Descripción general
 
-`mcp-sinim` ofrece dos interfaces para consultar el Sistema Nacional de
-Información Municipal (SINIM) de Chile:
+`mcp-sinim` ofrece dos interfaces para consultar el [Sistema Nacional de
+Información Municipal (SINIM)](https://datos.sinim.gov.cl/) de Chile:
 
 - un cliente síncrono de Python para análisis en notebooks y scripts;
 - un servidor MCP para agentes de IA y otras aplicaciones compatibles.
@@ -140,6 +140,16 @@ Ejemplos de solicitudes para un agente conectado al servidor:
 > Descarga la variable 4173 para Santiago, Las Condes y Providencia entre 2020 y 2024.
 
 > Exporta a Parquet los ingresos por patentes de todos los municipios de la Región Metropolitana.
+
+## Fuente de datos
+
+Los datos provienen del portal oficial [SINIM Datos
+Municipales](https://datos.sinim.gov.cl/), administrado por la Subsecretaría de
+Desarrollo Regional y Administrativo (SUBDERE) del Ministerio del Interior de
+Chile.
+
+Al utilizar la información, cita como fuente: **Sistema Nacional de Información
+Municipal (SINIM), SUBDERE, Ministerio del Interior**.
 
 ## Consideraciones sobre los datos
 
