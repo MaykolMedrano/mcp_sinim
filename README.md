@@ -94,6 +94,37 @@ Jupyter](examples/Guia_Usuario_SINIM.ipynb).
 
 ## Servidor MCP para agentes de IA
 
+### Conecta tu chatbot al servidor MCP
+
+#### Opci&oacute;n r&aacute;pida: p&iacute;deselo a tu asistente de IA
+
+Si utilizas un asistente con acceso autorizado a la terminal, como Codex,
+Claude Code, Cursor o Windsurf, puedes pedirle que instale el paquete y registre
+el servidor en tu cliente MCP. Copia y pega este prompt:
+
+> Instala `mcp-sinim` desde PyPI con `python -m pip install --upgrade
+> mcp-sinim` y reg&iacute;stralo en mi cliente MCP usando transporte `stdio`, con el
+> comando `mcp-sinim` y el nombre de servidor `sinim`. Verifica que el
+> ejecutable exista, que el servidor inicie correctamente y que exponga sus
+> herramientas antes de darlo por terminado. Si el comando no est&aacute; disponible
+> en `PATH`, configura su ruta absoluta. No modifiques otras entradas MCP.
+
+El asistente deber&aacute; adaptar la ubicaci&oacute;n del archivo de configuraci&oacute;n al cliente
+y al sistema operativo que est&eacute;s utilizando.
+
+> [!IMPORTANT]
+> Revisa los comandos ejecutados y los cambios realizados en tus archivos de
+> configuraci&oacute;n antes de aprobarlos. No compartas credenciales ni concedas
+> permisos adicionales que no sean necesarios.
+
+Reinicia el cliente MCP despu&eacute;s de guardar la configuraci&oacute;n. Para comprobar la
+conexi&oacute;n, prueba una solicitud como:
+
+> Usa el servidor MCP `sinim` para buscar indicadores relacionados con
+> ejecuci&oacute;n presupuestaria municipal.
+
+#### Opci&oacute;n manual
+
 Después de instalar el paquete, inicia el servidor con:
 
 ```bash
