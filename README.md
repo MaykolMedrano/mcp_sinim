@@ -9,6 +9,8 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/MaykolMedrano/mcp_sinim/ci.yml?branch=main&style=flat-square&label=tests)](https://github.com/MaykolMedrano/mcp_sinim/actions/workflows/ci.yml)
 [![Descargas](https://img.shields.io/pypi/dm/mcp-sinim?style=flat-square&color=blue&label=descargas)](https://pypi.org/project/mcp-sinim/)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![mcp_sinim MCP server](https://glama.ai/mcp/servers/MaykolMedrano/mcp_sinim/badges/card.svg)](https://glama.ai/mcp/servers/MaykolMedrano/mcp_sinim)
+[![Glama MCP score](https://glama.ai/mcp/servers/MaykolMedrano/mcp_sinim/badges/score.svg)](https://glama.ai/mcp/servers/MaykolMedrano/mcp_sinim)
 
 </div>
 
