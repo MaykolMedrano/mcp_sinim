@@ -14,7 +14,7 @@
 
 ---
 
-## Descripción general
+## ¿Qué es mcp-sinim?
 
 `mcp-sinim` ofrece dos interfaces para consultar el [Sistema Nacional de
 Información Municipal (SINIM)](https://datos.sinim.gov.cl/) de Chile:
@@ -25,7 +25,7 @@ Información Municipal (SINIM)](https://datos.sinim.gov.cl/) de Chile:
 Ambas interfaces utilizan el mismo catálogo de variables y entregan datos
 municipales ordenados, listos para trabajar con `pandas`.
 
-## Funcionalidades
+Funciones principales:
 
 - Buscar cerca de 480 variables por texto, sin memorizar códigos `id_dato`.
 - Descargar uno o varios indicadores como paneles municipales ordenados.
@@ -33,7 +33,7 @@ municipales ordenados, listos para trabajar con `pandas`.
 - Usar el paquete desde Python, notebooks o clientes MCP.
 - Buscar en una copia local del catálogo y almacenar metadatos en caché.
 
-## Instalación
+## Instalación y primer uso
 
 ```bash
 pip install mcp-sinim
@@ -41,7 +41,7 @@ pip install mcp-sinim
 
 Requiere Python 3.10 o una versión posterior.
 
-## Inicio rápido con Python
+### Uso con Python
 
 ```python
 from mcp_sinim import SINIMClient
@@ -92,38 +92,36 @@ Kepler.gl](examples/basic_usage.ipynb) (Python 3.10–3.12), el [ejemplo básico
 Python](examples/basic_usage.py) y la [guía de usuario en
 Jupyter](examples/Guia_Usuario_SINIM.ipynb).
 
-## Servidor MCP para agentes de IA
+## Conectar a un cliente MCP
 
-### Conecta tu chatbot al servidor MCP
-
-#### Opci&oacute;n r&aacute;pida: p&iacute;deselo a tu asistente de IA
+### Instalación automática con IA
 
 Si utilizas un asistente con acceso autorizado a la terminal, como Codex,
 Claude Code, Cursor o Windsurf, puedes pedirle que instale el paquete y registre
 el servidor en tu cliente MCP. Copia y pega este prompt:
 
 > Instala `mcp-sinim` desde PyPI con `python -m pip install --upgrade
-> mcp-sinim` y reg&iacute;stralo en mi cliente MCP usando transporte `stdio`, con el
+> mcp-sinim` y regístralo en mi cliente MCP usando transporte `stdio`, con el
 > comando `mcp-sinim` y el nombre de servidor `sinim`. Verifica que el
 > ejecutable exista, que el servidor inicie correctamente y que exponga sus
-> herramientas antes de darlo por terminado. Si el comando no est&aacute; disponible
+> herramientas antes de darlo por terminado. Si el comando no está disponible
 > en `PATH`, configura su ruta absoluta. No modifiques otras entradas MCP.
 
-El asistente deber&aacute; adaptar la ubicaci&oacute;n del archivo de configuraci&oacute;n al cliente
-y al sistema operativo que est&eacute;s utilizando.
+El asistente deberá adaptar la ubicación del archivo de configuración al cliente
+y al sistema operativo que estés utilizando.
 
 > [!IMPORTANT]
 > Revisa los comandos ejecutados y los cambios realizados en tus archivos de
-> configuraci&oacute;n antes de aprobarlos. No compartas credenciales ni concedas
+> configuración antes de aprobarlos. No compartas credenciales ni concedas
 > permisos adicionales que no sean necesarios.
 
-Reinicia el cliente MCP despu&eacute;s de guardar la configuraci&oacute;n. Para comprobar la
-conexi&oacute;n, prueba una solicitud como:
+Reinicia el cliente MCP después de guardar la configuración. Para comprobar la
+conexión, prueba una solicitud como:
 
 > Usa el servidor MCP `sinim` para buscar indicadores relacionados con
-> ejecuci&oacute;n presupuestaria municipal.
+> ejecución presupuestaria municipal.
 
-#### Opci&oacute;n manual
+### Configuración manual
 
 Después de instalar el paquete, inicia el servidor con:
 
@@ -172,7 +170,21 @@ Ejemplos de solicitudes para un agente conectado al servidor:
 
 > Exporta a Parquet los ingresos por patentes de todos los municipios de la Región Metropolitana.
 
-## Fuente de datos
+## Casos de uso
+
+`mcp-sinim` permite construir flujos reproducibles para:
+
+- analizar ingresos propios, Fondo Común Municipal y ejecución presupuestaria;
+- comparar gasto, inversión y disponibilidad presupuestaria entre municipios;
+- estudiar indicadores de educación, salud y gestión municipal;
+- construir paneles históricos para investigación y políticas públicas;
+- exportar resultados a CSV o Parquet para Stata, R, Python o Power BI;
+- crear mapas municipales y conectar agentes de IA con una fuente oficial.
+
+El servidor trabaja con indicadores publicados por SINIM; no entrega registros
+transaccionales como facturas, proveedores u órdenes de compra.
+
+## Datos, unidades y limitaciones
 
 Los datos provienen del portal oficial [SINIM Datos
 Municipales](https://datos.sinim.gov.cl/), administrado por la Subsecretaría de
@@ -182,7 +194,7 @@ Chile.
 Al utilizar la información, cita como fuente: **Sistema Nacional de Información
 Municipal (SINIM), SUBDERE, Ministerio del Interior**.
 
-## Consideraciones sobre los datos
+### Consideraciones
 
 - `cod_municipio` corresponde a los códigos CUT oficiales de SUBDERE para los
   345 municipios presentes en SINIM.
@@ -195,7 +207,10 @@ Municipal (SINIM), SUBDERE, Ministerio del Interior**.
 - La unidad depende de cada variable. Por ejemplo, `M$` significa miles de pesos.
 - La disponibilidad y cobertura histórica varían entre indicadores.
 
-## Estructura del repositorio
+## Desarrollo
+
+<details>
+<summary>Ver estructura del repositorio</summary>
 
 ```text
 mcp_sinim/
@@ -208,7 +223,9 @@ mcp_sinim/
 └── README.md           Documentación principal
 ```
 
-## Desarrollo
+</details>
+
+### Configurar el entorno
 
 ```bash
 git clone https://github.com/MaykolMedrano/mcp_sinim
@@ -223,14 +240,14 @@ python -m pytest
 
 En macOS o Linux, activa el entorno con `source .venv/bin/activate`.
 
-## Autor
+## Autor y licencia
 
 **Maykol Medrano**<br>
 Pontificia Universidad Católica de Chile<br>
 Correo: [mmedrano2@uc.cl](mailto:mmedrano2@uc.cl)<br>
 GitHub: [MaykolMedrano](https://github.com/MaykolMedrano)
 
-## Licencia y descargo de responsabilidad
+### Licencia y descargo de responsabilidad
 
 Este proyecto se distribuye bajo la [licencia MIT](LICENSE). Es un cliente
 independiente de código abierto y no está afiliado a SUBDERE ni al Gobierno de
